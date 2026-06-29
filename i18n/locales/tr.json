@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "corporate": "Kurumsal",
+    "contact": "İletişim",
+    "cta": "Teklif Al"
+  },
+  "hero": {
+    "badge": "Euro Fil Water Filter Technology",
+    "title": "Euro Fil ile",
+    "titleAccent": "Temiz Su Garantisi",
+    "desc": "Ev, işyeri ve endüstriyel tesisler için profesyonel su arıtma sistemleri. Ücretsiz su analizi, uzman kurulum ve kesintisiz teknik destek tek çatı altında.",
+    "ctaPrimary": "Ürünleri İncele",
+    "ctaSecondary": "Ücretsiz Teklif Al",
+    "viewer360": "360° Görünüm"
+  },
+  "products": {
+    "title": "Ürünlerimiz",
+    "desc": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri",
+    "viewAll": "Tüm ürünler",
+    "categories": {
+      "all": "Tümü",
+      "home": "Ev Tipi",
+      "industrial": "Endüstriyel",
+      "addon": "Ek Ünite"
+    },
+    "cta": "Teklif Al"
+  },
+  "features": {
+    "label": "Neden Euro Fil",
+    "title": "Yalnızca cihaz satmıyoruz",
+    "desc": "Proje tasarımından kuruluma, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreci biz yönetiyoruz.",
+    "ro": {
+      "title": "Reverse Osmosis & Su Yumuşatma",
+      "desc": "Evsel 5 aşamalı RO sistemlerinden endüstriyel su yumuşatma, FRP tank ve hidrofor çözümlerine kadar geniş ürün yelpazesi. Pompasız ve pompalı seçeneklerle her ihtiyaca uygun sistem.",
+      "tags": ["5 Aşamalı RO", "Su Yumuşatma", "FRP Tanklar", "Direkt Akış", "Hidrofor"]
+    },
+    "cert": {
+      "title": "Belgelenmiş Kalite",
+      "desc": "NSF uluslararası sertifikası, T.C. Sağlık Bakanlığı Hıfzıssıhha raporu ve Yıldız Teknik Üniversitesi onaylı sistemler.",
+      "items": ["NSF Sertifikalı", "Hıfzıssıhha Raporu", "YTÜ Onaylı"]
+    },
+    "scope": {
+      "title": "Evsel & Endüstriyel",
+      "desc": "Müstakil evden fabrikaya, restorandan otele kadar her ölçekte çözüm. Tek tedarikçi, tam hizmet."
+    },
+    "support": {
+      "title": "Kurulum, Bakım ve 7/24 Destek",
+      "desc": "Anlaşmanın ardından 24 saat içinde sertifikalı ekiple kurulum. Yıllık periyodik bakım sözleşmesi ve 7/24 teknik destek hattıyla sisteminiz her zaman en iyi performansta çalışır.",
+      "stats": {
+        "install": "24 sa",
+        "installLabel": "kurulum süresi",
+        "warranty": "2 yıl",
+        "warrantyLabel": "garanti",
+        "support": "7/24",
+        "supportLabel": "teknik destek"
+      }
+    }
+  },
+  "steps": {
+    "label": "Süreç",
+    "title": "Euro Fil ile Başlamak Çok Kolay",
+    "desc": "Ücretsiz su analizinden kesintisiz desteğe — 4 adımda profesyonel çözüm",
+    "items": [
+      {
+        "title": "Su Analizi",
+        "desc": "Uzman ekibimiz bölgenizdeki su kalitesini ölçer; sertlik, pH ve kirletici düzeylerini belirler."
+      },
+      {
+        "title": "Sistem Tasarımı",
+        "desc": "Analiz sonucuna göre ev tipi RO, su yumuşatma veya endüstriyel çözüm teklifi 24 saat içinde sunulur."
+      },
+      {
+        "title": "Hızlı Kurulum",
+        "desc": "Sertifikalı kurulum ekibimiz anlaşmanın hemen ardından devreye girer, sisteminizi 24 saatte teslim eder."
+      },
+      {
+        "title": "Kesintisiz Destek",
+        "desc": "Yıllık periyodik bakım sözleşmesi ve 7/24 teknik destek hattıyla sisteminiz her zaman en iyi performansta."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "desc": "Aklınızdaki soruların cevaplarını burada bulabilirsiniz.",
+    "items": [
+      {
+        "q": "Su arıtma cihazı hangi sıklıkta bakım istiyor?",
+        "a": "Euro Fil sistemleri yılda bir kez periyodik bakım gerektirir. Filtrelerin değişim süresi su kalitesine ve kullanım miktarına göre 6-12 ay arasında değişir. Bakım sözleşmesi olan müşterilerimize hatırlatma yapılır."
+      },
+      {
+        "q": "Kurulum ne kadar sürer ve kim yapar?",
+        "a": "Tüm kurulumlar Euro Fil'in sertifikalı teknik ekibi tarafından yapılır. Standart ev tipi sistemler 1-2 saat, endüstriyel sistemler ise tesisin büyüklüğüne göre 1-3 gün içinde tamamlanır."
+      },
+      {
+        "q": "Hangi su kaynakları için uygundur?",
+        "a": "Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Ücretsiz su analizimiz sayesinde kaynağınıza en uygun sistemi belirliyoruz."
+      },
+      {
+        "q": "Garanti kapsamı nedir?",
+        "a": "Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti süresi içinde oluşan arızalarda parça ve işçilik ücretsiz olarak karşılanır. 7/24 teknik destek hattımız her zaman hizmetinizde."
+      },
+      {
+        "q": "Teklif almak için ne yapmam gerekiyor?",
+        "a": "İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar, ücretsiz su analizi planlar ve ihtiyacınıza özel fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez."
+      },
+      {
+        "q": "Endüstriyel tesisler için özel çözümleriniz var mı?",
+        "a": "Evet. Fabrika, otel, hastane ve gıda işletmeleri gibi yüksek kapasiteli tesisler için özel mühendislik çözümleri sunuyoruz. Kapasite hesabı ve sistem tasarımı ücretsiz olarak yapılır."
+      }
+    ]
+  },
+  "cta": {
+    "label": "Ücretsiz",
+    "title": "Su Analizi",
+    "titleAccent": "Talep Edin",
+    "desc": "Euro Fil uzmanları bölgenizdeki su kalitesini analiz eder, ev tipi RO'dan endüstriyel su yumuşatma çözümlerine kadar ihtiyacınıza en uygun sistemi önerir.",
+    "primary": "Ücretsiz Analiz Talep Et",
+    "secondary": "Ürün Kataloğu",
+    "assurances": [
+      {
+        "title": "Ücretsiz Su Analizi",
+        "desc": "Uzman ekibimiz su kalitesini ölçer, size en uygun sistemi belirler — hiçbir ön ödeme gerekmez."
+      },
+      {
+        "title": "24 Saatte Kurulum",
+        "desc": "Anlaşmanın ardından sertifikalı ekibimiz sisteminizi 24 saat içinde devreye alır."
+      },
+      {
+        "title": "2 Yıl Garanti + 7/24 Destek",
+        "desc": "Tüm ürünlerde 2 yıl fabrika garantisi. Arıza durumunda 7/24 teknik destek hattımız hizmetinizde."
+      }
+    ]
+  },
+  "contactPage": {
+    "badge": "Bize Ulaşın",
+    "title": "İletişim",
+    "desc": "Ücretsiz su analizi, teklif veya teknik destek için formu doldurun. Uzmanlarımız 24 saat içinde sizinle iletişime geçer.",
+    "form": {
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "subject": "Konu",
+      "message": "Mesajınız",
+      "submit": "Gönder",
+      "sending": "Gönderiliyor…",
+      "success": "Mesajınız alındı! En kısa sürede dönüş yapacağız.",
+      "error": "Bir hata oluştu, lütfen tekrar deneyin.",
+      "subjects": {
+        "analysis": "Ücretsiz Su Analizi",
+        "quote": "Fiyat Teklifi",
+        "support": "Teknik Destek",
+        "other": "Diğer"
+      }
+    },
+    "info": {
+      "title": "İletişim Bilgileri",
+      "phone": "+90 (212) 000 00 00",
+      "email": "info{'@'}eurofil.com.tr",
+      "address": "İstanbul, Türkiye",
+      "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
+      "support": "7/24 Teknik Destek Hattı"
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "badge": "Ürün Kataloğu",
+      "title": "Tüm Ürünlerimiz",
+      "desc": "Ev tipi su arıtmadan endüstriyel çözümlere — ihtiyacınıza özel sistem."
+    },
+    "filter": {
+      "all": "Tümü",
+      "home": "Ev Tipi",
+      "industrial": "Endüstriyel",
+      "addon": "Ek Ünite"
+    },
+    "cta": "Teklif Al",
+    "count": "ürün"
+  },
+  "footer": {
+    "desc": "Profesyonel su arıtma çözümleri ile temiz suya ulaşmak artık çok daha kolay.",
+    "quickLinks": "Hızlı Erişim",
+    "contact": "İletişim",
+    "copyright": "Tüm hakları saklıdır."
+  }
+}

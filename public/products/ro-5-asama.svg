@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="400" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c1c1f"/>
+      <stop offset="100%" stop-color="#27272a"/>
+    </linearGradient>
+    <linearGradient id="cyl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="40%" stop-color="#52525b"/>
+      <stop offset="100%" stop-color="#3f3f46"/>
+    </linearGradient>
+    <linearGradient id="cylBlue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="40%" stop-color="#2254f4"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="tank" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="50%" stop-color="#52525b"/>
+      <stop offset="100%" stop-color="#3f3f46"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#bg)"/>
+
+  <!-- Glow -->
+  <ellipse cx="200" cy="260" rx="130" ry="18" fill="#2254f4" opacity="0.12"/>
+
+  <!-- Base platform -->
+  <rect x="60" y="245" width="280" height="8" rx="4" fill="#3f3f46"/>
+
+  <!-- Filter 1 - Sediment (gray) -->
+  <rect x="72" y="100" width="42" height="145" rx="8" fill="url(#cyl)"/>
+  <rect x="75" y="97" width="36" height="10" rx="4" fill="#52525b"/>
+  <rect x="75" y="240" width="36" height="10" rx="5" fill="#52525b"/>
+  <rect x="86" y="115" width="14" height="115" rx="3" fill="#27272a" opacity="0.4"/>
+  <text x="93" y="170" font-family="monospace" font-size="7" fill="#71717a" text-anchor="middle" transform="rotate(-90,93,170)">SEDIMENT</text>
+
+  <!-- Filter 2 - GAC Carbon (gray) -->
+  <rect x="126" y="100" width="42" height="145" rx="8" fill="url(#cyl)"/>
+  <rect x="129" y="97" width="36" height="10" rx="4" fill="#52525b"/>
+  <rect x="129" y="240" width="36" height="10" rx="5" fill="#52525b"/>
+  <rect x="140" y="115" width="14" height="115" rx="3" fill="#27272a" opacity="0.4"/>
+  <text x="147" y="170" font-family="monospace" font-size="7" fill="#71717a" text-anchor="middle" transform="rotate(-90,147,170)">GAC CARBON</text>
+
+  <!-- Filter 3 - Membrane (BLUE highlight) -->
+  <rect x="180" y="88" width="42" height="157" rx="8" fill="url(#cylBlue)" opacity="0.85"/>
+  <rect x="183" y="85" width="36" height="10" rx="4" fill="#2254f4"/>
+  <rect x="183" y="240" width="36" height="10" rx="5" fill="#2254f4"/>
+  <rect x="194" y="103" width="14" height="127" rx="3" fill="#1e3a8a" opacity="0.5"/>
+  <text x="201" y="170" font-family="monospace" font-size="7" fill="#93c5fd" text-anchor="middle" transform="rotate(-90,201,170)">R.O. MEMBRANE</text>
+
+  <!-- Filter 4 - Post Carbon (gray) -->
+  <rect x="234" y="108" width="36" height="132" rx="8" fill="url(#cyl)"/>
+  <rect x="236" y="105" width="32" height="9" rx="4" fill="#52525b"/>
+  <rect x="236" y="237" width="32" height="10" rx="5" fill="#52525b"/>
+  <text x="252" y="170" font-family="monospace" font-size="6.5" fill="#71717a" text-anchor="middle" transform="rotate(-90,252,170)">POST CARBON</text>
+
+  <!-- Tank (right) -->
+  <ellipse cx="314" cy="195" rx="26" ry="12" fill="#3f3f46"/>
+  <rect x="288" y="138" width="52" height="57" fill="url(#tank)"/>
+  <ellipse cx="314" cy="138" rx="26" ry="12" fill="#52525b"/>
+  <rect x="310" y="120" width="8" height="20" rx="3" fill="#52525b"/>
+  <ellipse cx="314" cy="207" rx="26" ry="10" fill="#2f2f35"/>
+  <!-- tank label -->
+  <text x="314" y="172" font-family="monospace" font-size="8" fill="#71717a" text-anchor="middle">TANK</text>
+  <text x="314" y="185" font-family="monospace" font-size="7" fill="#52525b" text-anchor="middle">2.2 GAL</text>
+
+  <!-- Connecting tubes -->
+  <path d="M114 175 Q120 175 126 175" stroke="#3f3f46" stroke-width="3" fill="none"/>
+  <path d="M168 175 Q174 175 180 175" stroke="#3f3f46" stroke-width="3" fill="none"/>
+  <path d="M222 175 Q228 175 234 175" stroke="#3f3f46" stroke-width="3" fill="none"/>
+  <path d="M270 175 Q278 175 288 175" stroke="#3f3f46" stroke-width="3" fill="none"/>
+
+  <!-- Water drop icon -->
+  <path d="M196 35 C196 35 190 44 190 49 C190 52.3 192.7 55 196 55 C199.3 55 202 52.3 202 49 C202 44 196 35 196 35Z" fill="#2254f4" opacity="0.6"/>
+
+  <!-- Label -->
+  <text x="200" y="275" font-family="system-ui,sans-serif" font-size="11" fill="#a1a1aa" text-anchor="middle" font-weight="600">5 AŞAMALI REVERSE OSMOSIS</text>
+</svg>
