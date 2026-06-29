@@ -4,7 +4,7 @@
       <nav ref="navEl" class="flex items-center justify-between h-14 px-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg shadow-black/10 border border-zinc-200/60">
         <!-- Logo -->
         <NuxtLink :to="localePath('/')" class="flex-shrink-0 pl-1">
-          <img src="/light-logo.png" alt="Euro Fil" class="h-10 w-auto brightness-0" />
+          <img src="/light-logo.png" alt="Euro Fil" class="h-[60px] w-auto" />
         </NuxtLink>
 
         <!-- Nav links -->

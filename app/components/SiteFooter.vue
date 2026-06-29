@@ -5,7 +5,7 @@
         <!-- Brand -->
         <div>
           <div class="mb-4">
-            <img src="/light-logo.png" alt="Euro Fil" class="h-8 w-auto" />
+            <img src="/dark-logo.png" alt="Euro Fil" class="h-24 w-auto" />
           </div>
           <p class="text-sm text-zinc-500 leading-relaxed">{{ $t('footer.desc') }}</p>
         </div>
