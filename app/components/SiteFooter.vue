@@ -27,7 +27,6 @@
           <ul class="space-y-2 text-sm text-zinc-500">
             <li>info@eurofil.com.tr</li>
             <li>0212 000 00 00</li>
-            <li>İstanbul, Türkiye</li>
           </ul>
         </div>
       </div>
