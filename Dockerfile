@@ -2,11 +2,10 @@
 
 FROM node:22-slim AS build
 WORKDIR /app
-RUN corepack enable
-COPY package.json pnpm-lock.yaml .npmrc ./
-RUN pnpm install --frozen-lockfile
+COPY package.json ./
+RUN npm install --legacy-peer-deps
 COPY . .
-RUN pnpm run build
+RUN npm run build
 
 FROM node:22-slim AS runtime
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
