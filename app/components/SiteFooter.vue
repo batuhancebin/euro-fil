@@ -14,6 +14,7 @@
         <div>
           <h3 class="text-sm font-semibold text-zinc-300 mb-4">{{ $t('footer.quickLinks') }}</h3>
           <ul class="space-y-2 text-sm text-zinc-500">
+            <li><NuxtLink :to="localePath('/')" class="hover:text-white transition-colors">{{ $t('nav.home') }}</NuxtLink></li>
             <li><NuxtLink :to="localePath('/urunler')" class="hover:text-white transition-colors">{{ $t('nav.products') }}</NuxtLink></li>
             <li><NuxtLink :to="localePath('/kurumsal')" class="hover:text-white transition-colors">{{ $t('nav.corporate') }}</NuxtLink></li>
             <li><NuxtLink :to="localePath('/iletisim')" class="hover:text-white transition-colors">{{ $t('nav.contact') }}</NuxtLink></li>
