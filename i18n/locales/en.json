@@ -156,7 +156,7 @@
     },
     "info": {
       "title": "Contact Info",
-      "phone": "+90 (212) 000 00 00",
+      "phone": "+90 545 449 77 66",
       "email": "info{'@'}eurofil.com.tr",
       "address": "Istanbul, Turkey",
       "hours": "Monday – Saturday, 08:00 – 18:00",
@@ -182,6 +182,54 @@
     "desc": "Reaching clean water with professional water purification solutions has never been easier.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "madeByPrefix": "This website was made by",
+    "madeBySuffix": ""
+  },
+  "corp": {
+    "hero": {
+      "badge": "Water Treatment Engineering",
+      "titleWords": ["Engineering", "meets", "clean", "water."],
+      "desc": "Euro Fil designs, manufactures and installs TSE-certified water purification systems for homes, offices and industrial facilities."
+    },
+    "manifesto": {
+      "quote": "Water treatment isn't a product, it's a responsibility. We design every system as if we were installing it in our own home.",
+      "specs": [
+        { "label": "Scope", "value": "Residential · Industrial · Add-ons" },
+        { "label": "Certification", "value": "TSE Approved" },
+        { "label": "Installation Time", "value": "24 Hours" },
+        { "label": "Warranty", "value": "2 Years" },
+        { "label": "Technical Support", "value": "24/7" }
+      ]
+    },
+    "values": {
+      "label": "Our Principles",
+      "title": "Four Principles That Define Us",
+      "items": [
+        { "title": "Engineering Precision", "desc": "Every system is custom-designed based on water source analysis; we don't offer off-the-shelf solutions." },
+        { "title": "Durable Materials", "desc": "We only use certified components built to withstand pressure and time." },
+        { "title": "Transparent Process", "desc": "We share every step of the quote, installation and maintenance process clearly." },
+        { "title": "Continuous Support", "desc": "The work doesn't end at installation; our 24/7 technical support line is always with you." }
+      ]
+    },
+    "standards": {
+      "label": "Our Standards",
+      "title": "Quality Is Checked at Every Stage",
+      "items": ["TSE Certified Manufacturing", "Food-Grade Materials", "Multi-Stage Pressure Testing", "Certified Installation Team", "Scheduled Maintenance Plans"]
+    },
+    "stats": {
+      "items": [
+        { "value": "24 HRS", "label": "Installation Time" },
+        { "value": "2 YRS", "label": "Warranty Coverage" },
+        { "value": "24/7", "label": "Technical Support" },
+        { "value": "TSE", "label": "Certified Production" }
+      ]
+    },
+    "cta": {
+      "title": "Let's Assess Your Water Source Together",
+      "desc": "Let's determine the ideal system for your needs with a free water analysis.",
+      "primary": "Get a Quote",
+      "secondary": "Browse Products"
+    }
   }
 }

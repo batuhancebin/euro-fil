@@ -4,88 +4,115 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
       <div class="flex items-center gap-2 text-sm text-zinc-500">
         <NuxtLink :to="localePath('/')" class="hover:text-white transition-colors">Ana Sayfa</NuxtLink>
-        <span>/</span>
+        <span class="text-zinc-700">/</span>
         <NuxtLink :to="localePath('/urunler')" class="hover:text-white transition-colors">{{ $t('nav.products') }}</NuxtLink>
-        <span>/</span>
+        <span class="text-zinc-700">/</span>
         <span class="text-zinc-400">{{ name }}</span>
       </div>
     </div>
 
     <!-- Main -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
         <!-- Görsel -->
-        <div class="space-y-4">
-          <!-- Ana görsel -->
-          <div class="rounded-2xl overflow-hidden bg-surface-2 border border-surface-4 aspect-video flex items-center justify-center">
-            <img
-              v-if="activeImage"
-              :src="activeImage"
-              :alt="name"
-              class="w-full h-full object-cover"
-            />
-            <Droplets v-else class="w-20 h-20 text-brand-500/20" />
+        <div ref="galleryEl" class="lg:col-span-7 lg:sticky lg:top-28">
+          <div class="flex gap-3">
+            <!-- Dikey thumbnail şeridi (desktop) -->
+            <div v-if="product.images?.length > 1" class="hidden sm:flex flex-col gap-2.5 flex-shrink-0">
+              <button
+                v-for="(img, i) in product.images"
+                :key="i"
+                class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 transition-all duration-200"
+                :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4 hover:border-zinc-400 opacity-70 hover:opacity-100'"
+                @click="activeImage = img"
+              >
+                <img :src="img" class="w-full h-full object-contain" />
+              </button>
+            </div>
+
+            <!-- Ana görsel -->
+            <div class="relative flex-1 rounded-2xl overflow-hidden bg-white border border-surface-4 aspect-square flex items-center justify-center p-10">
+              <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/5 text-zinc-500">
+                {{ categoryName }}
+              </span>
+              <Transition name="fade" mode="out-in">
+                <img
+                  v-if="activeImage"
+                  :key="activeImage"
+                  :src="activeImage"
+                  :alt="name"
+                  class="w-full h-full object-contain"
+                />
+                <Droplets v-else class="w-20 h-20 text-brand-500/20" />
+              </Transition>
+            </div>
           </div>
-          <!-- Thumbnail'lar -->
-          <div v-if="product.images?.length > 1" class="flex gap-3 flex-wrap">
+
+          <!-- Yatay thumbnail şeridi (mobil) -->
+          <div v-if="product.images?.length > 1" class="sm:hidden flex gap-2.5 mt-3 overflow-x-auto pb-1">
             <button
               v-for="(img, i) in product.images"
               :key="i"
-              class="w-20 h-14 rounded-lg overflow-hidden border-2 transition-colors"
-              :class="activeImage === img ? 'border-brand-500' : 'border-surface-4 hover:border-zinc-500'"
+              class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 flex-shrink-0 transition-all duration-200"
+              :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4'"
               @click="activeImage = img"
             >
-              <img :src="img" class="w-full h-full object-cover" />
+              <img :src="img" class="w-full h-full object-contain" />
             </button>
           </div>
         </div>
 
         <!-- Bilgiler -->
-        <div>
-          <!-- Kategori badge -->
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/15 text-brand-400 mb-4">
-            {{ categoryName }}
-          </span>
+        <div ref="infoEl" class="lg:col-span-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 leading-tight">{{ name }}</h1>
+          <p class="text-zinc-400 leading-relaxed text-[15px]">{{ desc }}</p>
 
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">{{ name }}</h1>
-
-          <p class="text-zinc-400 leading-relaxed mb-8">{{ desc }}</p>
-
-          <!-- Fiyat -->
-          <div v-if="product.price" class="mb-8 p-5 rounded-xl bg-surface-2 border border-surface-4 inline-block">
-            <div class="text-2xl font-bold text-white">{{ product.price }}</div>
-            <div v-if="product.priceNote" class="text-xs text-zinc-500 mt-0.5">{{ product.priceNote }}</div>
+          <!-- Fiyat + CTA kartı -->
+          <div class="mt-6 p-5 rounded-2xl bg-surface-2 border border-surface-4">
+            <div v-if="product.price" class="flex items-baseline gap-2 mb-4">
+              <span class="text-2xl font-bold text-white">{{ product.price }}</span>
+              <span v-if="product.priceNote" class="text-xs text-zinc-500">{{ product.priceNote }}</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <NuxtLink :to="localePath('/iletisim')" class="btn-primary flex-1 justify-center">
+                Teklif Al
+              </NuxtLink>
+              <NuxtLink :to="localePath('/urunler')" class="btn-outline justify-center">
+                Tüm Ürünler
+              </NuxtLink>
+            </div>
           </div>
 
           <!-- Specs -->
-          <div v-if="specList.length" class="mb-8">
-            <h3 class="text-sm font-semibold text-zinc-300 mb-3">Teknik Özellikler</h3>
+          <div v-if="specList.length" class="mt-8">
+            <h3 class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">Teknik Özellikler</h3>
             <ul class="space-y-2.5">
-              <li v-for="spec in specList" :key="spec" class="flex items-center gap-3 text-sm text-zinc-400">
-                <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0" />
+              <li v-for="spec in specList" :key="spec" class="flex items-center gap-3 text-sm text-zinc-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-500 flex-shrink-0" />
                 {{ spec }}
               </li>
             </ul>
           </div>
-
-          <!-- CTA -->
-          <div class="flex flex-wrap gap-3">
-            <NuxtLink :to="localePath('/iletisim')" class="btn-primary">
-              Teklif Al
-            </NuxtLink>
-            <NuxtLink :to="localePath('/urunler')" class="btn-outline">
-              ← Tüm Ürünler
-            </NuxtLink>
-          </div>
         </div>
       </div>
     </section>
+
+    <!-- Mobil sticky CTA bar -->
+    <div v-if="product.price" class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-surface-2/95 backdrop-blur-md border-t border-surface-4 px-4 py-3 flex items-center justify-between gap-4">
+      <div>
+        <div class="text-white font-bold">{{ product.price }}</div>
+        <div v-if="product.priceNote" class="text-[11px] text-zinc-500">{{ product.priceNote }}</div>
+      </div>
+      <NuxtLink :to="localePath('/iletisim')" class="btn-primary text-sm">Teklif Al</NuxtLink>
+    </div>
+    <div v-if="product.price" class="lg:hidden h-20" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { Droplets } from 'lucide-vue-next'
+import { gsap } from 'gsap'
 
 const route = useRoute()
 const { locale } = useI18n()
@@ -117,6 +144,14 @@ const categoryName = computed(() => {
 
 const activeImage = ref<string>(product.value?.images?.[0] ?? '')
 
+const galleryEl = ref<HTMLElement>()
+const infoEl = ref<HTMLElement>()
+
+onMounted(() => {
+  gsap.from(galleryEl.value!, { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' })
+  gsap.from(infoEl.value!, { opacity: 0, y: 20, duration: 0.6, delay: 0.1, ease: 'power3.out' })
+})
+
 useSeoMeta({
   title: () => name.value,
   description: () => desc.value,
@@ -125,3 +160,14 @@ useSeoMeta({
   ogImage: () => product.value?.images?.[0],
 })
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

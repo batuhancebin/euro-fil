@@ -161,9 +161,9 @@
             <div
               v-for="(img, i) in form.images"
               :key="i"
-              class="relative group rounded-lg overflow-hidden bg-surface-3 aspect-video"
+              class="relative group rounded-lg overflow-hidden bg-white aspect-video p-2"
             >
-              <img :src="img" class="w-full h-full object-cover" />
+              <img :src="img" class="w-full h-full object-contain" />
               <button
                 type="button"
                 class="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/60 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"

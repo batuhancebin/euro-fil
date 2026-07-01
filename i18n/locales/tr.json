@@ -156,7 +156,7 @@
     },
     "info": {
       "title": "İletişim Bilgileri",
-      "phone": "+90 (212) 000 00 00",
+      "phone": "+90 545 449 77 66",
       "email": "info{'@'}eurofil.com.tr",
       "address": "İstanbul, Türkiye",
       "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
@@ -182,6 +182,54 @@
     "desc": "Profesyonel su arıtma çözümleri ile temiz suya ulaşmak artık çok daha kolay.",
     "quickLinks": "Hızlı Erişim",
     "contact": "İletişim",
-    "copyright": "Tüm hakları saklıdır."
+    "copyright": "Tüm hakları saklıdır.",
+    "madeByPrefix": "Bu web sitesi",
+    "madeBySuffix": "tarafından yapılmıştır."
+  },
+  "corp": {
+    "hero": {
+      "badge": "Su Arıtma Mühendisliği",
+      "titleWords": ["Temiz", "suyu", "mühendislikle", "buluşturuyoruz."],
+      "desc": "Euro Fil; ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlıyor, üretiyor ve kuruyoruz."
+    },
+    "manifesto": {
+      "quote": "Su arıtma bir ürün değil, bir sorumluluktur. Her sistemi kendi evimize kuracakmışız gibi tasarlıyoruz.",
+      "specs": [
+        { "label": "Faaliyet Alanı", "value": "Ev Tipi · Endüstriyel · Ek Ünite" },
+        { "label": "Sertifikasyon", "value": "TSE Onaylı" },
+        { "label": "Kurulum Süresi", "value": "24 Saat" },
+        { "label": "Garanti", "value": "2 Yıl" },
+        { "label": "Teknik Destek", "value": "7/24" }
+      ]
+    },
+    "values": {
+      "label": "İlkelerimiz",
+      "title": "Bizi Biz Yapan Dört İlke",
+      "items": [
+        { "title": "Mühendislik Hassasiyeti", "desc": "Her sistem, su kaynağının analizine göre özel tasarlanır; hazır kalıp çözüm sunmayız." },
+        { "title": "Dayanıklı Malzeme", "desc": "Yalnızca basınca ve zamana dayanıklı, sertifikalı bileşenler kullanırız." },
+        { "title": "Şeffaf Süreç", "desc": "Teklif, kurulum ve bakım sürecinin her adımını netlikle paylaşırız." },
+        { "title": "Sürekli Destek", "desc": "Kurulumla iş bitmez; 7/24 teknik destek hattımız her zaman yanınızda." }
+      ]
+    },
+    "standards": {
+      "label": "Standartlarımız",
+      "title": "Kalite, Her Aşamada Kontrol Edilir",
+      "items": ["TSE Sertifikalı Üretim", "Gıda Sınıfı Malzeme", "Çok Aşamalı Basınç Testi", "Sertifikalı Montaj Ekibi", "Periyodik Bakım Sözleşmesi"]
+    },
+    "stats": {
+      "items": [
+        { "value": "24 SA", "label": "Kurulum Süresi" },
+        { "value": "2 YIL", "label": "Garanti Kapsamı" },
+        { "value": "7/24", "label": "Teknik Destek" },
+        { "value": "TSE", "label": "Sertifikalı Üretim" }
+      ]
+    },
+    "cta": {
+      "title": "Su Kaynağınızı Birlikte Değerlendirelim",
+      "desc": "Ücretsiz su analizi ile ihtiyacınıza en uygun sistemi belirleyelim.",
+      "primary": "Teklif Al",
+      "secondary": "Ürünleri İncele"
+    }
   }
 }

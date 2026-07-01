@@ -63,13 +63,13 @@
             >
               <!-- Image -->
               <div
-                class="relative h-52 overflow-hidden flex-shrink-0 bg-surface-3"
+                class="relative aspect-square overflow-hidden flex-shrink-0 bg-white p-6"
               >
                 <img
                   v-if="product.images?.[0]"
                   :src="product.images[0]"
                   :alt="locale === 'en' ? product.nameEn || product.nameTr : product.nameTr"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div v-else class="w-full h-full flex items-center justify-center">
                   <Droplets class="w-14 h-14 text-brand-500/20" />
@@ -84,33 +84,24 @@
 
               <!-- Content -->
               <div class="p-6 flex flex-col flex-1">
-                <h3 class="font-bold text-white text-lg mb-2 group-hover:text-brand-300 transition-colors leading-snug">
+                <h3 class="font-bold text-white text-sm tracking-wide mb-2 whitespace-nowrap">
                   {{ locale === 'en' ? product.nameEn || product.nameTr : product.nameTr }}
                 </h3>
-                <p class="text-sm text-zinc-500 leading-relaxed mb-4 flex-1">
-                  {{ locale === 'en' ? product.descEn || product.descTr : product.descTr }}
-                </p>
-
-                <!-- Specs -->
-                <ul v-if="specs(product).length" class="space-y-1.5 mb-5">
-                  <li
-                    v-for="spec in specs(product)"
-                    :key="spec"
-                    class="flex items-center gap-2 text-xs text-zinc-400"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                    {{ spec }}
-                  </li>
-                </ul>
-
                 <!-- Price -->
-                <div v-if="product.price" class="mb-4">
+                <div v-if="product.price" class="flex-1">
                   <span class="text-white font-bold text-lg">{{ product.price }}</span>
                   <span v-if="product.priceNote" class="text-zinc-500 text-xs ml-2">{{ product.priceNote }}</span>
                 </div>
+                <div v-else class="flex-1" />
+              </div>
 
-                <span class="btn-primary text-sm w-full text-center flex items-center justify-center">
-                  {{ locale === 'en' ? 'View Details' : 'Detayları İncele' }}
+              <!-- Divider + CTA -->
+              <div class="border-t border-surface-4/60 group-hover:border-brand-500/40 transition-colors duration-300 px-6 py-4 flex justify-center">
+                <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-brand-300 transition-colors duration-300">
+                  {{ locale === 'en' ? 'View Product' : 'Ürünü İncele' }}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </span>
               </div>
             </NuxtLink>
@@ -158,10 +149,6 @@ function categoryName(slug: string) {
   return locale.value === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr
 }
 
-function specs(product: any): string[] {
-  const list = locale.value === 'en' ? product.specsEn : product.specsTr
-  return Array.isArray(list) ? list.filter(Boolean) : []
-}
 </script>
 
 <style scoped>

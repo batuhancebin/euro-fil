@@ -9,14 +9,14 @@
 
       <!-- Text block -->
       <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center">
-        <div ref="heroBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs font-medium mb-6">
+        <div ref="heroBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-white text-xs font-medium mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
           {{ $t('hero.badge') }}
         </div>
 
         <h1 ref="heroTitle" class="text-5xl sm:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
           {{ $t('hero.title') }}<br />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-300">
+          <span class="text-white">
             {{ $t('hero.titleAccent') }}
           </span>
         </h1>
@@ -43,7 +43,7 @@
         <div class="relative">
           <div class="absolute inset-0 rounded-3xl bg-brand-500/10 blur-2xl scale-95 translate-y-4" />
           <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/10">
-            <Product360Viewer folder="/hero-urun" :total-frames="290" class="w-full" style="aspect-ratio: 16/9;" />
+            <Product360Viewer folder="/hero-urun" :total-frames="290" :fps="30" class="w-full" style="aspect-ratio: 16/9;" />
           </div>
           <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-3 border border-surface-4 text-xs text-zinc-400 whitespace-nowrap">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
@@ -63,12 +63,12 @@
     <!-- ③ ÜRÜNLER -->
     <section ref="productsSection" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref="productsHeader" class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div ref="productsHeader" class="flex flex-col items-center text-center gap-4 mb-10">
           <div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">{{ $t('products.title') }}</h2>
             <p class="text-zinc-500">{{ $t('products.desc') }}</p>
           </div>
-          <NuxtLink :to="localePath('/urunler')" class="flex-shrink-0 flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors">
+          <NuxtLink :to="localePath('/urunler')" class="flex-shrink-0 flex items-center gap-2 text-sm text-white hover:text-brand-300 font-medium transition-colors">
             {{ $t('products.viewAll') }}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -99,19 +99,19 @@
             class="product-card card overflow-hidden group hover:border-brand-500/40 transition-colors"
           >
             <NuxtLink :to="`/urunler/${product.slug}`">
-              <div class="h-52 bg-surface-3 overflow-hidden relative">
+              <div class="h-52 bg-white overflow-hidden relative p-6">
                 <img
                   v-if="product.image"
                   :src="product.image"
                   :alt="product.name"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div class="p-5">
-                <span class="text-xs font-medium text-brand-400 uppercase tracking-wider">{{ product.category }}</span>
+                <span class="text-xs font-medium text-white uppercase tracking-wider">{{ product.category }}</span>
                 <h3 class="font-semibold text-white mt-1 mb-2 group-hover:text-brand-300 transition-colors">{{ product.name }}</h3>
                 <p class="text-sm text-zinc-500 line-clamp-2">{{ product.desc }}</p>
-                <div class="mt-4 flex items-center gap-2 text-sm font-medium text-brand-400">
+                <div class="mt-4 flex items-center gap-2 text-sm font-medium text-white">
                   {{ $t('products.cta') }}
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -127,10 +127,10 @@
     <!-- ④ NEDEN EUROFİL -->
     <section ref="featuresSection" class="py-24 bg-surface-2">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref="featuresHeader" class="mb-14">
-          <p class="text-brand-400 text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('features.label') }}</p>
+        <div ref="featuresHeader" class="mb-14 text-center">
+          <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('features.label') }}</p>
           <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">{{ $t('features.title') }}</h2>
-          <p class="text-zinc-500 max-w-xl">{{ $t('features.desc') }}</p>
+          <p class="text-zinc-500 max-w-xl mx-auto">{{ $t('features.desc') }}</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -186,15 +186,15 @@
               <p class="text-zinc-400 leading-relaxed">{{ $t('features.support.desc') }}</p>
               <div class="mt-8 grid grid-cols-3 gap-6 pt-6 border-t border-surface-4">
                 <div>
-                  <div class="text-2xl font-bold text-brand-400">{{ $t('features.support.stats.install') }}</div>
+                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.install') }}</div>
                   <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.installLabel') }}</div>
                 </div>
                 <div>
-                  <div class="text-2xl font-bold text-brand-400">{{ $t('features.support.stats.warranty') }}</div>
+                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.warranty') }}</div>
                   <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.warrantyLabel') }}</div>
                 </div>
                 <div>
-                  <div class="text-2xl font-bold text-brand-400">{{ $t('features.support.stats.support') }}</div>
+                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.support') }}</div>
                   <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.supportLabel') }}</div>
                 </div>
               </div>
@@ -210,7 +210,7 @@
     <section ref="stepsSection" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref="stepsHeader" class="text-center mb-20">
-          <p class="text-brand-400 text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('steps.label') }}</p>
+          <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('steps.label') }}</p>
           <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">{{ $t('steps.title') }}</h2>
           <p class="text-zinc-500">{{ $t('steps.desc') }}</p>
         </div>
@@ -225,7 +225,7 @@
 
             <div v-for="(step, i) in stepItems" :key="i" class="step-item flex flex-col items-center text-center px-4">
               <div class="w-10 h-10 rounded-full border border-brand-500/50 bg-surface flex items-center justify-center mb-8 relative z-10 flex-shrink-0">
-                <span class="text-xs font-bold text-brand-400">{{ String(i + 1).padStart(2, '0') }}</span>
+                <span class="text-xs font-bold text-white">{{ String(i + 1).padStart(2, '0') }}</span>
               </div>
               <component :is="stepIcons[i]" class="w-6 h-6 text-brand-500/60 mb-4" />
               <h3 class="font-semibold text-white mb-2">{{ step.title }}</h3>
@@ -239,7 +239,7 @@
           <div v-for="(step, i) in stepItems" :key="i" class="step-item flex gap-5">
             <div class="flex flex-col items-center">
               <div class="w-10 h-10 rounded-full border border-brand-500/50 bg-surface flex items-center justify-center flex-shrink-0">
-                <span class="text-xs font-bold text-brand-400">{{ String(i + 1).padStart(2, '0') }}</span>
+                <span class="text-xs font-bold text-white">{{ String(i + 1).padStart(2, '0') }}</span>
               </div>
               <div v-if="i < 3" class="w-px flex-1 bg-brand-500/20 my-2" />
             </div>
@@ -265,10 +265,10 @@
           <div class="relative grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-surface-4">
             <!-- Sol: metin + butonlar -->
             <div class="p-10 lg:p-16">
-              <p class="text-brand-400 text-xs font-semibold uppercase tracking-widest mb-4">{{ $t('cta.label') }}</p>
+              <p class="text-white text-xs font-semibold uppercase tracking-widest mb-4">{{ $t('cta.label') }}</p>
               <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
                 {{ $t('cta.title') }}<br />
-                <span class="text-brand-400">{{ $t('cta.titleAccent') }}</span>
+                <span class="text-white">{{ $t('cta.titleAccent') }}</span>
               </h2>
               <p class="text-zinc-400 mb-8 leading-relaxed">{{ $t('cta.desc') }}</p>
               <div class="flex flex-wrap gap-3">
@@ -368,7 +368,7 @@ useHead({
         name: 'Euro Fil',
         description: 'Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, ücretsiz su analizi ve 7/24 teknik destek.',
         url: 'https://eurofil.com.tr',
-        telephone: '+902120000000',
+        telephone: '+905454497766',
         email: 'info@eurofil.com.tr',
         address: {
           '@type': 'PostalAddress',
