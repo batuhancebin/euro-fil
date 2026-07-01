@@ -96,6 +96,45 @@
           </div>
         </div>
       </div>
+
+      <!-- Varyant tablosu -->
+      <div v-if="product.variants?.length" class="mt-16 flex justify-center">
+        <div class="w-full max-w-3xl">
+          <div class="rounded-2xl border-2 border-brand-500/30 overflow-hidden">
+            <div class="bg-brand-500/10 text-center py-4 px-4">
+              <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">{{ name.toUpperCase() }}</h2>
+            </div>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-surface-3 text-zinc-400 text-xs uppercase tracking-wide">
+                  <th class="px-3 py-3 font-semibold text-left">Ürün Kodu</th>
+                  <th class="px-3 py-3 font-semibold text-left">Cins</th>
+                  <th class="px-3 py-3 font-semibold text-center">Max. Basınç</th>
+                  <th class="px-3 py-3 font-semibold text-center">Max. Çalışma Sıcaklığı</th>
+                  <th class="px-3 py-3 font-semibold text-center">Bağlantı Ölçüsü</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="(v, i) in product.variants" :key="v.code">
+                  <tr class="border-t border-surface-4 text-zinc-200">
+                    <td class="px-3 py-2.5 font-mono">{{ v.code }}</td>
+                    <td class="px-3 py-2.5">{{ v.cins }}</td>
+                    <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 text-zinc-300">
+                      {{ product.maxPressure }}
+                    </td>
+                    <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 text-zinc-300">
+                      {{ product.maxTemp }}
+                    </td>
+                    <td v-if="isConnectionGroupStart(i)" :rowspan="connectionGroupSize(i)" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 font-semibold text-white">
+                      {{ v.connection }}
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Mobil sticky CTA bar -->
@@ -149,6 +188,18 @@ const categoryName = computed(() => {
 })
 
 const activeImage = ref<string>(product.value?.images?.[0] ?? '')
+
+function isConnectionGroupStart(i: number): boolean {
+  const variants = product.value?.variants ?? []
+  return i === 0 || variants[i]?.connection !== variants[i - 1]?.connection
+}
+
+function connectionGroupSize(i: number): number {
+  const variants = product.value?.variants ?? []
+  let count = 0
+  for (let j = i; j < variants.length && variants[j].connection === variants[i].connection; j++) count++
+  return count
+}
 
 const galleryEl = ref<HTMLElement>()
 const infoEl = ref<HTMLElement>()

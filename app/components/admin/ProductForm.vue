@@ -84,6 +84,37 @@
           </div>
         </section>
 
+        <!-- Varyant Tablosu -->
+        <section class="card p-6 space-y-5">
+          <h2 class="text-sm font-semibold text-zinc-300">Varyant Tablosu</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="field-label">Max. Basınç</label>
+              <input v-model="form.maxPressure" type="text" placeholder="Örn: 8 Bar (116 PSI)" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">Max. Çalışma Sıcaklığı</label>
+              <input v-model="form.maxTemp" type="text" placeholder="Örn: 45°C (113°F)" class="field-input" />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <div class="grid grid-cols-[1fr_1fr_1fr_auto] gap-2 text-xs text-zinc-500 px-1">
+              <span>Ürün Kodu</span>
+              <span>Cins</span>
+              <span>Bağlantı Ölçüsü</span>
+              <span></span>
+            </div>
+            <div v-for="(variant, i) in form.variants" :key="i" class="grid grid-cols-[1fr_1fr_1fr_auto] gap-2">
+              <input v-model="variant.code" type="text" placeholder="10503406" class="field-input text-sm font-mono" />
+              <input v-model="variant.cins" type="text" placeholder="ŞEFFAF" class="field-input text-sm" />
+              <input v-model="variant.connection" type="text" placeholder="1/2&quot;" class="field-input text-sm" />
+              <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.variants.splice(i, 1)">×</button>
+            </div>
+            <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.variants.push({ code: '', cins: '', connection: '' })">+ Varyant Ekle</button>
+          </div>
+        </section>
+
         <!-- SEO -->
         <section class="card p-6 space-y-5">
           <h2 class="text-sm font-semibold text-zinc-300">SEO</h2>
@@ -233,6 +264,9 @@ const form = reactive({
   descEn:     '',
   specsTr:    [] as string[],
   specsEn:    [] as string[],
+  maxPressure: '',
+  maxTemp:     '',
+  variants:    [] as { code: string; cins: string; connection: string }[],
   price:      '',
   priceNote:  '',
   seoTitleTr: '',
