@@ -87,6 +87,9 @@
                 <h3 class="font-bold text-white text-sm tracking-wide mb-2 whitespace-nowrap">
                   {{ locale === 'en' ? product.nameEn || product.nameTr : product.nameTr }}
                 </h3>
+                <p v-if="metaDesc(product)" class="text-xs text-zinc-500 leading-relaxed line-clamp-4 mb-3 min-h-[5rem]">
+                  {{ metaDesc(product) }}
+                </p>
                 <!-- Price -->
                 <div v-if="product.price" class="flex-1">
                   <span class="text-white font-bold text-lg">{{ product.price }}</span>
@@ -147,6 +150,10 @@ function categoryName(slug: string) {
   const cat = (dbCategories.value ?? []).find((c: any) => c.slug === slug)
   if (!cat) return slug
   return locale.value === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr
+}
+
+function metaDesc(product: any): string {
+  return (locale.value === 'en' ? product.seoDescEn || product.seoDescTr : product.seoDescTr) ?? ''
 }
 
 </script>

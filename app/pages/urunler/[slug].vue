@@ -132,6 +132,12 @@ const name = computed(() =>
 const desc = computed(() =>
   locale.value === 'en' ? product.value?.descEn || product.value?.descTr : product.value?.descTr
 )
+const seoTitle = computed(() =>
+  (locale.value === 'en' ? product.value?.seoTitleEn || product.value?.seoTitleTr : product.value?.seoTitleTr) || name.value
+)
+const seoDesc = computed(() =>
+  (locale.value === 'en' ? product.value?.seoDescEn || product.value?.seoDescTr : product.value?.seoDescTr) || desc.value
+)
 const specList = computed<string[]>(() => {
   const list = locale.value === 'en' ? product.value?.specsEn : product.value?.specsTr
   return Array.isArray(list) ? list.filter(Boolean) : []
@@ -152,11 +158,15 @@ onMounted(() => {
   gsap.from(infoEl.value!, { opacity: 0, y: 20, duration: 0.6, delay: 0.1, ease: 'power3.out' })
 })
 
+useHead({
+  titleTemplate: (titleChunk) => titleChunk ?? 'Euro Fil',
+})
+
 useSeoMeta({
-  title: () => name.value,
-  description: () => desc.value,
-  ogTitle: () => name.value,
-  ogDescription: () => desc.value,
+  title: () => seoTitle.value,
+  description: () => seoDesc.value,
+  ogTitle: () => seoTitle.value,
+  ogDescription: () => seoDesc.value,
   ogImage: () => product.value?.images?.[0],
 })
 </script>
