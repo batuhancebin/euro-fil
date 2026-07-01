@@ -93,33 +93,50 @@
 
         <!-- Ürün grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
+          <NuxtLink
             v-for="product in filteredProducts"
             :key="product.slug"
-            class="product-card card overflow-hidden group hover:border-brand-500/40 transition-colors"
+            :to="localePath(`/urunler/${product.slug}`)"
+            class="product-card card overflow-hidden group hover:border-brand-500/40 transition-colors flex flex-col"
           >
-            <NuxtLink :to="`/urunler/${product.slug}`">
-              <div class="h-52 bg-white overflow-hidden relative p-6">
-                <img
-                  v-if="product.image"
-                  :src="product.image"
-                  :alt="product.name"
-                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                />
+            <div class="aspect-square bg-white overflow-hidden relative p-6 flex-shrink-0">
+              <img
+                v-if="product.images?.[0]"
+                :src="product.images[0]"
+                :alt="locale === 'en' ? product.nameEn || product.nameTr : product.nameTr"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              />
+              <div v-else class="w-full h-full flex items-center justify-center">
+                <Droplets class="w-14 h-14 text-brand-500/20" />
               </div>
-              <div class="p-5">
-                <span class="text-xs font-medium text-white uppercase tracking-wider">{{ product.category }}</span>
-                <h3 class="font-semibold text-white mt-1 mb-2 group-hover:text-brand-300 transition-colors">{{ product.name }}</h3>
-                <p class="text-sm text-zinc-500 line-clamp-2">{{ product.desc }}</p>
-                <div class="mt-4 flex items-center gap-2 text-sm font-medium text-white">
-                  {{ $t('products.cta') }}
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
+              <div class="absolute top-3 left-3">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-black/50 text-zinc-300 backdrop-blur-sm">
+                  {{ categoryName(product.category) }}
+                </span>
               </div>
-            </NuxtLink>
-          </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-bold text-white text-sm tracking-wide mb-2 whitespace-nowrap">
+                {{ locale === 'en' ? product.nameEn || product.nameTr : product.nameTr }}
+              </h3>
+              <p v-if="metaDesc(product)" class="text-xs text-zinc-500 leading-relaxed line-clamp-4 mb-3 min-h-[5rem]">
+                {{ metaDesc(product) }}
+              </p>
+              <div v-if="product.price" class="flex-1">
+                <span class="text-white font-bold text-lg">{{ product.price }}</span>
+                <span v-if="product.priceNote" class="text-zinc-500 text-xs ml-2">{{ product.priceNote }}</span>
+              </div>
+              <div v-else class="flex-1" />
+            </div>
+            <div class="border-t border-surface-4/60 group-hover:border-brand-500/40 transition-colors duration-300 px-6 py-4 flex justify-center">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-brand-300 transition-colors duration-300">
+                {{ locale === 'en' ? 'View Product' : 'Ürünü İncele' }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -535,26 +552,37 @@ onMounted(() => {
   })
 })
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
-const productCategoryKeys = ['all', 'home', 'industrial', 'addon'] as const
+const { data: dbProducts } = await useFetch<any[]>('/api/products', { default: () => [] })
+const { data: dbCategories } = await useFetch<any[]>('/api/categories', { default: () => [] })
+
 const activeCategory = ref<string>('all')
 
-const productCategories = computed(() =>
-  productCategoryKeys.map(k => ({ key: k, label: t(`products.categories.${k}`) }))
-)
+const productCategories = computed(() => [
+  { key: 'all', label: t('products.categories.all') },
+  ...(dbCategories.value ?? []).map((c: any) => ({
+    key: c.slug,
+    label: locale.value === 'en' ? c.nameEn || c.nameTr : c.nameTr,
+  })),
+])
 
-const categoryMap: Record<string, string> = {
-  home: 'Ev Tipi',
-  industrial: 'Endüstriyel',
-  addon: 'Ek Ünite',
+const filteredProducts = computed(() => {
+  const list = activeCategory.value === 'all'
+    ? (dbProducts.value ?? [])
+    : (dbProducts.value ?? []).filter((p: any) => p.category === activeCategory.value)
+  return list.slice(0, 6)
+})
+
+function categoryName(slug: string) {
+  const cat = (dbCategories.value ?? []).find((c: any) => c.slug === slug)
+  if (!cat) return slug
+  return locale.value === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr
 }
 
-const filteredProducts = computed(() =>
-  activeCategory.value === 'all'
-    ? featuredProducts
-    : featuredProducts.filter(p => p.category === categoryMap[activeCategory.value])
-)
+function metaDesc(product: any): string {
+  return (locale.value === 'en' ? product.seoDescEn || product.seoDescTr : product.seoDescTr) ?? ''
+}
 
 const roTags = computed(() => [0,1,2,3,4].map(i => t(`features.ro.tags[${i}]`)))
 const certItems = computed(() => [0,1,2].map(i => t(`features.cert.items[${i}]`)))
@@ -582,31 +610,6 @@ const ctaAssurances = computed(() =>
     desc:  t(`cta.assurances[${i}].desc`),
   }))
 )
-
-const featuredProducts = [
-  {
-    slug: 'ro-5-asama',
-    name: '5 Aşamalı RO Sistemi',
-    category: 'Ev Tipi',
-    desc: 'Reverse osmosis teknolojisi ile %99.9 saflıkta su. Kompakt tasarım, kolay kurulum.',
-    image: '/products/ro-5-asama.svg',
-  },
-  {
-    slug: 'endustri-pro',
-    name: 'Endüstriyel Pro Serisi',
-    category: 'Endüstriyel',
-    desc: 'Fabrika ve büyük işletmeler için yüksek kapasiteli saf su üretim sistemi.',
-    image: '/products/endustri-pro.svg',
-  },
-  {
-    slug: 'uv-sterilizator',
-    name: 'UV Sterilizatör',
-    category: 'Ek Ünite',
-    desc: 'UV ışın teknolojisi ile bakteri ve virüsleri %100 etkisiz hale getirir.',
-    image: '/products/uv-sterilizator.svg',
-  },
-]
-
 
 
 </script>
