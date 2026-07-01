@@ -65,7 +65,7 @@
               <label class="field-label mb-2">TR Özellikler</label>
               <div class="space-y-2">
                 <div v-for="(_, i) in form.specsTr" :key="i" class="flex gap-2">
-                  <input v-model="form.specsTr[i]" type="text" class="field-input flex-1 text-sm" />
+                  <input v-model="form.specsTr[i]" type="text" class="field-input flex-1 text-sm" @paste="onSpecPaste($event, form.specsTr, i)" />
                   <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.specsTr.splice(i, 1)">×</button>
                 </div>
                 <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.specsTr.push('')">+ Ekle</button>
@@ -75,7 +75,7 @@
               <label class="field-label mb-2">EN Specs</label>
               <div class="space-y-2">
                 <div v-for="(_, i) in form.specsEn" :key="i" class="flex gap-2">
-                  <input v-model="form.specsEn[i]" type="text" class="field-input flex-1 text-sm" />
+                  <input v-model="form.specsEn[i]" type="text" class="field-input flex-1 text-sm" @paste="onSpecPaste($event, form.specsEn, i)" />
                   <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.specsEn.splice(i, 1)">×</button>
                 </div>
                 <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.specsEn.push('')">+ Add</button>
@@ -246,6 +246,14 @@ const form = reactive({
 })
 
 if (props.initial) Object.assign(form, props.initial)
+
+function onSpecPaste(e: ClipboardEvent, specs: string[], i: number) {
+  const text = e.clipboardData?.getData('text') ?? ''
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean)
+  if (lines.length <= 1) return
+  e.preventDefault()
+  specs.splice(i, 1, ...lines)
+}
 
 function autoSlug() {
   if (props.isEdit) return
