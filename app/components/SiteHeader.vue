@@ -63,7 +63,7 @@
 
       <!-- Mobil menü paneli -->
       <Transition name="mobile-menu">
-        <div v-if="mobileMenuOpen" class="md:hidden mt-2 bg-white/98 backdrop-blur-md rounded-2xl shadow-lg shadow-black/10 border border-zinc-200/60 overflow-hidden">
+        <div v-if="mobileMenuOpen" class="md:hidden mt-2 bg-white rounded-2xl shadow-lg shadow-black/10 border border-zinc-200/60 overflow-hidden">
           <nav class="flex flex-col p-2">
             <NuxtLink
               v-for="link in links"
