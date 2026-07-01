@@ -12,11 +12,6 @@
         <div class="absolute -top-2 left-0 w-6 h-6 border-t border-l border-brand-500/40 hidden sm:block" />
         <div class="absolute -top-2 right-0 w-6 h-6 border-t border-r border-brand-500/40 hidden sm:block" />
 
-        <div ref="heroBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-white text-xs font-medium mb-8">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
-          {{ $t('corp.hero.badge') }}
-        </div>
-
         <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight text-white mb-8">
           <span v-for="(word, i) in heroWords" :key="i" ref="heroWordEls" class="inline-block mr-3 sm:mr-4">{{ rt(word) }}</span>
         </h1>
@@ -134,7 +129,6 @@ const standardItems = computed<string[]>(() => tm('corp.standards.items') as unk
 
 const valueIcons = [Ruler, ShieldCheck, Eye, Headphones]
 
-const heroBadge     = ref<HTMLElement>()
 const heroWordEls   = ref<HTMLElement[]>([])
 const heroDesc      = ref<HTMLElement>()
 const manifestoSection = ref<HTMLElement>()
@@ -150,8 +144,7 @@ onMounted(() => {
 
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
   heroTl
-    .from(heroBadge.value!, { y: 20, opacity: 0, duration: 0.6 })
-    .from(heroWordEls.value, { y: 30, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.3')
+    .from(heroWordEls.value, { y: 30, opacity: 0, duration: 0.7, stagger: 0.08 })
     .from(heroDesc.value!, { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
 
   ScrollTrigger.create({
