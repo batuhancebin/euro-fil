@@ -24,18 +24,20 @@
 
         <div class="flex items-center gap-2">
           <!-- Dil switcher -->
-          <div class="hidden md:flex items-center gap-1 mr-1">
-            <button
-              v-for="loc in locales"
-              :key="loc.code"
-              class="px-2 py-1 rounded text-xs font-semibold transition-colors"
-              :class="locale === loc.code
-                ? 'text-brand-500'
-                : 'text-zinc-400 hover:text-zinc-700'"
-              @click="setLocale(loc.code as 'tr' | 'en')"
-            >
-              {{ loc.code.toUpperCase() }}
-            </button>
+          <div class="hidden md:flex items-center gap-1.5 mr-1">
+            <template v-for="(loc, i) in locales" :key="loc.code">
+              <span v-if="i > 0" class="w-px h-4 bg-zinc-300" />
+              <button
+                class="flex items-center gap-1.5 px-1.5 py-1 rounded-full transition-opacity"
+                :class="locale === loc.code ? 'opacity-100' : 'opacity-50 hover:opacity-80'"
+                @click="setLocale(loc.code as 'tr' | 'en')"
+              >
+                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-black/10" :class="locale === loc.code ? 'ring-2 ring-brand-500 ring-offset-1' : ''">
+                  <img :src="`https://flagcdn.com/w40/${loc.code === 'tr' ? 'tr' : 'gb'}.png`" :alt="loc.code" class="w-full h-full object-cover" />
+                </span>
+                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-500' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
+              </button>
+            </template>
           </div>
 
           <!-- CTA -->

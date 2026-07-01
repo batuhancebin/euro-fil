@@ -139,40 +139,48 @@ const standardsSection = ref<HTMLElement>()
 const standardsHeader  = ref<HTMLElement>()
 const ctaSection    = ref<HTMLElement>()
 
+let gsapCtx: gsap.Context
+
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
 
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-  heroTl
-    .from(heroWordEls.value, { y: 30, opacity: 0, duration: 0.7, stagger: 0.08 })
-    .from(heroDesc.value!, { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
+  gsapCtx = gsap.context(() => {
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    heroTl
+      .from(heroWordEls.value, { y: 30, opacity: 0, duration: 0.7, stagger: 0.08 })
+      .from(heroDesc.value!, { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
 
-  ScrollTrigger.create({
-    trigger: manifestoSection.value,
-    start: 'top 78%',
-    onEnter: () => gsap.from(manifestoQuote.value!, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }),
-  })
+    ScrollTrigger.create({
+      trigger: manifestoSection.value,
+      start: 'top 78%',
+      onEnter: () => gsap.from(manifestoQuote.value!, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }),
+    })
 
-  ScrollTrigger.create({
-    trigger: valuesSection.value,
-    start: 'top 80%',
-    onEnter: () => {
-      gsap.from(valuesHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
-      gsap.from('.value-card', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1, delay: 0.15 })
-    },
-  })
+    ScrollTrigger.create({
+      trigger: valuesSection.value,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.from(valuesHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from('.value-card', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1, delay: 0.15 })
+      },
+    })
 
-  ScrollTrigger.create({
-    trigger: standardsSection.value,
-    start: 'top 82%',
-    onEnter: () => gsap.from(standardsHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' }),
-  })
+    ScrollTrigger.create({
+      trigger: standardsSection.value,
+      start: 'top 82%',
+      onEnter: () => gsap.from(standardsHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' }),
+    })
 
-  ScrollTrigger.create({
-    trigger: ctaSection.value,
-    start: 'top 85%',
-    onEnter: () => gsap.from(ctaSection.value!, { scale: 0.96, opacity: 0, duration: 0.8, ease: 'power3.out' }),
+    ScrollTrigger.create({
+      trigger: ctaSection.value,
+      start: 'top 85%',
+      onEnter: () => gsap.from(ctaSection.value!, { scale: 0.96, opacity: 0, duration: 0.8, ease: 'power3.out' }),
+    })
   })
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
 })
 </script>
 

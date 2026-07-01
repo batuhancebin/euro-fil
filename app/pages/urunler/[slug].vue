@@ -101,7 +101,7 @@
       <div v-if="product.variants?.length" class="mt-16 flex justify-center">
         <div class="w-full max-w-3xl">
           <div class="rounded-2xl border-2 border-brand-500/30 overflow-hidden">
-            <div class="bg-brand-500/10 text-center py-4 px-4">
+            <div class="text-center py-4 px-4">
               <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">{{ name.toUpperCase() }}</h2>
             </div>
             <table class="w-full text-sm">

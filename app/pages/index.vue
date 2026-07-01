@@ -504,52 +504,60 @@ const faqHeader     = ref<HTMLElement>()
 const ctaSection    = ref<HTMLElement>()
 const activeFaq     = ref<number | null>(null)
 
+let gsapCtx: gsap.Context
+
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
 
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-  heroTl
-    .from(heroBadge.value!,  { y: 20, opacity: 0, duration: 0.6 })
-    .from(heroTitle.value!,  { y: 40, opacity: 0, duration: 0.8 }, '-=0.3')
-    .from(heroDesc.value!,   { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-    .from(heroCta.value!,    { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
-    .from(heroViewer.value!, { x: 60, opacity: 0, duration: 0.9 }, 0.1)
+  gsapCtx = gsap.context(() => {
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    heroTl
+      .from(heroBadge.value!,  { y: 20, opacity: 0, duration: 0.6 })
+      .from(heroTitle.value!,  { y: 40, opacity: 0, duration: 0.8 }, '-=0.3')
+      .from(heroDesc.value!,   { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
+      .from(heroCta.value!,    { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
+      .from(heroViewer.value!, { x: 60, opacity: 0, duration: 0.9 }, 0.1)
 
-  const onEnterFade = (header: HTMLElement | undefined, cards: string, stagger = 0.12) => ({
-    trigger: header,
-    start: 'top 82%',
-    onEnter: () => {
-      gsap.from(header!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
-      gsap.from(cards, { y: 50, opacity: 0, duration: 0.7, ease: 'power3.out', stagger, delay: 0.2 })
-    },
+    const onEnterFade = (header: HTMLElement | undefined, cards: string, stagger = 0.12) => ({
+      trigger: header,
+      start: 'top 82%',
+      onEnter: () => {
+        gsap.from(header!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from(cards, { y: 50, opacity: 0, duration: 0.7, ease: 'power3.out', stagger, delay: 0.2 })
+      },
+    })
+
+    ScrollTrigger.create(onEnterFade(productsHeader.value, '.product-card', 0.1))
+    ScrollTrigger.create(onEnterFade(featuresHeader.value, '.feature-card'))
+
+    ScrollTrigger.create({
+      trigger: stepsSection.value,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.from(stepsHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from('.step-item', { y: 40, opacity: 0, duration: 0.7, ease: 'back.out(1.2)', stagger: 0.2, delay: 0.2 })
+      },
+    })
+
+    ScrollTrigger.create({
+      trigger: faqSection.value,
+      start: 'top 82%',
+      onEnter: () => {
+        gsap.from(faqHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from('.faq-item', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1, delay: 0.2 })
+      },
+    })
+
+    ScrollTrigger.create({
+      trigger: ctaSection.value,
+      start: 'top 85%',
+      onEnter: () => gsap.from(ctaSection.value!, { scale: 0.95, opacity: 0, duration: 0.8, ease: 'power3.out' }),
+    })
   })
+})
 
-  ScrollTrigger.create(onEnterFade(productsHeader.value, '.product-card', 0.1))
-  ScrollTrigger.create(onEnterFade(featuresHeader.value, '.feature-card'))
-
-  ScrollTrigger.create({
-    trigger: stepsSection.value,
-    start: 'top 80%',
-    onEnter: () => {
-      gsap.from(stepsHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
-      gsap.from('.step-item', { y: 40, opacity: 0, duration: 0.7, ease: 'back.out(1.2)', stagger: 0.2, delay: 0.2 })
-    },
-  })
-
-  ScrollTrigger.create({
-    trigger: faqSection.value,
-    start: 'top 82%',
-    onEnter: () => {
-      gsap.from(faqHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
-      gsap.from('.faq-item', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1, delay: 0.2 })
-    },
-  })
-
-  ScrollTrigger.create({
-    trigger: ctaSection.value,
-    start: 'top 85%',
-    onEnter: () => gsap.from(ctaSection.value!, { scale: 0.95, opacity: 0, duration: 0.8, ease: 'power3.out' }),
-  })
+onUnmounted(() => {
+  gsapCtx?.revert()
 })
 
 const { t, locale } = useI18n()
