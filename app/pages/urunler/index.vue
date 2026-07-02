@@ -26,7 +26,7 @@
           <button
             class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
             :class="activeCategory === 'all'
-              ? 'bg-brand-500 text-white'
+              ? 'bg-brand-900 text-white'
               : 'bg-surface-2 text-zinc-400 hover:text-white border border-surface-4'"
             @click="activeCategory = 'all'"
           >
@@ -38,7 +38,7 @@
             :key="cat.slug"
             class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
             :class="activeCategory === cat.slug
-              ? 'bg-brand-500 text-white'
+              ? 'bg-brand-900 text-white'
               : 'bg-surface-2 text-zinc-400 hover:text-white border border-surface-4'"
             @click="activeCategory = cat.slug"
           >

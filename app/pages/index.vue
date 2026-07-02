@@ -83,7 +83,7 @@
             :key="cat.key"
             class="px-4 py-1.5 rounded-full text-sm font-medium border transition-colors"
             :class="activeCategory === cat.key
-              ? 'bg-brand-500 border-brand-500 text-white'
+              ? 'bg-brand-900 border-brand-900 text-white'
               : 'border-surface-4 text-zinc-400 hover:border-brand-500/40 hover:text-white'"
             @click="activeCategory = cat.key"
           >

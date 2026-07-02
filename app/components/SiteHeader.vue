@@ -15,7 +15,7 @@
             :to="localePath(link.to)"
             class="px-4 py-2 rounded text-sm font-medium transition-colors"
             :class="$route.path === localePath(link.to)
-              ? 'bg-brand-500 text-white'
+              ? 'bg-brand-900 text-white'
               : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'"
           >
             {{ $t(link.key) }}
@@ -41,7 +41,7 @@
           </div>
 
           <!-- CTA -->
-          <NuxtLink ref="ctaEl" :to="localePath('/iletisim')" class="hidden sm:flex flex-shrink-0 items-center gap-1.5 px-5 py-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-colors" style="border-radius: 0 9999px 9999px 0;">
+          <NuxtLink ref="ctaEl" :to="localePath('/iletisim')" class="hidden sm:flex flex-shrink-0 items-center gap-1.5 px-5 py-2 bg-brand-900 hover:bg-brand-800 text-white text-sm font-semibold transition-colors" style="border-radius: 0 9999px 9999px 0;">
             {{ $t('nav.cta') }}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -71,7 +71,7 @@
               :to="localePath(link.to)"
               class="px-4 py-3 rounded-xl text-sm font-medium transition-colors"
               :class="$route.path === localePath(link.to)
-                ? 'bg-brand-500 text-white'
+                ? 'bg-brand-900 text-white'
                 : 'text-zinc-700 hover:bg-zinc-100'"
               @click="mobileMenuOpen = false"
             >
@@ -96,7 +96,7 @@
           </div>
 
           <div class="p-2 pt-0">
-            <NuxtLink :to="localePath('/iletisim')" class="flex items-center justify-center gap-1.5 w-full px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-xl transition-colors" @click="mobileMenuOpen = false">
+            <NuxtLink :to="localePath('/iletisim')" class="flex items-center justify-center gap-1.5 w-full px-5 py-3 bg-brand-900 hover:bg-brand-800 text-white text-sm font-semibold rounded-xl transition-colors" @click="mobileMenuOpen = false">
               {{ $t('nav.cta') }}
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
