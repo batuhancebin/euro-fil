@@ -2,12 +2,11 @@
   <div
     ref="containerEl"
     class="relative select-none overflow-hidden"
-    :style="{ cursor: isPaused ? (isDragging ? 'grabbing' : 'grab') : 'default' }"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
+    :style="{ cursor: isDragging ? 'grabbing' : 'grab' }"
     @mousedown="onDragStart"
     @mousemove="onDragMove"
     @mouseup="onDragEnd"
+    @mouseleave="onDragEnd"
     @touchstart.prevent="onTouchStart"
     @touchmove.prevent="onTouchMove"
     @touchend="onTouchEnd"
@@ -35,17 +34,7 @@
       class="w-full h-full object-contain pointer-events-none"
       draggable="false"
     />
-    <img v-else src="/hero-urun/frame_001.jpg" class="w-full object-contain opacity-0 pointer-events-none" style="aspect-ratio:16/9" draggable="false" />
-
-    <!-- Pause/drag hint -->
-    <Transition name="fade">
-      <div v-if="loaded && isPaused && !isDragging" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 12h8m-8 5h8" />
-        </svg>
-        Sürükleyerek döndürün
-      </div>
-    </Transition>
+    <img v-else src="/hero-urun/frame_001.webp" class="w-full object-contain opacity-0 pointer-events-none" style="aspect-ratio:16/9" draggable="false" />
   </div>
 </template>
 
@@ -54,13 +43,15 @@ const props = defineProps<{
   folder: string
   totalFrames: number
   fps?: number
+  startFrame?: number
+  skipPreload?: boolean
 }>()
 
 const { urls } = useProductFrames(props.folder, props.totalFrames)
 const fps = props.fps ?? 18
 
-const currentFrame = ref(0)
-const loaded = ref(false)
+const currentFrame = ref(props.startFrame ?? 0)
+const loaded = ref(!!props.skipPreload)
 const loadedCount = ref(0)
 const isPaused = ref(false)
 const isDragging = ref(false)
@@ -83,16 +74,6 @@ function animate(time: number) {
   }
 }
 
-// — Hover —
-function onMouseEnter() {
-  isPaused.value = true
-}
-function onMouseLeave() {
-  isPaused.value = false
-  isDragging.value = false
-  lastTime = 0
-}
-
 // — Drag (mouse) —
 let dragStartX = 0
 let dragStartFrame = 0
@@ -100,6 +81,7 @@ const SENSITIVITY = 4
 
 function onDragStart(e: MouseEvent) {
   if (!loaded.value) return
+  isPaused.value = true
   isDragging.value = true
   dragStartX = e.clientX
   dragStartFrame = currentFrame.value
@@ -110,7 +92,9 @@ function onDragMove(e: MouseEvent) {
   currentFrame.value = ((dragStartFrame - delta) % urls.length + urls.length) % urls.length
 }
 function onDragEnd() {
+  isPaused.value = false
   isDragging.value = false
+  lastTime = 0
 }
 
 // — Drag (touch) —
@@ -134,6 +118,10 @@ function onTouchEnd() {
 
 // — Preload —
 onMounted(() => {
+  if (props.skipPreload) {
+    rafId = requestAnimationFrame(animate)
+    return
+  }
   let resolved = 0
   urls.forEach((url) => {
     const img = new Image()

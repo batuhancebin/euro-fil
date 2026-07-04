@@ -4,16 +4,15 @@
     "products": "Ürünler",
     "corporate": "Kurumsal",
     "contact": "İletişim",
-    "cta": "Teklif Al"
+    "cta": "Bayi Teklifi Al"
   },
   "hero": {
     "badge": "Euro Fil Water Filter Technology",
     "title": "Euro Fil ile",
     "titleAccent": "Temiz Su Garantisi",
-    "desc": "Ev, işyeri ve endüstriyel tesisler için profesyonel su arıtma sistemleri. Ücretsiz su analizi, uzman kurulum ve kesintisiz teknik destek tek çatı altında.",
+    "desc": "Ev, işyeri ve endüstriyel tesisler için profesyonel su arıtma sistemleri. Bayi ağımızla hızlı fiyat teklifi, uzman kurulum ve kesintisiz teknik destek tek çatı altında.",
     "ctaPrimary": "Ürünleri İncele",
-    "ctaSecondary": "Ücretsiz Teklif Al",
-    "viewer360": "360° Görünüm"
+    "ctaSecondary": "Bayi Teklifi Al"
   },
   "products": {
     "title": "Ürünlerimiz",
@@ -25,7 +24,7 @@
       "industrial": "Endüstriyel",
       "addon": "Ek Ünite"
     },
-    "cta": "Teklif Al"
+    "cta": "Bayi Teklifi Al"
   },
   "features": {
     "label": "Neden Euro Fil",
@@ -61,15 +60,15 @@
   "steps": {
     "label": "Süreç",
     "title": "Euro Fil ile Başlamak Çok Kolay",
-    "desc": "Ücretsiz su analizinden kesintisiz desteğe — 4 adımda profesyonel çözüm",
+    "desc": "Bayi fiyat teklifinden kesintisiz desteğe — 4 adımda profesyonel çözüm",
     "items": [
       {
-        "title": "Su Analizi",
-        "desc": "Uzman ekibimiz bölgenizdeki su kalitesini ölçer; sertlik, pH ve kirletici düzeylerini belirler."
+        "title": "Bayi Fiyat Teklifi",
+        "desc": "İletişim formunu doldurun; uzman ekibimiz ihtiyacınıza uygun sistemi ve bayi fiyat teklifini birlikte belirlesin."
       },
       {
         "title": "Sistem Tasarımı",
-        "desc": "Analiz sonucuna göre ev tipi RO, su yumuşatma veya endüstriyel çözüm teklifi 24 saat içinde sunulur."
+        "desc": "Talebinize göre ev tipi RO, su yumuşatma veya endüstriyel çözüm teklifi 24 saat içinde sunulur."
       },
       {
         "title": "Hızlı Kurulum",
@@ -95,7 +94,7 @@
       },
       {
         "q": "Hangi su kaynakları için uygundur?",
-        "a": "Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Ücretsiz su analizimiz sayesinde kaynağınıza en uygun sistemi belirliyoruz."
+        "a": "Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Uzman ekibimiz kaynağınıza en uygun sistemi belirler ve size özel bayi fiyat teklifi sunar."
       },
       {
         "q": "Garanti kapsamı nedir?",
@@ -103,7 +102,7 @@
       },
       {
         "q": "Teklif almak için ne yapmam gerekiyor?",
-        "a": "İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar, ücretsiz su analizi planlar ve ihtiyacınıza özel fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez."
+        "a": "İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar ve ihtiyacınıza özel bayi fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez."
       },
       {
         "q": "Endüstriyel tesisler için özel çözümleriniz var mı?",
@@ -112,16 +111,16 @@
     ]
   },
   "cta": {
-    "label": "Ücretsiz",
-    "title": "Su Analizi",
-    "titleAccent": "Talep Edin",
-    "desc": "Euro Fil uzmanları bölgenizdeki su kalitesini analiz eder, ev tipi RO'dan endüstriyel su yumuşatma çözümlerine kadar ihtiyacınıza en uygun sistemi önerir.",
-    "primary": "Ücretsiz Analiz Talep Et",
+    "label": "Bayi Ağı",
+    "title": "Bayi Fiyat",
+    "titleAccent": "Teklifi Alın",
+    "desc": "Euro Fil bayi ağı üzerinden ev tipi RO'dan endüstriyel su yumuşatma çözümlerine kadar ihtiyacınıza en uygun sistemi ve fiyat teklifini sunuyoruz.",
+    "primary": "Bayi Fiyat Teklifi Al",
     "secondary": "Ürün Kataloğu",
     "assurances": [
       {
-        "title": "Ücretsiz Su Analizi",
-        "desc": "Uzman ekibimiz su kalitesini ölçer, size en uygun sistemi belirler — hiçbir ön ödeme gerekmez."
+        "title": "Hızlı Fiyat Teklifi",
+        "desc": "Formu doldurun, 24 saat içinde size özel bayi fiyat teklifini sunalım — hiçbir ön ödeme gerekmez."
       },
       {
         "title": "24 Saatte Kurulum",
@@ -136,7 +135,7 @@
   "contactPage": {
     "badge": "Bize Ulaşın",
     "title": "İletişim",
-    "desc": "Ücretsiz su analizi, teklif veya teknik destek için formu doldurun. Uzmanlarımız 24 saat içinde sizinle iletişime geçer.",
+    "desc": "Bayi fiyat teklifi veya teknik destek için formu doldurun. Uzmanlarımız 24 saat içinde sizinle iletişime geçer.",
     "form": {
       "name": "Ad Soyad",
       "email": "E-posta",
@@ -148,7 +147,7 @@
       "success": "Mesajınız alındı! En kısa sürede dönüş yapacağız.",
       "error": "Bir hata oluştu, lütfen tekrar deneyin.",
       "subjects": {
-        "analysis": "Ücretsiz Su Analizi",
+        "analysis": "Bayi Fiyat Teklifi",
         "quote": "Fiyat Teklifi",
         "support": "Teknik Destek",
         "other": "Diğer"
@@ -175,7 +174,7 @@
       "industrial": "Endüstriyel",
       "addon": "Ek Ünite"
     },
-    "cta": "Teklif Al",
+    "cta": "Bayi Teklifi Al",
     "count": "ürün"
   },
   "footer": {
@@ -227,8 +226,8 @@
     },
     "cta": {
       "title": "Su Kaynağınızı Birlikte Değerlendirelim",
-      "desc": "Ücretsiz su analizi ile ihtiyacınıza en uygun sistemi belirleyelim.",
-      "primary": "Teklif Al",
+      "desc": "Bayi ağımızla ihtiyacınıza en uygun sistemi belirleyelim ve size özel fiyat teklifi sunalım.",
+      "primary": "Bayi Teklifi Al",
       "secondary": "Ürünleri İncele"
     }
   }

@@ -4,16 +4,15 @@
     "products": "Products",
     "corporate": "About",
     "contact": "Contact",
-    "cta": "Get a Quote"
+    "cta": "Get Dealer Quote"
   },
   "hero": {
     "badge": "Euro Fil Water Filter Technology",
     "title": "Pure Water,",
     "titleAccent": "Guaranteed by Euro Fil",
-    "desc": "Professional water purification systems for homes, businesses and industrial facilities. Free water analysis, expert installation and uninterrupted technical support under one roof.",
+    "desc": "Professional water purification systems for homes, businesses and industrial facilities. Fast dealer pricing, expert installation and uninterrupted technical support under one roof.",
     "ctaPrimary": "Explore Products",
-    "ctaSecondary": "Get a Free Quote",
-    "viewer360": "360° View"
+    "ctaSecondary": "Get Dealer Quote"
   },
   "products": {
     "title": "Our Products",
@@ -25,7 +24,7 @@
       "industrial": "Industrial",
       "addon": "Add-on Units"
     },
-    "cta": "Get a Quote"
+    "cta": "Get Dealer Quote"
   },
   "features": {
     "label": "Why Euro Fil",
@@ -61,15 +60,15 @@
   "steps": {
     "label": "Process",
     "title": "Getting Started with Euro Fil is Easy",
-    "desc": "From free water analysis to uninterrupted support — a professional solution in 4 steps",
+    "desc": "From dealer price quote to uninterrupted support — a professional solution in 4 steps",
     "items": [
       {
-        "title": "Water Analysis",
-        "desc": "Our expert team measures the water quality in your area, determining hardness, pH and contaminant levels."
+        "title": "Dealer Price Quote",
+        "desc": "Fill out the contact form; our expert team will determine the right system and dealer price quote for your needs."
       },
       {
         "title": "System Design",
-        "desc": "Based on the analysis, a residential RO, water softening or industrial solution proposal is presented within 24 hours."
+        "desc": "Based on your request, a residential RO, water softening or industrial solution proposal is presented within 24 hours."
       },
       {
         "title": "Fast Installation",
@@ -95,7 +94,7 @@
       },
       {
         "q": "Which water sources is it suitable for?",
-        "a": "We have solutions suitable for all types of water sources including municipal water, well water and borehole water. Our free water analysis helps us identify the most suitable system for your source."
+        "a": "We have solutions suitable for all types of water sources including municipal water, well water and borehole water. Our expert team identifies the most suitable system for your source and provides a custom dealer price quote."
       },
       {
         "q": "What does the warranty cover?",
@@ -103,7 +102,7 @@
       },
       {
         "q": "What do I need to do to get a quote?",
-        "a": "Simply fill out our contact form. A Euro Fil specialist will call you within 24 hours, schedule a free water analysis and present a customised price quote. No upfront payment is required."
+        "a": "Simply fill out our contact form. A Euro Fil specialist will call you within 24 hours and present a customised dealer price quote. No upfront payment is required."
       },
       {
         "q": "Do you have special solutions for industrial facilities?",
@@ -112,16 +111,16 @@
     ]
   },
   "cta": {
-    "label": "Free of Charge",
-    "title": "Request a",
-    "titleAccent": "Water Analysis",
-    "desc": "Euro Fil experts analyse the water quality in your area and recommend the most suitable system for your needs — from residential RO to industrial water softening solutions.",
-    "primary": "Request Free Analysis",
+    "label": "Dealer Network",
+    "title": "Get a",
+    "titleAccent": "Dealer Quote",
+    "desc": "Through our dealer network, Euro Fil offers the most suitable system and price quote for your needs — from residential RO to industrial water softening solutions.",
+    "primary": "Get Dealer Quote",
     "secondary": "Product Catalogue",
     "assurances": [
       {
-        "title": "Free Water Analysis",
-        "desc": "Our expert team measures water quality and determines the best system for you — no upfront payment required."
+        "title": "Fast Price Quote",
+        "desc": "Fill out the form and we'll send you a custom dealer price quote within 24 hours — no upfront payment required."
       },
       {
         "title": "Installation Within 24 Hours",
@@ -136,7 +135,7 @@
   "contactPage": {
     "badge": "Get in Touch",
     "title": "Contact",
-    "desc": "Fill out the form for a free water analysis, quote or technical support. Our experts will get back to you within 24 hours.",
+    "desc": "Fill out the form for a dealer price quote or technical support. Our experts will get back to you within 24 hours.",
     "form": {
       "name": "Full Name",
       "email": "Email",
@@ -148,7 +147,7 @@
       "success": "Your message has been received! We'll get back to you shortly.",
       "error": "Something went wrong, please try again.",
       "subjects": {
-        "analysis": "Free Water Analysis",
+        "analysis": "Dealer Price Quote",
         "quote": "Price Quote",
         "support": "Technical Support",
         "other": "Other"
@@ -175,7 +174,7 @@
       "industrial": "Industrial",
       "addon": "Add-on Units"
     },
-    "cta": "Get a Quote",
+    "cta": "Get Dealer Quote",
     "count": "products"
   },
   "footer": {
@@ -227,8 +226,8 @@
     },
     "cta": {
       "title": "Let's Assess Your Water Source Together",
-      "desc": "Let's determine the ideal system for your needs with a free water analysis.",
-      "primary": "Get a Quote",
+      "desc": "Let's determine the ideal system for your needs through our dealer network and provide a custom price quote.",
+      "primary": "Get Dealer Quote",
       "secondary": "Browse Products"
     }
   }

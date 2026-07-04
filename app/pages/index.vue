@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- ① HERO -->
-    <section class="relative overflow-hidden">
+    <section ref="heroSection" class="relative overflow-hidden">
       <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-brand-500/10 rounded-full blur-3xl" />
         <div class="absolute top-1/3 -left-40 w-[400px] h-[400px] bg-brand-700/10 rounded-full blur-3xl" />
@@ -9,23 +9,23 @@
 
       <!-- Text block -->
       <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center">
-        <div ref="heroBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-white text-xs font-medium mb-6">
+        <div ref="heroBadge" class="opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-white text-xs font-medium mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
           {{ $t('hero.badge') }}
         </div>
 
-        <h1 ref="heroTitle" class="text-5xl sm:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
+        <h1 ref="heroTitle" class="opacity-0 text-5xl sm:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
           {{ $t('hero.title') }}<br />
           <span class="text-white">
             {{ $t('hero.titleAccent') }}
           </span>
         </h1>
 
-        <p ref="heroDesc" class="text-lg sm:text-xl text-zinc-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+        <p ref="heroDesc" class="opacity-0 text-lg sm:text-xl text-zinc-400 leading-relaxed mb-10 max-w-2xl mx-auto">
           {{ $t('hero.desc') }}
         </p>
 
-        <div ref="heroCta" class="flex flex-wrap gap-4 justify-center">
+        <div ref="heroCta" class="opacity-0 flex flex-wrap gap-4 justify-center">
           <NuxtLink :to="localePath('/urunler')" class="btn-primary text-base">
             {{ $t('hero.ctaPrimary') }}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -41,17 +41,26 @@
       <!-- 360° Viewer -->
       <div ref="heroViewer" class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div class="relative">
-          <div class="absolute inset-0 rounded-3xl bg-brand-500/10 blur-2xl scale-95 translate-y-4" />
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/10">
-            <Product360Viewer folder="/hero-urun" :total-frames="290" :fps="30" class="w-full" style="aspect-ratio: 16/9;" />
-          </div>
-          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-3 border border-surface-4 text-xs text-zinc-400 whitespace-nowrap">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
-            {{ $t('hero.viewer360') }}
+          <div ref="heroViewerBox" class="relative w-full" style="aspect-ratio: 16/9;">
+            <Product360Viewer v-if="introDone" folder="/hero-urun" :total-frames="710" :start-frame="119" :fps="30" skip-preload class="w-full h-full" />
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Intro takeover: plays frames 1-40 full-hero, then morphs into the viewer's final spot over frames 40-120 -->
+    <Teleport to="body">
+      <img
+        v-if="!introDone"
+        ref="introImgEl"
+        :src="introFrameUrl"
+        alt=""
+        draggable="false"
+        class="fixed top-0 left-0 max-w-none object-contain pointer-events-none select-none z-[9999]"
+        style="transform-origin: 0 0;"
+        :style="introImgStyle"
+      />
+    </Teleport>
 
 
     <!-- DIVIDER -->
@@ -358,17 +367,17 @@ const localePath = useLocalePath()
 
 useSeoMeta({
   title: 'Euro Fil | Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler',
-  description: 'Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, ücretsiz su analizi, 24 saatte kurulum ve 7/24 teknik destek.',
+  description: 'Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi, 24 saatte kurulum ve 7/24 teknik destek.',
   keywords: 'su arıtma sistemi, su arıtma cihazı, reverse osmosis, endüstriyel su arıtma, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul',
   ogTitle: 'Euro Fil | Profesyonel Su Arıtma Sistemleri',
-  ogDescription: 'Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Ücretsiz su analizi ve 7/24 teknik destek.',
+  ogDescription: 'Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.',
   ogType: 'website',
   ogUrl: 'https://eurofil.com.tr/',
   ogLocale: 'tr_TR',
   ogSiteName: 'Euro Fil',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Euro Fil | Su Arıtma Sistemleri',
-  twitterDescription: 'TSE sertifikalı su arıtma sistemleri. Ücretsiz su analizi, 24 saatte kurulum, 7/24 destek.',
+  twitterDescription: 'TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 24 saatte kurulum, 7/24 destek.',
 })
 
 useHead({
@@ -383,7 +392,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         name: 'Euro Fil',
-        description: 'Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, ücretsiz su analizi ve 7/24 teknik destek.',
+        description: 'Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.',
         url: 'https://eurofil.com.tr',
         telephone: '+905454497766',
         email: 'info@eurofil.com.tr',
@@ -454,7 +463,7 @@ useHead({
             name: 'Hangi su kaynakları için uygundur?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Ücretsiz su analizimiz sayesinde kaynağınıza en uygun sistemi belirliyoruz.',
+              text: 'Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Uzman ekibimiz kaynağınıza en uygun sistemi belirler ve size özel bayi fiyat teklifi sunar.',
             },
           },
           {
@@ -470,7 +479,7 @@ useHead({
             name: 'Teklif almak için ne yapmam gerekiyor?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar, ücretsiz su analizi planlar ve ihtiyacınıza özel fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez.',
+              text: 'İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar ve ihtiyacınıza özel bayi fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez.',
             },
           },
           {
@@ -493,6 +502,9 @@ const heroDesc      = ref<HTMLElement>()
 const heroCta       = ref<HTMLElement>()
 const heroStats     = ref<HTMLElement>()
 const heroViewer    = ref<HTMLElement>()
+const heroSection   = ref<HTMLElement>()
+const heroViewerBox = ref<HTMLElement>()
+const introImgEl    = ref<HTMLImageElement>()
 const productsSection     = ref<HTMLElement>()
 const productsHeader      = ref<HTMLElement>()
 const featuresSection     = ref<HTMLElement>()
@@ -504,19 +516,106 @@ const faqHeader     = ref<HTMLElement>()
 const ctaSection    = ref<HTMLElement>()
 const activeFaq     = ref<number | null>(null)
 
+// — Hero intro takeover (frames 1-40 full-hero, frames 40-120 morph into place) —
+const { urls: introFrameUrls } = useProductFrames('/hero-urun', 710)
+const introDone = ref(false)
+const introFrameIndex = ref(0)
+const introFrameUrl = computed(() => introFrameUrls[introFrameIndex.value] ?? introFrameUrls[0])
+const introImgStyle = ref<{ width: string; height: string; transform: string }>({
+  width: '0px', height: '0px', transform: 'translate(0px, 0px) scale(1)',
+})
+
+function preloadImage(url: string) {
+  return new Promise<void>((resolve) => {
+    const img = new Image()
+    img.onload = img.onerror = () => resolve()
+    img.src = url
+  })
+}
+
+function lockScroll() {
+  document.documentElement.style.overflow = 'hidden'
+  document.body.style.overflow = 'hidden'
+}
+function unlockScroll() {
+  document.documentElement.style.overflow = ''
+  document.body.style.overflow = ''
+}
+
+async function playIntro() {
+  if (!heroSection.value || !heroViewerBox.value) { introDone.value = true; return }
+
+  lockScroll()
+  await Promise.all(introFrameUrls.slice(0, 120).map(preloadImage))
+  // keep loading the rest in the background so the handoff to Product360Viewer is instant
+  Promise.all(introFrameUrls.slice(120).map(preloadImage))
+
+  await nextTick()
+  if (!heroSection.value || !heroViewerBox.value) { introDone.value = true; unlockScroll(); return }
+
+  const heroRect = heroSection.value.getBoundingClientRect()
+  const targetRect = heroViewerBox.value.getBoundingClientRect()
+
+  // Cover the hero box while keeping the 16:9 frame aspect ratio intact.
+  // On tall/narrow (mobile, portrait) viewports the hero is much taller than it
+  // is wide, so filling by width would leave big empty gaps above/below — instead
+  // fill by height (cropping the sides) so the intro reads as a vertical takeover.
+  const fillWidthHeight = heroRect.width * 9 / 16
+  const fitsByWidth = fillWidthHeight >= heroRect.height
+  const baseWidth = fitsByWidth ? heroRect.width : heroRect.height * 16 / 9
+  const baseHeight = baseWidth * 9 / 16
+  const xFrom = heroRect.left + (heroRect.width - baseWidth) / 2
+  const yFrom = heroRect.top + (heroRect.height - baseHeight) / 2
+  const xTo = targetRect.left
+  const yTo = targetRect.top
+  const scaleTo = targetRect.width / baseWidth
+
+  const state = { n: 0, x: xFrom, y: yFrom, s: 1 }
+  introImgStyle.value = {
+    width: `${baseWidth}px`,
+    height: `${baseHeight}px`,
+    transform: `translate(${xFrom}px, ${yFrom}px) scale(1)`,
+  }
+
+  await nextTick()
+
+  gsap.timeline({ onComplete: () => { introDone.value = true; unlockScroll() } })
+    .to(state, {
+      n: 39, duration: 40 / 30, ease: 'none',
+      onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
+    }, 0)
+    .to(state, {
+      n: 119, duration: 80 / 30, ease: 'none',
+      onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
+    }, 40 / 30)
+    .to(state, {
+      x: xTo, y: yTo, s: scaleTo, duration: 80 / 30, ease: 'power2.inOut',
+      onUpdate: () => {
+        introImgStyle.value = {
+          ...introImgStyle.value,
+          transform: `translate(${state.x}px, ${state.y}px) scale(${state.s})`,
+        }
+      },
+    }, 40 / 30)
+    .call(() => revealHero(), [], '-=2')
+}
+
+function revealHero() {
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .to(heroBadge.value!,   { y: 0, opacity: 1, duration: 0.6 })
+    .to(heroTitle.value!,   { y: 0, opacity: 1, duration: 0.8 }, '-=0.3')
+    .to(heroDesc.value!,    { y: 0, opacity: 1, duration: 0.7 }, '-=0.5')
+    .to(heroCta.value!,     { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
+}
+
 let gsapCtx: gsap.Context
 
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
 
   gsapCtx = gsap.context(() => {
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    heroTl
-      .from(heroBadge.value!,  { y: 20, opacity: 0, duration: 0.6 })
-      .from(heroTitle.value!,  { y: 40, opacity: 0, duration: 0.8 }, '-=0.3')
-      .from(heroDesc.value!,   { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from(heroCta.value!,    { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
-      .from(heroViewer.value!, { x: 60, opacity: 0, duration: 0.9 }, 0.1)
+    gsap.set([heroBadge.value, heroTitle.value, heroDesc.value, heroCta.value], { y: 20 })
+    playIntro()
 
     const onEnterFade = (header: HTMLElement | undefined, cards: string, stagger = 0.12) => ({
       trigger: header,
@@ -558,6 +657,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   gsapCtx?.revert()
+  unlockScroll()
 })
 
 const { t, locale } = useI18n()

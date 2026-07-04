@@ -76,7 +76,7 @@
             </div>
             <div class="flex flex-col sm:flex-row gap-2.5">
               <NuxtLink :to="localePath('/iletisim')" class="btn-primary flex-1 justify-center">
-                Teklif Al
+                Bayi Teklifi Al
               </NuxtLink>
               <NuxtLink :to="localePath('/urunler')" class="btn-outline justify-center">
                 Tüm Ürünler
@@ -145,7 +145,7 @@
         <div class="text-white font-bold">{{ product.price }}</div>
         <div v-if="product.priceNote" class="text-[11px] text-zinc-500">{{ product.priceNote }}</div>
       </div>
-      <NuxtLink :to="localePath('/iletisim')" class="btn-primary text-sm">Teklif Al</NuxtLink>
+      <NuxtLink :to="localePath('/iletisim')" class="btn-primary text-sm">Bayi Teklifi Al</NuxtLink>
     </div>
     <div v-if="product.price" class="lg:hidden h-20" />
   </div>
