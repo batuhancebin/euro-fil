@@ -52,7 +52,6 @@
     <Teleport to="body">
       <img
         v-if="!introDone"
-        ref="introImgEl"
         :src="introFrameUrl"
         alt=""
         draggable="false"
@@ -504,7 +503,6 @@ const heroStats     = ref<HTMLElement>()
 const heroViewer    = ref<HTMLElement>()
 const heroSection   = ref<HTMLElement>()
 const heroViewerBox = ref<HTMLElement>()
-const introImgEl    = ref<HTMLImageElement>()
 const productsSection     = ref<HTMLElement>()
 const productsHeader      = ref<HTMLElement>()
 const featuresSection     = ref<HTMLElement>()
@@ -543,15 +541,26 @@ function unlockScroll() {
 }
 
 async function playIntro() {
-  if (!heroSection.value || !heroViewerBox.value) { introDone.value = true; return }
+  // Back/forward navigation can restore a non-zero scroll position before this
+  // mounts — don't hijack the page with a full-hero takeover in that case.
+  if (window.scrollY > 0 || !heroSection.value || !heroViewerBox.value) {
+    introDone.value = true
+    gsap.set([heroBadge.value, heroTitle.value, heroDesc.value, heroCta.value], { y: 0, opacity: 1 })
+    return
+  }
 
   lockScroll()
+  // Safety net: whatever happens, never leave scroll locked for more than a few seconds.
+  const safetyTimer = setTimeout(() => {
+    if (!introDone.value) { introDone.value = true; unlockScroll() }
+  }, 6000)
+
   await Promise.all(introFrameUrls.slice(0, 120).map(preloadImage))
   // keep loading the rest in the background so the handoff to Product360Viewer is instant
   Promise.all(introFrameUrls.slice(120).map(preloadImage))
 
   await nextTick()
-  if (!heroSection.value || !heroViewerBox.value) { introDone.value = true; unlockScroll(); return }
+  if (!heroSection.value || !heroViewerBox.value) { clearTimeout(safetyTimer); introDone.value = true; unlockScroll(); return }
 
   const heroRect = heroSection.value.getBoundingClientRect()
   const targetRect = heroViewerBox.value.getBoundingClientRect()
@@ -579,7 +588,7 @@ async function playIntro() {
 
   await nextTick()
 
-  gsap.timeline({ onComplete: () => { introDone.value = true; unlockScroll() } })
+  gsap.timeline({ onComplete: () => { clearTimeout(safetyTimer); introDone.value = true; unlockScroll() } })
     .to(state, {
       n: 39, duration: 40 / 30, ease: 'none',
       onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
@@ -675,11 +684,25 @@ const productCategories = computed(() => [
   })),
 ])
 
+// Fixed display order for the homepage's featured picks: 5/10/20" standart first, then their manometreli counterparts.
+const FEATURED_ORDER = [
+  'eurofil-standart-5-tekli-filtre-kabi',
+  'eurofil-standart-10-tekli-filtre-kabi',
+  'eurofil-standart-20-tekli-filtre-kabi',
+  'eurofil-manometreli-5-tekli-filtre-kabi',
+  'eurofil-manometreli-10-tekli-filtre-kabi',
+  'eurofil-manometreli-20-tekli-filtre-kabi',
+]
+
 const filteredProducts = computed(() => {
-  const list = activeCategory.value === 'all'
-    ? (dbProducts.value ?? [])
-    : (dbProducts.value ?? []).filter((p: any) => p.category === activeCategory.value)
-  return list.slice(0, 6)
+  if (activeCategory.value === 'all') {
+    return (dbProducts.value ?? [])
+      .filter((p: any) => p.isFeatured)
+      .sort((a: any, b: any) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug))
+  }
+  return (dbProducts.value ?? [])
+    .filter((p: any) => p.category === activeCategory.value)
+    .slice(0, 6)
 })
 
 function categoryName(slug: string) {
