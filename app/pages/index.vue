@@ -385,7 +385,6 @@ const faqItemsForJsonLd = [0, 1, 2, 3, 4, 5].map(i => ({
 }))
 
 useHead({
-  htmlAttrs: { lang: locale.value },
   link: [
     { rel: 'canonical', href: `${runtimeConfig.public.siteUrl}${localePath('/')}` },
   ],
@@ -398,13 +397,8 @@ useHead({
         name: 'Euro Fil',
         description: t('seo.home.jsonLdDescription'),
         url: runtimeConfig.public.siteUrl,
-        telephone: '+905454497766',
+        telephone: '+905540251580',
         email: 'info@eurofil.com.tr',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'İstanbul',
-          addressCountry: 'TR',
-        },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: t('seo.home.offerCatalogName'),

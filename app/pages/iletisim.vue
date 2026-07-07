@@ -122,16 +122,6 @@
 
             <div class="card p-5 flex items-start gap-4">
               <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
-                <MapPin class="w-5 h-5 text-brand-400" />
-              </div>
-              <div>
-                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.addressLabel') }}</div>
-                <div class="text-white font-medium">{{ $t('contactPage.info.address') }}</div>
-              </div>
-            </div>
-
-            <div class="card p-5 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
                 <Clock class="w-5 h-5 text-brand-400" />
               </div>
               <div>
@@ -149,7 +139,7 @@
 </template>
 
 <script setup lang="ts">
-import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-vue-next'
+import { Phone, Mail, Clock, CheckCircle } from 'lucide-vue-next'
 
 const { t } = useI18n()
 

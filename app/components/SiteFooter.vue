@@ -26,7 +26,7 @@
           <h3 class="text-sm font-semibold text-zinc-300 mb-4">{{ $t('footer.contact') }}</h3>
           <ul class="space-y-2 text-sm text-zinc-500">
             <li>info@eurofil.com.tr</li>
-            <li>+90 545 449 77 66</li>
+            <li>+90 554 025 15 80</li>
           </ul>
         </div>
       </div>

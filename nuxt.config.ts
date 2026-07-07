@@ -47,6 +47,13 @@ export default defineNuxtConfig({
       ],
       script: [
         { type: 'module', src: 'https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js' },
+        { src: 'https://www.googletagmanager.com/gtag/js?id=G-MXDNYQZP03', async: true },
+        {
+          innerHTML: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MXDNYQZP03');`,
+        },
       ],
     },
   },
