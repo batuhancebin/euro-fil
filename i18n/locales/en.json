@@ -8,10 +8,10 @@
     "menu": "Menu"
   },
   "hero": {
-    "badge": "Professional Water Filtration Technologies",
+    "badge": "The New Standard in Modular Water Treatment",
     "title": "Reliable Water Treatment",
     "titleAccent": "Solutions with Euro Fil",
-    "desc": "High-performance filtration systems for residential, commercial and industrial use. Dealer advantages, fast quotations and expert technical support all under one roof.",
+    "desc": "Modular filter housing systems in 5\", 10\" and 20\" body sizes, single-to-quad configurations, for residential and commercial use. Dealer advantages, fast quotations and expert technical support all under one roof.",
     "ctaPrimary": "Explore Products",
     "ctaSecondary": "Get Dealer Quote"
   },
@@ -33,9 +33,9 @@
     "title": "We don't just sell devices",
     "desc": "From project design to installation, from periodic maintenance to 24/7 technical support — we manage the entire process.",
     "ro": {
-      "title": "Reverse Osmosis & Water Softening Systems",
-      "desc": "We provide tailored water purification and softening solutions for homes, workplaces, factories, hotels, restaurants and facilities. Thanks to our wide product range, we design systems suited to different use cases and deliver long-lasting, efficient solutions with the right filtration technology.",
-      "tags": ["Reverse Osmosis", "Water Softening", "FRP Tanks", "Direct Flow Systems", "Hydrophore Solutions"]
+      "title": "Modular Filter Housing Systems",
+      "desc": "We manufacture modular filtration systems in 5\", 10\" and 20\" body sizes, in single, double, triple and quadruple configurations. Standard and gauge-equipped models deliver balanced flow and long-lasting performance for every need.",
+      "tags": ["Modular System", "5\"-10\"-20\" Body", "Single-to-Quad Configuration", "Gauge Option", "Balanced Flow"]
     },
     "cert": {
       "title": "Certified Quality & Trust",
@@ -63,7 +63,7 @@
       },
       {
         "title": "System Design",
-        "desc": "Based on your request, a residential RO, water softening or industrial solution proposal is presented within 24 hours."
+        "desc": "Based on your request, a modular system proposal with the right body size and filter count is presented within 24 hours."
       },
       {
         "title": "Fast Installation",
@@ -100,8 +100,8 @@
         "a": "Simply fill out our contact form. A Euro Fil specialist will call you within 24 hours and present a customised dealer price quote. No upfront payment is required."
       },
       {
-        "q": "Do you have special solutions for industrial facilities?",
-        "a": "Yes. We offer custom engineering solutions for high-capacity facilities such as factories, hotels, hospitals and food businesses. Capacity calculations and system design are provided free of charge."
+        "q": "Do you have solutions for businesses that need higher flow capacity?",
+        "a": "Yes. We can increase your capacity with triple and quad modular systems. We work with you to determine the ideal body size and configuration, and capacity calculations are free of charge."
       }
     ]
   },
@@ -109,7 +109,7 @@
     "label": "Dealer Network",
     "title": "Get a",
     "titleAccent": "Dealer Quote",
-    "desc": "Through our dealer network, Euro Fil offers the most suitable system and price quote for your needs — from residential RO to industrial water softening solutions.",
+    "desc": "Through our dealer network, Euro Fil offers the modular filtration system best suited to your needs — in 5\", 10\" and 20\" body sizes, single-to-quad configurations — along with a price quote.",
     "primary": "Get Dealer Quote",
     "secondary": "Product Catalogue",
     "assurances": [
@@ -188,12 +188,18 @@
     "ctaPrimary": "Get Dealer Quote",
     "ctaSecondary": "All Products",
     "specsTitle": "Technical Specifications",
+    "photos": "Photos",
+    "view3d": "3D View",
     "table": {
       "code": "Product Code",
       "cins": "Type",
       "maxPressure": "Max. Pressure",
       "maxTemp": "Max. Operating Temp.",
       "connection": "Connection Size"
+    },
+    "cinsValues": {
+      "ŞEFFAF": "Clear",
+      "MAT": "Opaque"
     }
   },
   "footer": {
@@ -217,7 +223,7 @@
     "manifesto": {
       "quote": "Water treatment isn't a product, it's a responsibility. We design every system as if we were installing it in our own home.",
       "specs": [
-        { "label": "Scope", "value": "Residential · Industrial · Add-ons" },
+        { "label": "Scope", "value": "Residential · Small Business · Professional Use" },
         { "label": "Certification", "value": "TSE Approved" },
         { "label": "Installation Time", "value": "24 Hours" },
         { "label": "Warranty", "value": "2 Years" },
@@ -258,17 +264,17 @@
     "home": {
       "title": "Water Treatment Systems – Residential, Office and Industrial Solutions",
       "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes, installation within 24 hours, and 24/7 technical support.",
-      "keywords": "water treatment system, water purification device, reverse osmosis, industrial water treatment, residential water treatment, Euro Fil, TSE certified, water filter, water treatment Istanbul",
+      "keywords": "filter housing, modular filtration system, water treatment system, gauge-equipped filter housing, standard filter housing, residential water treatment, Euro Fil, TSE certified, water filter, water treatment Istanbul",
       "ogTitle": "Professional Water Treatment Systems",
       "ogDescription": "TSE-certified water treatment systems for homes, offices and industrial facilities. Dealer price quotes and 24/7 technical support.",
       "twitterTitle": "Water Treatment Systems",
       "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, installation within 24 hours, 24/7 support.",
       "jsonLdDescription": "Professional water treatment systems for homes, offices and industrial facilities. TSE-certified products, dealer price quotes and 24/7 technical support.",
-      "offerCatalogName": "Water Treatment Systems",
+      "offerCatalogName": "Modular Filter Housing Systems",
       "offers": [
-        { "name": "5-Stage RO System", "description": "99.9% pure water with reverse osmosis technology. Compact design, easy installation.", "category": "Residential Water Treatment" },
-        { "name": "Industrial Pro Series", "description": "High-capacity pure water production system for factories and large businesses.", "category": "Industrial Water Treatment" },
-        { "name": "UV Sterilizer", "description": "Neutralizes 100% of bacteria and viruses with UV light technology.", "category": "Water Treatment Add-on Units" }
+        { "name": "5\" Modular Filter Housing System", "description": "Compact body size available in single, double, triple and quad configurations, with standard or gauge-equipped options.", "category": "Residential Use" },
+        { "name": "10\" Modular Filter Housing System", "description": "Mid-size body offering balanced performance and wide compatibility, with standard or gauge-equipped options.", "category": "Residential & Small Business" },
+        { "name": "20\" Modular Filter Housing System", "description": "Large body size for high-flow use, with standard or gauge-equipped options.", "category": "Professional Use" }
       ]
     }
   }

@@ -8,10 +8,10 @@
     "menu": "Menü"
   },
   "hero": {
-    "badge": "Profesyonel Su Filtrasyon Teknolojileri",
+    "badge": "Modüler Su Arıtımında Yeni Standart",
     "title": "Euro Fil ile Güvenilir",
     "titleAccent": "Su Arıtma Çözümleri",
-    "desc": "Evsel, ticari ve endüstriyel kullanım için yüksek performanslı filtre sistemleri. Bayi avantajları, hızlı fiyat teklifi ve uzman teknik destek tek çatı altında.",
+    "desc": "Evsel ve ticari kullanım için 5\", 10\" ve 20\" gövde boylarında, tekli-dörtlü konfigürasyonlarda modüler filtre kabı sistemleri. Bayi avantajları, hızlı fiyat teklifi ve uzman teknik destek tek çatı altında.",
     "ctaPrimary": "Ürünleri İncele",
     "ctaSecondary": "Bayi Teklifi Al"
   },
@@ -33,9 +33,9 @@
     "title": "Yalnızca cihaz satmıyoruz",
     "desc": "Proje tasarımından kuruluma, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreci biz yönetiyoruz.",
     "ro": {
-      "title": "Reverse Osmosis & Su Yumuşatma Sistemleri",
-      "desc": "Ev, işyeri, fabrika, otel, restoran ve tesisler için ihtiyaca özel su arıtma ve yumuşatma çözümleri sunuyoruz. Geniş ürün yelpazemiz sayesinde farklı kullanım alanlarına uygun sistemler tasarlıyor, doğru filtreleme teknolojisiyle uzun ömürlü ve verimli çözümler sağlıyoruz.",
-      "tags": ["Reverse Osmosis", "Su Yumuşatma", "FRP Tanklar", "Direkt Akış Sistemleri", "Hidrofor Çözümleri"]
+      "title": "Modüler Filtre Kabı Sistemleri",
+      "desc": "5\", 10\" ve 20\" gövde boylarında; tekli, ikili, üçlü ve dörtlü konfigürasyonlarda modüler filtrasyon sistemleri üretiyoruz. Standart ve manometre opsiyonlu modellerle her ihtiyaca dengeli akış ve uzun ömürlü performans sağlıyoruz.",
+      "tags": ["Modüler Sistem", "5\"-10\"-20\" Gövde", "Tekli-Dörtlü Konfigürasyon", "Manometre Opsiyonu", "Dengeli Akış"]
     },
     "cert": {
       "title": "Belgelenmiş Kalite ve Güven",
@@ -63,7 +63,7 @@
       },
       {
         "title": "Sistem Tasarımı",
-        "desc": "Talebinize göre ev tipi RO, su yumuşatma veya endüstriyel çözüm teklifi 24 saat içinde sunulur."
+        "desc": "Talebinize göre ihtiyacınıza uygun gövde boyu ve filtre sayısında modüler sistem teklifi 24 saat içinde sunulur."
       },
       {
         "title": "Hızlı Kurulum",
@@ -100,8 +100,8 @@
         "a": "İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar ve ihtiyacınıza özel bayi fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez."
       },
       {
-        "q": "Endüstriyel tesisler için özel çözümleriniz var mı?",
-        "a": "Evet. Fabrika, otel, hastane ve gıda işletmeleri gibi yüksek kapasiteli tesisler için özel mühendislik çözümleri sunuyoruz. Kapasite hesabı ve sistem tasarımı ücretsiz olarak yapılır."
+        "q": "Yüksek debi ihtiyacı olan işletmeler için çözümünüz var mı?",
+        "a": "Evet. Üçlü ve dörtlü modüler sistemlerle kapasitenizi artırabiliriz. İhtiyacınıza en uygun gövde boyu ve konfigürasyonu birlikte belirliyoruz, kapasite hesabı ücretsizdir."
       }
     ]
   },
@@ -109,7 +109,7 @@
     "label": "Bayi Ağı",
     "title": "Bayi Fiyat",
     "titleAccent": "Teklifi Alın",
-    "desc": "Euro Fil bayi ağı üzerinden ev tipi RO'dan endüstriyel su yumuşatma çözümlerine kadar ihtiyacınıza en uygun sistemi ve fiyat teklifini sunuyoruz.",
+    "desc": "Euro Fil bayi ağı üzerinden 5\", 10\" ve 20\" gövde boylarında, tekli-dörtlü konfigürasyonlarda ihtiyacınıza en uygun modüler filtrasyon sistemini ve fiyat teklifini sunuyoruz.",
     "primary": "Bayi Fiyat Teklifi Al",
     "secondary": "Ürün Kataloğu",
     "assurances": [
@@ -188,12 +188,18 @@
     "ctaPrimary": "Bayi Teklifi Al",
     "ctaSecondary": "Tüm Ürünler",
     "specsTitle": "Teknik Özellikler",
+    "photos": "Fotoğraflar",
+    "view3d": "3D Görünüm",
     "table": {
       "code": "Ürün Kodu",
       "cins": "Cins",
       "maxPressure": "Max. Basınç",
       "maxTemp": "Max. Çalışma Sıcaklığı",
       "connection": "Bağlantı Ölçüsü"
+    },
+    "cinsValues": {
+      "ŞEFFAF": "Şeffaf",
+      "MAT": "Mat"
     }
   },
   "footer": {
@@ -217,7 +223,7 @@
     "manifesto": {
       "quote": "Su arıtma bir ürün değil, bir sorumluluktur. Her sistemi kendi evimize kuracakmışız gibi tasarlıyoruz.",
       "specs": [
-        { "label": "Faaliyet Alanı", "value": "Ev Tipi · Endüstriyel · Ek Ünite" },
+        { "label": "Faaliyet Alanı", "value": "Ev Tipi · Küçük İşletme · Profesyonel Kullanım" },
         { "label": "Sertifikasyon", "value": "TSE Onaylı" },
         { "label": "Kurulum Süresi", "value": "24 Saat" },
         { "label": "Garanti", "value": "2 Yıl" },
@@ -258,17 +264,17 @@
     "home": {
       "title": "Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler",
       "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi, 24 saatte kurulum ve 7/24 teknik destek.",
-      "keywords": "su arıtma sistemi, su arıtma cihazı, reverse osmosis, endüstriyel su arıtma, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul",
+      "keywords": "filtre kabı, modüler filtrasyon sistemi, su arıtma sistemi, manometreli filtre kabı, standart filtre kabı, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul",
       "ogTitle": "Profesyonel Su Arıtma Sistemleri",
       "ogDescription": "Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.",
       "twitterTitle": "Su Arıtma Sistemleri",
       "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 24 saatte kurulum, 7/24 destek.",
       "jsonLdDescription": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.",
-      "offerCatalogName": "Su Arıtma Sistemleri",
+      "offerCatalogName": "Modüler Filtre Kabı Sistemleri",
       "offers": [
-        { "name": "5 Aşamalı RO Sistemi", "description": "Reverse osmosis teknolojisi ile %99.9 saflıkta su. Kompakt tasarım, kolay kurulum.", "category": "Ev Tipi Su Arıtma" },
-        { "name": "Endüstriyel Pro Serisi", "description": "Fabrika ve büyük işletmeler için yüksek kapasiteli saf su üretim sistemi.", "category": "Endüstriyel Su Arıtma" },
-        { "name": "UV Sterilizatör", "description": "UV ışın teknolojisi ile bakteri ve virüsleri %100 etkisiz hale getirir.", "category": "Su Arıtma Ek Üniteleri" }
+        { "name": "5\" Modüler Filtre Kabı Sistemi", "description": "Kompakt gövde boyunda tekli, ikili, üçlü ve dörtlü konfigürasyonlarda, standart veya manometreli seçenekleriyle.", "category": "Ev Tipi Kullanım" },
+        { "name": "10\" Modüler Filtre Kabı Sistemi", "description": "Dengeli performans ve geniş uyum sunan orta gövde boyunda, standart veya manometreli seçenekleriyle.", "category": "Ev Tipi ve Küçük İşletme" },
+        { "name": "20\" Modüler Filtre Kabı Sistemi", "description": "Yüksek debili kullanım için geniş gövde boyunda, standart veya manometreli seçenekleriyle.", "category": "Profesyonel Kullanım" }
       ]
     }
   }

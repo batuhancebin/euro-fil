@@ -45,6 +45,14 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/light-favicon/favicon-16x16.png', media: '(prefers-color-scheme: dark)' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/dark-favicon/apple-touch-icon.png' },
       ],
+      script: [
+        { type: 'module', src: 'https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js' },
+      ],
+    },
+  },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'model-viewer',
     },
   },
 })

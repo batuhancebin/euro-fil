@@ -225,6 +225,44 @@
           <p v-if="uploadError" class="text-xs text-red-400">{{ uploadError }}</p>
         </section>
 
+        <!-- 3D Model -->
+        <section class="card p-6 space-y-4">
+          <h2 class="text-sm font-semibold text-zinc-300">3D Model (GLB)</h2>
+
+          <model-viewer
+            v-if="form.model3dUrl"
+            :src="form.model3dUrl"
+            camera-controls
+            touch-action="pan-y"
+            shadow-intensity="1"
+            exposure="1.1"
+            style="width: 100%; height: 220px; background: #27272a; border-radius: 0.5rem;"
+          ></model-viewer>
+
+          <div v-if="form.model3dUrl" class="flex items-center justify-between text-xs text-zinc-500">
+            <span class="truncate mr-2">{{ form.model3dUrl }}</span>
+            <button type="button" class="text-zinc-600 hover:text-red-400 flex-shrink-0" @click="form.model3dUrl = ''">Kaldır</button>
+          </div>
+
+          <div
+            class="border-2 border-dashed border-surface-4 rounded-lg p-6 text-center hover:border-brand-500/50 transition-colors cursor-pointer"
+            @click="model3dInput?.click()"
+            @dragover.prevent
+            @drop.prevent="handleModel3dDrop"
+          >
+            <input ref="model3dInput" type="file" class="hidden" accept=".glb" @change="handleModel3dFile" />
+            <Upload class="w-6 h-6 text-zinc-600 mx-auto mb-2" />
+            <p class="text-xs text-zinc-500">.glb dosyası yükle veya sürükle</p>
+            <p class="text-xs text-zinc-600 mt-1">Yüklemeden önce sıkıştırın (maks. 30MB)</p>
+          </div>
+
+          <div v-if="uploading3d" class="text-xs text-zinc-400 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full border-2 border-brand-500 border-t-transparent animate-spin" />
+            Yükleniyor…
+          </div>
+          <p v-if="upload3dError" class="text-xs text-red-400">{{ upload3dError }}</p>
+        </section>
+
       </div>
     </div>
 
@@ -255,6 +293,10 @@ const fileInput = ref<HTMLInputElement>()
 const uploading = ref(false)
 const uploadError = ref('')
 
+const model3dInput = ref<HTMLInputElement>()
+const uploading3d = ref(false)
+const upload3dError = ref('')
+
 const form = reactive({
   slug:       '',
   nameTr:     '',
@@ -274,6 +316,7 @@ const form = reactive({
   seoDescTr:  '',
   seoDescEn:  '',
   images:     [] as string[],
+  model3dUrl: '',
   isActive:   true,
   isFeatured: false,
   sortOrder:  0,
@@ -338,6 +381,42 @@ async function handleDrop(e: DragEvent) {
     uploadError.value = 'Yükleme başarısız.'
   } finally {
     uploading.value = false
+  }
+}
+
+async function uploadModel3d(file: File) {
+  const fd = new FormData()
+  fd.append('file', file)
+  const res = await $fetch<{ url: string }>('/api/admin/upload-3d', { method: 'POST', body: fd })
+  return res.url
+}
+
+async function handleModel3dFile(e: Event) {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  uploading3d.value = true
+  upload3dError.value = ''
+  try {
+    form.model3dUrl = await uploadModel3d(file)
+  } catch (err: any) {
+    upload3dError.value = err?.data?.statusMessage || 'Yükleme başarısız.'
+  } finally {
+    uploading3d.value = false
+    if (model3dInput.value) model3dInput.value.value = ''
+  }
+}
+
+async function handleModel3dDrop(e: DragEvent) {
+  const file = e.dataTransfer?.files?.[0]
+  if (!file) return
+  uploading3d.value = true
+  upload3dError.value = ''
+  try {
+    form.model3dUrl = await uploadModel3d(file)
+  } catch (err: any) {
+    upload3dError.value = err?.data?.statusMessage || 'Yükleme başarısız.'
+  } finally {
+    uploading3d.value = false
   }
 }
 </script>

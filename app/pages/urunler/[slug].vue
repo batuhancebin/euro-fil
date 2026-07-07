@@ -17,50 +17,79 @@
 
         <!-- Görsel -->
         <div ref="galleryEl" class="lg:col-span-7 lg:sticky lg:top-28">
-          <div class="flex gap-3">
-            <!-- Dikey thumbnail şeridi (desktop) -->
-            <div v-if="product.images?.length > 1" class="hidden sm:flex flex-col gap-2.5 flex-shrink-0">
+          <!-- Foto / 3D sekmesi -->
+          <div v-if="product.model3dUrl" class="flex gap-2 mb-3">
+            <button
+              class="px-4 py-1.5 rounded-full text-sm font-medium border transition-colors"
+              :class="viewMode === 'photo' ? 'bg-brand-900 border-brand-900 text-white' : 'border-surface-4 text-zinc-400 hover:border-brand-500/40 hover:text-white'"
+              @click="viewMode = 'photo'"
+            >{{ $t('productDetail.photos') }}</button>
+            <button
+              class="px-4 py-1.5 rounded-full text-sm font-medium border transition-colors"
+              :class="viewMode === '3d' ? 'bg-brand-900 border-brand-900 text-white' : 'border-surface-4 text-zinc-400 hover:border-brand-500/40 hover:text-white'"
+              @click="viewMode = '3d'"
+            >{{ $t('productDetail.view3d') }}</button>
+          </div>
+
+          <div v-if="viewMode === '3d' && product.model3dUrl" class="relative rounded-2xl overflow-hidden bg-surface-3 border border-surface-4 aspect-square">
+            <model-viewer
+              :src="product.model3dUrl"
+              camera-controls
+              touch-action="pan-y"
+              auto-rotate
+              shadow-intensity="1"
+              exposure="1.1"
+              style="width: 100%; height: 100%; --poster-color: transparent;"
+              :alt="name"
+            ></model-viewer>
+          </div>
+
+          <template v-else>
+            <div class="flex gap-3">
+              <!-- Dikey thumbnail şeridi (desktop) -->
+              <div v-if="product.images?.length > 1" class="hidden sm:flex flex-col gap-2.5 flex-shrink-0">
+                <button
+                  v-for="(img, i) in product.images"
+                  :key="i"
+                  class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 transition-all duration-200"
+                  :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4 hover:border-zinc-400 opacity-70 hover:opacity-100'"
+                  @click="activeImage = img"
+                >
+                  <img :src="img" loading="lazy" class="w-full h-full object-contain" />
+                </button>
+              </div>
+
+              <!-- Ana görsel -->
+              <div class="relative flex-1 rounded-2xl overflow-hidden bg-white border border-surface-4 aspect-square flex items-center justify-center p-10">
+                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/5 text-zinc-500">
+                  {{ categoryName }}
+                </span>
+                <Transition name="fade" mode="out-in">
+                  <img
+                    v-if="activeImage"
+                    :key="activeImage"
+                    :src="activeImage"
+                    :alt="name"
+                    class="w-full h-full object-contain"
+                  />
+                  <Droplets v-else class="w-20 h-20 text-brand-500/20" />
+                </Transition>
+              </div>
+            </div>
+
+            <!-- Yatay thumbnail şeridi (mobil) -->
+            <div v-if="product.images?.length > 1" class="sm:hidden flex gap-2.5 mt-3 overflow-x-auto pb-1">
               <button
                 v-for="(img, i) in product.images"
                 :key="i"
-                class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 transition-all duration-200"
-                :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4 hover:border-zinc-400 opacity-70 hover:opacity-100'"
+                class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 flex-shrink-0 transition-all duration-200"
+                :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4'"
                 @click="activeImage = img"
               >
                 <img :src="img" loading="lazy" class="w-full h-full object-contain" />
               </button>
             </div>
-
-            <!-- Ana görsel -->
-            <div class="relative flex-1 rounded-2xl overflow-hidden bg-white border border-surface-4 aspect-square flex items-center justify-center p-10">
-              <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/5 text-zinc-500">
-                {{ categoryName }}
-              </span>
-              <Transition name="fade" mode="out-in">
-                <img
-                  v-if="activeImage"
-                  :key="activeImage"
-                  :src="activeImage"
-                  :alt="name"
-                  class="w-full h-full object-contain"
-                />
-                <Droplets v-else class="w-20 h-20 text-brand-500/20" />
-              </Transition>
-            </div>
-          </div>
-
-          <!-- Yatay thumbnail şeridi (mobil) -->
-          <div v-if="product.images?.length > 1" class="sm:hidden flex gap-2.5 mt-3 overflow-x-auto pb-1">
-            <button
-              v-for="(img, i) in product.images"
-              :key="i"
-              class="w-16 h-16 rounded-lg overflow-hidden border bg-white p-1.5 flex-shrink-0 transition-all duration-200"
-              :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4'"
-              @click="activeImage = img"
-            >
-              <img :src="img" loading="lazy" class="w-full h-full object-contain" />
-            </button>
-          </div>
+          </template>
         </div>
 
         <!-- Bilgiler -->
@@ -119,7 +148,7 @@
                   <template v-for="(v, i) in product.variants" :key="v.code">
                     <tr class="border-t border-surface-4 text-zinc-200">
                       <td class="px-3 py-2.5 font-mono">{{ v.code }}</td>
-                      <td class="px-3 py-2.5">{{ v.cins }}</td>
+                      <td class="px-3 py-2.5">{{ cinsLabel(v.cins) }}</td>
                       <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 text-zinc-300">
                         {{ product.maxPressure }}
                       </td>
@@ -156,7 +185,7 @@ import { Droplets } from 'lucide-vue-next'
 import { gsap } from 'gsap'
 
 const route = useRoute()
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const { data: product } = await useFetch<any>(`/api/products/${route.params.slug}`)
@@ -190,6 +219,13 @@ const categoryName = computed(() => {
 })
 
 const activeImage = ref<string>(product.value?.images?.[0] ?? '')
+const viewMode = ref<'photo' | '3d'>('photo')
+
+function cinsLabel(cins: string): string {
+  const key = `productDetail.cinsValues.${cins}`
+  const translated = t(key)
+  return translated === key ? cins : translated
+}
 
 function isConnectionGroupStart(i: number): boolean {
   const variants = product.value?.variants ?? []

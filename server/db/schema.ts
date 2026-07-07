@@ -18,6 +18,7 @@ export const products = pgTable('products', {
   descTr:     text('desc_tr').notNull().default(''),
   descEn:     text('desc_en').notNull().default(''),
   images:     jsonb('images').$type<string[]>().default([]),
+  model3dUrl: text('model_3d_url'),
   bg:         text('bg').default('#1c1c1f'),
   specsTr:    jsonb('specs_tr').$type<string[]>().default([]),
   specsEn:    jsonb('specs_en').$type<string[]>().default([]),
