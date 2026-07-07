@@ -515,19 +515,23 @@ async function playIntro() {
     clearTimeout(introSafetyTimer); introDone.value = true; unlockScroll(); return
   }
 
-  const heroRect = heroSection.value.getBoundingClientRect()
   const targetRect = heroViewerBox.value.getBoundingClientRect()
 
-  // Cover the hero box while keeping the 16:9 frame aspect ratio intact.
-  // On tall/narrow (mobile, portrait) viewports the hero is much taller than it
-  // is wide, so filling by width would leave big empty gaps above/below — instead
-  // fill by height (cropping the sides) so the intro reads as a vertical takeover.
-  const fillWidthHeight = heroRect.width * 9 / 16
-  const fitsByWidth = fillWidthHeight >= heroRect.height
-  const baseWidth = fitsByWidth ? heroRect.width : heroRect.height * 16 / 9
+  // Cover the full viewport (not just the hero section's own box) while keeping the
+  // 16:9 frame aspect ratio intact — the hero section's natural content height can be
+  // shorter than the viewport (e.g. wide/short windows), which would otherwise leave a
+  // gap at the bottom during the takeover and let the next section peek through.
+  // On tall/narrow (mobile, portrait) viewports the viewport is much taller than it is
+  // wide, so filling by width would leave big empty gaps above/below — instead fill by
+  // height (cropping the sides) so the intro reads as a vertical takeover.
+  const viewportWidth = window.innerWidth
+  const viewportHeight = window.innerHeight
+  const fillWidthHeight = viewportWidth * 9 / 16
+  const fitsByWidth = fillWidthHeight >= viewportHeight
+  const baseWidth = fitsByWidth ? viewportWidth : viewportHeight * 16 / 9
   const baseHeight = baseWidth * 9 / 16
-  const xFrom = heroRect.left + (heroRect.width - baseWidth) / 2
-  const yFrom = heroRect.top + (heroRect.height - baseHeight) / 2
+  const xFrom = (viewportWidth - baseWidth) / 2
+  const yFrom = (viewportHeight - baseHeight) / 2
   const xTo = targetRect.left
   const yTo = targetRect.top
   const scaleTo = targetRect.width / baseWidth
