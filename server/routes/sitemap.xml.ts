@@ -20,7 +20,7 @@ function escapeXml(value: string): string {
 }
 
 export default defineEventHandler(async (event) => {
-  const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://eurofil.com.tr').replace(/\/$/, '')
+  const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://eurofilwater.com').replace(/\/$/, '')
 
   const activeProducts = await db.select({
     slug:      products.slug,
