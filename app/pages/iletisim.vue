@@ -123,13 +123,48 @@
         </div>
       </div>
     </section>
+
+    <!-- Branches -->
+    <section class="py-20 bg-surface-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 text-center">{{ $t('contactPage.branches.title') }}</h2>
+        <p class="text-zinc-500 text-sm text-center mb-10">{{ $t('contactPage.branches.mapHint') }}</p>
+
+        <div class="max-w-4xl mx-auto mb-14">
+          <BranchMap />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div v-for="branch in branchItems" :key="rt(branch.name)" class="card p-5">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-9 h-9 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
+                <MapPin class="w-4 h-4 text-brand-400" />
+              </div>
+              <h3 class="text-white font-semibold pt-1.5">{{ rt(branch.name) }}</h3>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed whitespace-pre-line mb-3">{{ rt(branch.address) }}</p>
+            <a
+              v-if="rt(branch.phone)"
+              :href="`tel:${rt(branch.phone).split('/')[0].replace(/[^+\d]/g, '')}`"
+              class="text-brand-400 text-sm font-medium hover:text-brand-300 transition-colors"
+            >
+              {{ rt(branch.phone) }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Phone, Clock, CheckCircle } from 'lucide-vue-next'
+import { Phone, Clock, CheckCircle, MapPin } from 'lucide-vue-next'
 
-const { t } = useI18n()
+const { t, tm, rt } = useI18n()
+
+const branchItems = computed<{ name: string; address: string; phone: string }[]>(
+  () => tm('contactPage.branches.items') as unknown as { name: string; address: string; phone: string }[]
+)
 
 useSeoMeta({
   title: () => t('contactPage.title'),

@@ -157,6 +157,22 @@
       "support": "24/7 Technical Support Line",
       "phoneLabel": "Phone",
       "hoursLabel": "Business Hours"
+    },
+    "branches": {
+      "title": "Our Branches",
+      "mapHint": "Click a region to see branch details",
+      "items": [
+        { "name": "Headquarters", "address": "Hadımköy Mh. Ayasofya Cd. No: 112/1 34555\nArnavutköy - İstanbul", "phone": "+90 212 243 26 26" },
+        { "name": "Tr Tank", "address": "Hadımköy Mh. Denizkızı Sk. No:8-10/4\nArnavutköy/İstanbul", "phone": "+90 553 042 89 92" },
+        { "name": "Filtek Metal", "address": "Ömerli Mh. Süngü Sk. No:5/Blok 5 ve 6\nArnavutköy/İstanbul", "phone": "" },
+        { "name": "Şirinevler Branch", "address": "Şirinevler Mah. Karaoğlanoğlu Cad. Birlik Apt. No:1B D:0\nBahçelievler/İstanbul", "phone": "+90 212 652 36 36" },
+        { "name": "Eyüp Branch", "address": "Defterdar Mh. Yeni Kuşat Sk. No: 2/A\nEyüp - İstanbul", "phone": "+90 553 407 34 05" },
+        { "name": "Pendik Branch", "address": "Çınardere, E-5 Yakacık Yolu 85-77, 34896\nPendik/İstanbul", "phone": "+90 552 982 36 49" },
+        { "name": "İzmir Branch (Roben)", "address": "Yenişehir Mh. 1263. Sk. No: 11\nKonak - İzmir", "phone": "+90 232 433 30 36 / 444 33 36" },
+        { "name": "Clean Energy", "address": "Bahçelievler Mh. 430. Sk. No: 17\nTorbalı - İzmir", "phone": "+90 232 481 01 05" },
+        { "name": "Gaziantep Branch", "address": "Bülbülzade Mh. Yeşilvadi Blv. Asude Sitesi A Blok No:163AD\nŞahinbey - Gaziantep", "phone": "+90 342 502 42 67" },
+        { "name": "Antalya Branch", "address": "Hüsnü Karakaş Mh. Fatih Rüştü Zorlu Cd. 3630. Sk.\nHorzum Suites, Horzum Plaza\nKepez - Antalya", "phone": "+90 501 706 79 28" }
+      ]
     }
   },
   "productsPage": {
