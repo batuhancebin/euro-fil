@@ -398,7 +398,6 @@ useHead({
         description: t('seo.home.jsonLdDescription'),
         url: runtimeConfig.public.siteUrl,
         telephone: '+905540251580',
-        email: 'info@eurofil.com.tr',
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: t('seo.home.offerCatalogName'),

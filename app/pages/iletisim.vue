@@ -110,18 +110,6 @@
 
             <div class="card p-5 flex items-start gap-4">
               <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
-                <Mail class="w-5 h-5 text-brand-400" />
-              </div>
-              <div>
-                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.emailLabel') }}</div>
-                <a :href="`mailto:${$t('contactPage.info.email')}`" class="text-white font-medium hover:text-brand-400 transition-colors">
-                  {{ $t('contactPage.info.email') }}
-                </a>
-              </div>
-            </div>
-
-            <div class="card p-5 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
                 <Clock class="w-5 h-5 text-brand-400" />
               </div>
               <div>
@@ -139,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { Phone, Mail, Clock, CheckCircle } from 'lucide-vue-next'
+import { Phone, Clock, CheckCircle } from 'lucide-vue-next'
 
 const { t } = useI18n()
 

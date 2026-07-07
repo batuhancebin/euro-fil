@@ -153,11 +153,9 @@
     "info": {
       "title": "İletişim Bilgileri",
       "phone": "+90 554 025 15 80",
-      "email": "info{'@'}eurofil.com.tr",
       "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
       "support": "7/24 Teknik Destek Hattı",
       "phoneLabel": "Telefon",
-      "emailLabel": "E-posta",
       "hoursLabel": "Çalışma Saatleri"
     }
   },
