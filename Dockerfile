@@ -1,13 +1,14 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-slim AS build
+FROM node:20-slim AS build
 WORKDIR /app
-COPY package.json ./
-RUN npm install --legacy-peer-deps
+RUN corepack enable
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
+RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
 
-FROM node:22-slim AS runtime
+FROM node:20-slim AS runtime
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 ENV NODE_ENV=production

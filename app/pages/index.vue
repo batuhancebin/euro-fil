@@ -39,7 +39,7 @@
       </div>
 
       <!-- 360° Viewer -->
-      <div ref="heroViewer" class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div ref="heroViewer" class="relative max-w-none sm:max-w-3xl mx-auto px-0 sm:px-6 lg:px-8 pb-0 sm:pb-20">
         <div class="relative">
           <div ref="heroViewerBox" class="relative w-full" style="aspect-ratio: 16/9;">
             <Product360Viewer v-if="introDone" folder="/hero-urun" :total-frames="710" :start-frame="119" :fps="30" skip-preload class="w-full h-full" />
@@ -112,6 +112,7 @@
                 v-if="product.images?.[0]"
                 :src="product.images[0]"
                 :alt="locale === 'en' ? product.nameEn || product.nameTr : product.nameTr"
+                loading="lazy"
                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
               <div v-else class="w-full h-full flex items-center justify-center">
@@ -138,7 +139,7 @@
             </div>
             <div class="border-t border-surface-4/60 group-hover:border-brand-500/40 transition-colors duration-300 px-6 py-4 flex justify-center">
               <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-brand-300 transition-colors duration-300">
-                {{ locale === 'en' ? 'View Product' : 'Ürünü İncele' }}
+                {{ $t('products.viewProduct') }}
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -209,18 +210,11 @@
               </div>
               <h3 class="text-xl font-bold text-white mb-3">{{ $t('features.support.title') }}</h3>
               <p class="text-zinc-400 leading-relaxed">{{ $t('features.support.desc') }}</p>
-              <div class="mt-8 grid grid-cols-3 gap-6 pt-6 border-t border-surface-4">
-                <div>
-                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.install') }}</div>
-                  <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.installLabel') }}</div>
-                </div>
-                <div>
-                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.warranty') }}</div>
-                  <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.warrantyLabel') }}</div>
-                </div>
-                <div>
-                  <div class="text-2xl font-bold text-white">{{ $t('features.support.stats.support') }}</div>
-                  <div class="text-xs text-zinc-500 mt-1">{{ $t('features.support.stats.supportLabel') }}</div>
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-6 border-t border-surface-4">
+                <div v-for="item in supportItems" :key="item"
+                  class="flex items-center gap-2 text-xs text-zinc-500">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-400 flex-shrink-0" />
+                  {{ item }}
                 </div>
               </div>
             </div>
@@ -363,26 +357,38 @@ import { ChevronDown, Droplets, ShieldCheck, Layers, Headphones, FlaskConical, C
 definePageMeta({ layout: 'default' })
 
 const localePath = useLocalePath()
+const { t, locale } = useI18n()
+const runtimeConfig = useRuntimeConfig()
 
 useSeoMeta({
-  title: 'Euro Fil | Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler',
-  description: 'Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi, 24 saatte kurulum ve 7/24 teknik destek.',
-  keywords: 'su arıtma sistemi, su arıtma cihazı, reverse osmosis, endüstriyel su arıtma, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul',
-  ogTitle: 'Euro Fil | Profesyonel Su Arıtma Sistemleri',
-  ogDescription: 'Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.',
+  title: () => t('seo.home.title'),
+  description: () => t('seo.home.description'),
+  keywords: () => t('seo.home.keywords'),
+  ogTitle: () => t('seo.home.ogTitle'),
+  ogDescription: () => t('seo.home.ogDescription'),
   ogType: 'website',
-  ogUrl: 'https://eurofil.com.tr/',
-  ogLocale: 'tr_TR',
+  ogUrl: () => `${runtimeConfig.public.siteUrl}${localePath('/')}`,
+  ogLocale: () => locale.value === 'en' ? 'en_US' : 'tr_TR',
   ogSiteName: 'Euro Fil',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Euro Fil | Su Arıtma Sistemleri',
-  twitterDescription: 'TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 24 saatte kurulum, 7/24 destek.',
+  twitterTitle: () => t('seo.home.twitterTitle'),
+  twitterDescription: () => t('seo.home.twitterDescription'),
 })
 
+// The i18n prefix routing strategy (/tr, /en) means a locale switch always navigates to a
+// different URL and fully remounts this page — so this head data only needs to be correct
+// once per mount, not continuously reactive. Computing it eagerly (rather than passing
+// unhead reactive getters) sidesteps a dev-mode unhead/Vue teardown error seen when this
+// page's script[] head entries were defined as functions.
+const faqItemsForJsonLd = [0, 1, 2, 3, 4, 5].map(i => ({
+  q: t(`faq.items[${i}].q`),
+  a: t(`faq.items[${i}].a`),
+}))
+
 useHead({
-  htmlAttrs: { lang: 'tr' },
+  htmlAttrs: { lang: locale.value },
   link: [
-    { rel: 'canonical', href: 'https://eurofil.com.tr/' },
+    { rel: 'canonical', href: `${runtimeConfig.public.siteUrl}${localePath('/')}` },
   ],
   script: [
     {
@@ -391,8 +397,8 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         name: 'Euro Fil',
-        description: 'Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.',
-        url: 'https://eurofil.com.tr',
+        description: t('seo.home.jsonLdDescription'),
+        url: runtimeConfig.public.siteUrl,
         telephone: '+905454497766',
         email: 'info@eurofil.com.tr',
         address: {
@@ -402,36 +408,16 @@ useHead({
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'Su Arıtma Sistemleri',
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Product',
-                name: '5 Aşamalı RO Sistemi',
-                description: 'Reverse osmosis teknolojisi ile %99.9 saflıkta su. Kompakt tasarım, kolay kurulum.',
-                category: 'Ev Tipi Su Arıtma',
-              },
+          name: t('seo.home.offerCatalogName'),
+          itemListElement: [0, 1, 2].map(i => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Product',
+              name: t(`seo.home.offers[${i}].name`),
+              description: t(`seo.home.offers[${i}].description`),
+              category: t(`seo.home.offers[${i}].category`),
             },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Product',
-                name: 'Endüstriyel Pro Serisi',
-                description: 'Fabrika ve büyük işletmeler için yüksek kapasiteli saf su üretim sistemi.',
-                category: 'Endüstriyel Su Arıtma',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Product',
-                name: 'UV Sterilizatör',
-                description: 'UV ışın teknolojisi ile bakteri ve virüsleri %100 etkisiz hale getirir.',
-                category: 'Su Arıtma Ek Üniteleri',
-              },
-            },
-          ],
+          })),
         },
       }),
     },
@@ -440,56 +426,11 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'Su arıtma cihazı hangi sıklıkta bakım istiyor?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Euro Fil sistemleri yılda bir kez periyodik bakım gerektirir. Filtrelerin değişim süresi su kalitesine ve kullanım miktarına göre 6-12 ay arasında değişir. Bakım sözleşmesi olan müşterilerimize hatırlatma yapılır.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Kurulum ne kadar sürer ve kim yapar?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: "Tüm kurulumlar Euro Fil'in sertifikalı teknik ekibi tarafından yapılır. Standart ev tipi sistemler 1-2 saat, endüstriyel sistemler ise tesisin büyüklüğüne göre 1-3 gün içinde tamamlanır.",
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Hangi su kaynakları için uygundur?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Şebeke suyu, kuyu suyu ve sondaj suyu dahil her türlü su kaynağına uygun çözümlerimiz mevcuttur. Uzman ekibimiz kaynağınıza en uygun sistemi belirler ve size özel bayi fiyat teklifi sunar.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Garanti kapsamı nedir?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti süresi içinde oluşan arızalarda parça ve işçilik ücretsiz olarak karşılanır. 7/24 teknik destek hattımız her zaman hizmetinizde.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Teklif almak için ne yapmam gerekiyor?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'İletişim formumuzu doldurmanız yeterli. Euro Fil uzmanı 24 saat içinde sizi arar ve ihtiyacınıza özel bayi fiyat teklifi sunar. Herhangi bir ön ödeme gerekmez.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Endüstriyel tesisler için özel çözümleriniz var mı?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Evet. Fabrika, otel, hastane ve gıda işletmeleri gibi yüksek kapasiteli tesisler için özel mühendislik çözümleri sunuyoruz. Kapasite hesabı ve sistem tasarımı ücretsiz olarak yapılır.',
-            },
-          },
-        ],
+        mainEntity: faqItemsForJsonLd.map(faq => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a },
+        })),
       }),
     },
   ],
@@ -531,6 +472,22 @@ function preloadImage(url: string) {
   })
 }
 
+// Hoisted (rather than local to playIntro) so onUnmounted can reach and kill them directly —
+// gsap.context() only auto-tracks animations created synchronously inside its callback, and
+// this timeline/timer are necessarily built after `await` points, so they'd otherwise survive
+// gsapCtx.revert() and keep running (and mutating document.body.style) after unmount.
+let introTl: gsap.core.Timeline | undefined
+let introSafetyTimer: ReturnType<typeof setTimeout> | undefined
+let introCancelled = false
+
+async function preloadRemainingFrames(urls: string[]) {
+  const BATCH_SIZE = 40
+  for (let i = 0; i < urls.length; i += BATCH_SIZE) {
+    if (introCancelled) return
+    await Promise.all(urls.slice(i, i + BATCH_SIZE).map(preloadImage))
+  }
+}
+
 function lockScroll() {
   document.documentElement.style.overflow = 'hidden'
   document.body.style.overflow = 'hidden'
@@ -551,16 +508,20 @@ async function playIntro() {
 
   lockScroll()
   // Safety net: whatever happens, never leave scroll locked for more than a few seconds.
-  const safetyTimer = setTimeout(() => {
-    if (!introDone.value) { introDone.value = true; unlockScroll() }
+  introSafetyTimer = setTimeout(() => {
+    if (!introDone.value) { introTl?.kill(); introDone.value = true; unlockScroll() }
   }, 6000)
 
   await Promise.all(introFrameUrls.slice(0, 120).map(preloadImage))
-  // keep loading the rest in the background so the handoff to Product360Viewer is instant
-  Promise.all(introFrameUrls.slice(120).map(preloadImage))
+  // keep loading the rest in the background (batched + cancellable) so the handoff to
+  // Product360Viewer is instant without firing ~590 concurrent requests at once
+  preloadRemainingFrames(introFrameUrls.slice(120))
 
   await nextTick()
-  if (!heroSection.value || !heroViewerBox.value) { clearTimeout(safetyTimer); introDone.value = true; unlockScroll(); return }
+  // The safety timer (or an unmount) may have already resolved this while we were awaiting.
+  if (introCancelled || introDone.value || !heroSection.value || !heroViewerBox.value) {
+    clearTimeout(introSafetyTimer); introDone.value = true; unlockScroll(); return
+  }
 
   const heroRect = heroSection.value.getBoundingClientRect()
   const targetRect = heroViewerBox.value.getBoundingClientRect()
@@ -587,8 +548,9 @@ async function playIntro() {
   }
 
   await nextTick()
+  if (introCancelled || introDone.value) { clearTimeout(introSafetyTimer); return }
 
-  gsap.timeline({ onComplete: () => { clearTimeout(safetyTimer); introDone.value = true; unlockScroll() } })
+  introTl = gsap.timeline({ onComplete: () => { clearTimeout(introSafetyTimer); introDone.value = true; unlockScroll() } })
     .to(state, {
       n: 39, duration: 40 / 30, ease: 'none',
       onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
@@ -666,10 +628,11 @@ onMounted(() => {
 
 onUnmounted(() => {
   gsapCtx?.revert()
+  introCancelled = true
+  clearTimeout(introSafetyTimer)
+  introTl?.kill()
   unlockScroll()
 })
-
-const { t, locale } = useI18n()
 
 const { data: dbProducts } = await useFetch<any[]>('/api/products', { default: () => [] })
 const { data: dbCategories } = await useFetch<any[]>('/api/categories', { default: () => [] })
@@ -696,9 +659,13 @@ const FEATURED_ORDER = [
 
 const filteredProducts = computed(() => {
   if (activeCategory.value === 'all') {
+    // Only show products that are both marked featured AND part of the curated order —
+    // an isFeatured product outside FEATURED_ORDER would otherwise get indexOf() === -1
+    // and sort to the very front. Cap at 6 regardless of how many are marked featured.
     return (dbProducts.value ?? [])
-      .filter((p: any) => p.isFeatured)
+      .filter((p: any) => p.isFeatured && FEATURED_ORDER.includes(p.slug))
       .sort((a: any, b: any) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug))
+      .slice(0, 6)
   }
   return (dbProducts.value ?? [])
     .filter((p: any) => p.category === activeCategory.value)
@@ -716,7 +683,8 @@ function metaDesc(product: any): string {
 }
 
 const roTags = computed(() => [0,1,2,3,4].map(i => t(`features.ro.tags[${i}]`)))
-const certItems = computed(() => [0,1,2].map(i => t(`features.cert.items[${i}]`)))
+const certItems = computed(() => [0,1,2,3].map(i => t(`features.cert.items[${i}]`)))
+const supportItems = computed(() => [0,1,2,3].map(i => t(`features.support.items[${i}]`)))
 
 const ctaIcons = [FlaskConical, Clock, BadgeCheck]
 const stepIcons = [FlaskConical, Layers, Clock, Headphones]

@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between mb-8">
       <div>
         <h1 class="text-2xl font-bold text-white">İletişim Talepleri</h1>
-        <p class="text-zinc-500 text-sm mt-1">{{ contacts.length }} talep</p>
+        <p class="text-zinc-500 text-sm mt-1">{{ contacts.length }} / {{ total }} talep</p>
       </div>
     </div>
 
@@ -44,6 +44,12 @@
         </div>
       </div>
     </div>
+
+    <div v-if="contacts.length < total" class="mt-6 text-center">
+      <button class="btn-outline text-sm" :disabled="loading" @click="loadMore">
+        {{ loading ? 'Yükleniyor…' : 'Daha Fazla Yükle' }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -51,7 +57,26 @@
 definePageMeta({ layout: 'admin', middleware: 'admin' })
 defineI18nRoute(false)
 
-const { data: contacts, refresh } = await useFetch<any[]>('/api/admin/contacts', { default: () => [] })
+const PAGE_SIZE = 50
+
+const contacts = ref<any[]>([])
+const total = ref(0)
+const loading = ref(false)
+
+async function loadMore() {
+  loading.value = true
+  try {
+    const res = await $fetch<{ items: any[]; total: number }>('/api/admin/contacts', {
+      query: { limit: PAGE_SIZE, offset: contacts.value.length },
+    })
+    contacts.value.push(...res.items)
+    total.value = res.total
+  } finally {
+    loading.value = false
+  }
+}
+
+await loadMore()
 
 function formatDate(val: string | null) {
   if (!val) return ''
@@ -61,6 +86,7 @@ function formatDate(val: string | null) {
 async function remove(id: number) {
   if (!confirm('Bu talebi silmek istediğinize emin misiniz?')) return
   await $fetch(`/api/admin/contacts/${id}`, { method: 'DELETE' })
-  await refresh()
+  contacts.value = contacts.value.filter(c => c.id !== id)
+  total.value--
 }
 </script>

@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, integer, jsonb, boolean } from 'drizzle-orm/pg-core'
+import { pgTable, serial, text, timestamp, integer, jsonb, boolean, index } from 'drizzle-orm/pg-core'
 
 export const categories = pgTable('categories', {
   id:        serial('id').primaryKey(),
@@ -14,7 +14,7 @@ export const products = pgTable('products', {
   slug:       text('slug').notNull().unique(),
   nameTr:     text('name_tr').notNull(),
   nameEn:     text('name_en').notNull().default(''),
-  category:   text('category').notNull(),
+  category:   text('category').notNull().references(() => categories.slug, { onUpdate: 'cascade' }),
   descTr:     text('desc_tr').notNull().default(''),
   descEn:     text('desc_en').notNull().default(''),
   images:     jsonb('images').$type<string[]>().default([]),
@@ -45,4 +45,6 @@ export const contactRequests = pgTable('contact_requests', {
   message:     text('message'),
   productSlug: text('product_slug'),
   createdAt:   timestamp('created_at').defaultNow(),
-})
+}, (table) => ({
+  createdAtIdx: index('contact_requests_created_at_idx').on(table.createdAt),
+}))

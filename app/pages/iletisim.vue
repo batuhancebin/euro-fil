@@ -29,9 +29,9 @@
               <div class="w-14 h-14 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle class="w-7 h-7 text-emerald-400" />
               </div>
-              <h2 class="text-xl font-bold text-white mb-2">Teşekkürler!</h2>
+              <h2 class="text-xl font-bold text-white mb-2">{{ $t('contactPage.form.successTitle') }}</h2>
               <p class="text-zinc-400">{{ $t('contactPage.form.success') }}</p>
-              <button class="btn-outline mt-6" @click="success = false">Yeni Mesaj Gönder</button>
+              <button class="btn-outline mt-6" @click="success = false">{{ $t('contactPage.form.newMessage') }}</button>
             </div>
 
             <!-- Form -->
@@ -101,7 +101,7 @@
                 <Phone class="w-5 h-5 text-brand-400" />
               </div>
               <div>
-                <div class="text-xs text-zinc-500 mb-0.5">Telefon</div>
+                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.phoneLabel') }}</div>
                 <a :href="`tel:${$t('contactPage.info.phone').replace(/\s/g,'')}`" class="text-white font-medium hover:text-brand-400 transition-colors">
                   {{ $t('contactPage.info.phone') }}
                 </a>
@@ -113,7 +113,7 @@
                 <Mail class="w-5 h-5 text-brand-400" />
               </div>
               <div>
-                <div class="text-xs text-zinc-500 mb-0.5">E-posta</div>
+                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.emailLabel') }}</div>
                 <a :href="`mailto:${$t('contactPage.info.email')}`" class="text-white font-medium hover:text-brand-400 transition-colors">
                   {{ $t('contactPage.info.email') }}
                 </a>
@@ -125,7 +125,7 @@
                 <MapPin class="w-5 h-5 text-brand-400" />
               </div>
               <div>
-                <div class="text-xs text-zinc-500 mb-0.5">Adres</div>
+                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.addressLabel') }}</div>
                 <div class="text-white font-medium">{{ $t('contactPage.info.address') }}</div>
               </div>
             </div>
@@ -135,7 +135,7 @@
                 <Clock class="w-5 h-5 text-brand-400" />
               </div>
               <div>
-                <div class="text-xs text-zinc-500 mb-0.5">Çalışma Saatleri</div>
+                <div class="text-xs text-zinc-500 mb-0.5">{{ $t('contactPage.info.hoursLabel') }}</div>
                 <div class="text-white font-medium text-sm">{{ $t('contactPage.info.hours') }}</div>
                 <div class="text-brand-400 text-xs mt-1">{{ $t('contactPage.info.support') }}</div>
               </div>

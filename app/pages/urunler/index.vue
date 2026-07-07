@@ -69,6 +69,7 @@
                   v-if="product.images?.[0]"
                   :src="product.images[0]"
                   :alt="locale === 'en' ? product.nameEn || product.nameTr : product.nameTr"
+                  loading="lazy"
                   class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div v-else class="w-full h-full flex items-center justify-center">
@@ -101,7 +102,7 @@
               <!-- Divider + CTA -->
               <div class="border-t border-surface-4/60 group-hover:border-brand-500/40 transition-colors duration-300 px-6 py-4 flex justify-center">
                 <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-brand-300 transition-colors duration-300">
-                  {{ locale === 'en' ? 'View Product' : 'Ürünü İncele' }}
+                  {{ $t('products.viewProduct') }}
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -113,7 +114,7 @@
 
         <!-- Empty state -->
         <div v-if="!pending && filteredProducts.length === 0" class="text-center py-24 text-zinc-600">
-          Bu kategoride ürün bulunamadı.
+          {{ $t('productsPage.empty') }}
         </div>
       </div>
     </section>

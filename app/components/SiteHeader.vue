@@ -52,7 +52,7 @@
           <button
             class="md:hidden flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-zinc-700 hover:bg-zinc-100 transition-colors mr-1"
             :aria-expanded="mobileMenuOpen"
-            aria-label="Menü"
+            :aria-label="$t('nav.menu')"
             @click="mobileMenuOpen = !mobileMenuOpen"
           >
             <Menu v-if="!mobileMenuOpen" class="w-5 h-5" />

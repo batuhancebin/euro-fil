@@ -21,6 +21,11 @@ export default defineNuxtConfig({
   nitro: {
     alias: { '#db': new URL('./server/db/index.ts', import.meta.url).pathname },
   },
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://eurofil.com.tr',
+    },
+  },
   css: ['~/assets/css/main.css'],
   app: {
     head: {

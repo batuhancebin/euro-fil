@@ -11,12 +11,22 @@ const s3 = new S3Client({
   },
 })
 
+const MAX_UPLOAD_BYTES = 10 * 1024 * 1024 // 10MB
+
 export default defineEventHandler(async (event) => {
   await requireAdmin(event)
+
+  const declaredLength = Number(getRequestHeader(event, 'content-length') ?? 0)
+  if (declaredLength > MAX_UPLOAD_BYTES) {
+    throw createError({ statusCode: 413, statusMessage: 'Dosya çok büyük (maksimum 10MB)' })
+  }
 
   const form = await readMultipartFormData(event)
   const file = form?.find(f => f.name === 'file')
   if (!file?.data) throw createError({ statusCode: 400, statusMessage: 'Dosya bulunamadı' })
+  if (file.data.length > MAX_UPLOAD_BYTES) {
+    throw createError({ statusCode: 413, statusMessage: 'Dosya çok büyük (maksimum 10MB)' })
+  }
 
   // WebP dönüşümü + optimizasyon
   const webpBuffer = await sharp(file.data)

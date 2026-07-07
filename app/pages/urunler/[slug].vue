@@ -3,7 +3,7 @@
     <!-- Breadcrumb -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
       <div class="flex items-center gap-2 text-sm text-zinc-500">
-        <NuxtLink :to="localePath('/')" class="hover:text-white transition-colors">Ana Sayfa</NuxtLink>
+        <NuxtLink :to="localePath('/')" class="hover:text-white transition-colors">{{ $t('productDetail.breadcrumbHome') }}</NuxtLink>
         <span class="text-zinc-700">/</span>
         <NuxtLink :to="localePath('/urunler')" class="hover:text-white transition-colors">{{ $t('nav.products') }}</NuxtLink>
         <span class="text-zinc-700">/</span>
@@ -27,7 +27,7 @@
                 :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4 hover:border-zinc-400 opacity-70 hover:opacity-100'"
                 @click="activeImage = img"
               >
-                <img :src="img" class="w-full h-full object-contain" />
+                <img :src="img" loading="lazy" class="w-full h-full object-contain" />
               </button>
             </div>
 
@@ -58,7 +58,7 @@
               :class="activeImage === img ? 'border-brand-500 ring-2 ring-brand-500/20' : 'border-surface-4'"
               @click="activeImage = img"
             >
-              <img :src="img" class="w-full h-full object-contain" />
+              <img :src="img" loading="lazy" class="w-full h-full object-contain" />
             </button>
           </div>
         </div>
@@ -76,17 +76,17 @@
             </div>
             <div class="flex flex-col sm:flex-row gap-2.5">
               <NuxtLink :to="localePath('/iletisim')" class="btn-primary flex-1 justify-center">
-                Bayi Teklifi Al
+                {{ $t('productDetail.ctaPrimary') }}
               </NuxtLink>
               <NuxtLink :to="localePath('/urunler')" class="btn-outline justify-center">
-                Tüm Ürünler
+                {{ $t('productDetail.ctaSecondary') }}
               </NuxtLink>
             </div>
           </div>
 
           <!-- Specs -->
           <div v-if="specList.length" class="mt-8">
-            <h3 class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">Teknik Özellikler</h3>
+            <h3 class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">{{ $t('productDetail.specsTitle') }}</h3>
             <ul class="space-y-2.5">
               <li v-for="spec in specList" :key="spec" class="flex items-center gap-3 text-sm text-zinc-300">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-500 flex-shrink-0" />
@@ -108,11 +108,11 @@
               <table class="w-full text-sm min-w-[560px]">
                 <thead>
                   <tr class="bg-surface-3 text-zinc-400 text-xs uppercase tracking-wide">
-                    <th class="px-3 py-3 font-semibold text-left">Ürün Kodu</th>
-                    <th class="px-3 py-3 font-semibold text-left">Cins</th>
-                    <th class="px-3 py-3 font-semibold text-center">Max. Basınç</th>
-                    <th class="px-3 py-3 font-semibold text-center">Max. Çalışma Sıcaklığı</th>
-                    <th class="px-3 py-3 font-semibold text-center">Bağlantı Ölçüsü</th>
+                    <th class="px-3 py-3 font-semibold text-left">{{ $t('productDetail.table.code') }}</th>
+                    <th class="px-3 py-3 font-semibold text-left">{{ $t('productDetail.table.cins') }}</th>
+                    <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.maxPressure') }}</th>
+                    <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.maxTemp') }}</th>
+                    <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.connection') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -145,7 +145,7 @@
         <div class="text-white font-bold">{{ product.price }}</div>
         <div v-if="product.priceNote" class="text-[11px] text-zinc-500">{{ product.priceNote }}</div>
       </div>
-      <NuxtLink :to="localePath('/iletisim')" class="btn-primary text-sm">Bayi Teklifi Al</NuxtLink>
+      <NuxtLink :to="localePath('/iletisim')" class="btn-primary text-sm">{{ $t('productDetail.ctaPrimary') }}</NuxtLink>
     </div>
     <div v-if="product.price" class="lg:hidden h-20" />
   </div>

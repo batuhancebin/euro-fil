@@ -4,13 +4,14 @@
     "products": "Ürünler",
     "corporate": "Kurumsal",
     "contact": "İletişim",
-    "cta": "Bayi Teklifi Al"
+    "cta": "Bayi Teklifi Al",
+    "menu": "Menü"
   },
   "hero": {
-    "badge": "Euro Fil Water Filter Technology",
-    "title": "Euro Fil ile",
-    "titleAccent": "Temiz Su Garantisi",
-    "desc": "Ev, işyeri ve endüstriyel tesisler için profesyonel su arıtma sistemleri. Bayi ağımızla hızlı fiyat teklifi, uzman kurulum ve kesintisiz teknik destek tek çatı altında.",
+    "badge": "Profesyonel Su Filtrasyon Teknolojileri",
+    "title": "Euro Fil ile Güvenilir",
+    "titleAccent": "Su Arıtma Çözümleri",
+    "desc": "Evsel, ticari ve endüstriyel kullanım için yüksek performanslı filtre sistemleri. Bayi avantajları, hızlı fiyat teklifi ve uzman teknik destek tek çatı altında.",
     "ctaPrimary": "Ürünleri İncele",
     "ctaSecondary": "Bayi Teklifi Al"
   },
@@ -24,37 +25,31 @@
       "industrial": "Endüstriyel",
       "addon": "Ek Ünite"
     },
-    "cta": "Bayi Teklifi Al"
+    "cta": "Bayi Teklifi Al",
+    "viewProduct": "Ürünü İncele"
   },
   "features": {
     "label": "Neden Euro Fil",
     "title": "Yalnızca cihaz satmıyoruz",
     "desc": "Proje tasarımından kuruluma, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreci biz yönetiyoruz.",
     "ro": {
-      "title": "Reverse Osmosis & Su Yumuşatma",
-      "desc": "Evsel 5 aşamalı RO sistemlerinden endüstriyel su yumuşatma, FRP tank ve hidrofor çözümlerine kadar geniş ürün yelpazesi. Pompasız ve pompalı seçeneklerle her ihtiyaca uygun sistem.",
-      "tags": ["5 Aşamalı RO", "Su Yumuşatma", "FRP Tanklar", "Direkt Akış", "Hidrofor"]
+      "title": "Reverse Osmosis & Su Yumuşatma Sistemleri",
+      "desc": "Ev, işyeri, fabrika, otel, restoran ve tesisler için ihtiyaca özel su arıtma ve yumuşatma çözümleri sunuyoruz. Geniş ürün yelpazemiz sayesinde farklı kullanım alanlarına uygun sistemler tasarlıyor, doğru filtreleme teknolojisiyle uzun ömürlü ve verimli çözümler sağlıyoruz.",
+      "tags": ["Reverse Osmosis", "Su Yumuşatma", "FRP Tanklar", "Direkt Akış Sistemleri", "Hidrofor Çözümleri"]
     },
     "cert": {
-      "title": "Belgelenmiş Kalite",
-      "desc": "NSF uluslararası sertifikası, T.C. Sağlık Bakanlığı Hıfzıssıhha raporu ve Yıldız Teknik Üniversitesi onaylı sistemler.",
-      "items": ["NSF Sertifikalı", "Hıfzıssıhha Raporu", "YTÜ Onaylı"]
+      "title": "Belgelenmiş Kalite ve Güven",
+      "desc": "Euro Fil ürünleri, kalite standartlarına uygun üretim ve güvenilir kullanım anlayışıyla sunulur. Sertifikalı ürün yapısı, test edilmiş sistem çözümleri ve teknik uygunluk belgeleriyle müşterilerimize güven veren bir hizmet süreci sağlıyoruz.",
+      "items": ["NSF Sertifikalı Ürün Seçenekleri", "Sağlık Bakanlığı Uygunluk Raporları", "Üniversite Onaylı Sistem Çözümleri", "Kalite Standartlarına Uygun Üretim"]
     },
     "scope": {
-      "title": "Evsel & Endüstriyel",
-      "desc": "Müstakil evden fabrikaya, restorandan otele kadar her ölçekte çözüm. Tek tedarikçi, tam hizmet."
+      "title": "Her Ölçekte Kullanıma Uygun Sistemler",
+      "desc": "Müstakil evlerden apartmanlara, restoranlardan otellere, küçük işletmelerden üretim tesislerine kadar farklı ihtiyaçlara uygun su filtrasyon çözümleri sunuyoruz. Doğru ürün seçimi ve teknik yönlendirme ile her proje için uygun sistemi belirliyoruz."
     },
     "support": {
-      "title": "Kurulum, Bakım ve 7/24 Destek",
-      "desc": "Anlaşmanın ardından 24 saat içinde sertifikalı ekiple kurulum. Yıllık periyodik bakım sözleşmesi ve 7/24 teknik destek hattıyla sisteminiz her zaman en iyi performansta çalışır.",
-      "stats": {
-        "install": "24 sa",
-        "installLabel": "kurulum süresi",
-        "warranty": "2 yıl",
-        "warrantyLabel": "garanti",
-        "support": "7/24",
-        "supportLabel": "teknik destek"
-      }
+      "title": "Kurulumdan Sonra da Yanınızdayız",
+      "desc": "Euro Fil'de süreç yalnızca ürün teslimiyle bitmez. İhtiyaca uygun sistem seçimi, profesyonel kurulum, periyodik bakım ve satış sonrası teknik destekle sisteminizin uzun ömürlü ve verimli şekilde çalışmasını sağlıyoruz.",
+      "items": ["Uzman Ekip ile Kurulum", "Periyodik Bakım Desteği", "Satış Sonrası Teknik Danışmanlık", "Yedek Parça ve Servis Desteği"]
     }
   },
   "steps": {
@@ -145,6 +140,8 @@
       "submit": "Gönder",
       "sending": "Gönderiliyor…",
       "success": "Mesajınız alındı! En kısa sürede dönüş yapacağız.",
+      "successTitle": "Teşekkürler!",
+      "newMessage": "Yeni Mesaj Gönder",
       "error": "Bir hata oluştu, lütfen tekrar deneyin.",
       "subjects": {
         "analysis": "Bayi Fiyat Teklifi",
@@ -159,7 +156,11 @@
       "email": "info{'@'}eurofil.com.tr",
       "address": "İstanbul, Türkiye",
       "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
-      "support": "7/24 Teknik Destek Hattı"
+      "support": "7/24 Teknik Destek Hattı",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E-posta",
+      "addressLabel": "Adres",
+      "hoursLabel": "Çalışma Saatleri"
     }
   },
   "productsPage": {
@@ -175,7 +176,25 @@
       "addon": "Ek Ünite"
     },
     "cta": "Bayi Teklifi Al",
-    "count": "ürün"
+    "count": "ürün",
+    "empty": "Bu kategoride ürün bulunamadı."
+  },
+  "viewer": {
+    "loading": "Yükleniyor...",
+    "frameAlt": "Ürün görünümü {n}"
+  },
+  "productDetail": {
+    "breadcrumbHome": "Ana Sayfa",
+    "ctaPrimary": "Bayi Teklifi Al",
+    "ctaSecondary": "Tüm Ürünler",
+    "specsTitle": "Teknik Özellikler",
+    "table": {
+      "code": "Ürün Kodu",
+      "cins": "Cins",
+      "maxPressure": "Max. Basınç",
+      "maxTemp": "Max. Çalışma Sıcaklığı",
+      "connection": "Bağlantı Ölçüsü"
+    }
   },
   "footer": {
     "desc": "Profesyonel su arıtma çözümleri ile temiz suya ulaşmak artık çok daha kolay.",
@@ -186,6 +205,10 @@
     "madeBySuffix": "tarafından yapılmıştır."
   },
   "corp": {
+    "seo": {
+      "title": "Kurumsal",
+      "description": "Euro Fil; ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlayan, üreten ve kuran bir mühendislik firmasıdır."
+    },
     "hero": {
       "badge": "Su Arıtma Mühendisliği",
       "titleWords": ["Temiz", "suyu", "mühendislikle", "buluşturuyoruz."],
@@ -229,6 +252,24 @@
       "desc": "Bayi ağımızla ihtiyacınıza en uygun sistemi belirleyelim ve size özel fiyat teklifi sunalım.",
       "primary": "Bayi Teklifi Al",
       "secondary": "Ürünleri İncele"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler",
+      "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi, 24 saatte kurulum ve 7/24 teknik destek.",
+      "keywords": "su arıtma sistemi, su arıtma cihazı, reverse osmosis, endüstriyel su arıtma, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul",
+      "ogTitle": "Profesyonel Su Arıtma Sistemleri",
+      "ogDescription": "Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.",
+      "twitterTitle": "Su Arıtma Sistemleri",
+      "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 24 saatte kurulum, 7/24 destek.",
+      "jsonLdDescription": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.",
+      "offerCatalogName": "Su Arıtma Sistemleri",
+      "offers": [
+        { "name": "5 Aşamalı RO Sistemi", "description": "Reverse osmosis teknolojisi ile %99.9 saflıkta su. Kompakt tasarım, kolay kurulum.", "category": "Ev Tipi Su Arıtma" },
+        { "name": "Endüstriyel Pro Serisi", "description": "Fabrika ve büyük işletmeler için yüksek kapasiteli saf su üretim sistemi.", "category": "Endüstriyel Su Arıtma" },
+        { "name": "UV Sterilizatör", "description": "UV ışın teknolojisi ile bakteri ve virüsleri %100 etkisiz hale getirir.", "category": "Su Arıtma Ek Üniteleri" }
+      ]
     }
   }
 }

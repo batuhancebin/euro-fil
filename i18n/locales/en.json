@@ -4,13 +4,14 @@
     "products": "Products",
     "corporate": "About",
     "contact": "Contact",
-    "cta": "Get Dealer Quote"
+    "cta": "Get Dealer Quote",
+    "menu": "Menu"
   },
   "hero": {
-    "badge": "Euro Fil Water Filter Technology",
-    "title": "Pure Water,",
-    "titleAccent": "Guaranteed by Euro Fil",
-    "desc": "Professional water purification systems for homes, businesses and industrial facilities. Fast dealer pricing, expert installation and uninterrupted technical support under one roof.",
+    "badge": "Professional Water Filtration Technologies",
+    "title": "Reliable Water Treatment",
+    "titleAccent": "Solutions with Euro Fil",
+    "desc": "High-performance filtration systems for residential, commercial and industrial use. Dealer advantages, fast quotations and expert technical support all under one roof.",
     "ctaPrimary": "Explore Products",
     "ctaSecondary": "Get Dealer Quote"
   },
@@ -24,37 +25,31 @@
       "industrial": "Industrial",
       "addon": "Add-on Units"
     },
-    "cta": "Get Dealer Quote"
+    "cta": "Get Dealer Quote",
+    "viewProduct": "View Product"
   },
   "features": {
     "label": "Why Euro Fil",
     "title": "We don't just sell devices",
     "desc": "From project design to installation, from periodic maintenance to 24/7 technical support — we manage the entire process.",
     "ro": {
-      "title": "Reverse Osmosis & Water Softening",
-      "desc": "A wide product range from residential 5-stage RO systems to industrial water softening, FRP tanks and hydrophore solutions. Systems suitable for every need with pump-free and pumped options.",
-      "tags": ["5-Stage RO", "Water Softening", "FRP Tanks", "Direct Flow", "Hydrophore"]
+      "title": "Reverse Osmosis & Water Softening Systems",
+      "desc": "We provide tailored water purification and softening solutions for homes, workplaces, factories, hotels, restaurants and facilities. Thanks to our wide product range, we design systems suited to different use cases and deliver long-lasting, efficient solutions with the right filtration technology.",
+      "tags": ["Reverse Osmosis", "Water Softening", "FRP Tanks", "Direct Flow Systems", "Hydrophore Solutions"]
     },
     "cert": {
-      "title": "Certified Quality",
-      "desc": "NSF international certification, Turkish Ministry of Health hygiene report and Yıldız Technical University approved systems.",
-      "items": ["NSF Certified", "Health Ministry Approved", "YTU Tested"]
+      "title": "Certified Quality & Trust",
+      "desc": "Euro Fil products are manufactured to quality standards and delivered with a reliable-use philosophy. With certified product structures, tested system solutions and technical compliance documentation, we provide a service process that gives our customers confidence.",
+      "items": ["NSF Certified Product Options", "Ministry of Health Compliance Reports", "University-Approved System Solutions", "Manufacturing Aligned with Quality Standards"]
     },
     "scope": {
-      "title": "Residential & Industrial",
-      "desc": "Solutions at every scale — from single-family homes to factories, restaurants to hotels. One supplier, full service."
+      "title": "Systems Suited to Every Scale",
+      "desc": "From single-family homes to apartment buildings, restaurants to hotels, and small businesses to production facilities, we offer water filtration solutions tailored to different needs. We identify the right system for every project through correct product selection and technical guidance."
     },
     "support": {
-      "title": "Installation, Maintenance & 24/7 Support",
-      "desc": "Installation by certified technicians within 24 hours of agreement. Annual maintenance contracts and 24/7 technical support ensure your system always runs at peak performance.",
-      "stats": {
-        "install": "24h",
-        "installLabel": "installation time",
-        "warranty": "2 yr",
-        "warrantyLabel": "warranty",
-        "support": "24/7",
-        "supportLabel": "technical support"
-      }
+      "title": "We're With You After Installation, Too",
+      "desc": "At Euro Fil, the process doesn't end with product delivery. We ensure your system runs efficiently for the long term through the right system selection, professional installation, periodic maintenance and after-sales technical support.",
+      "items": ["Installation by Expert Team", "Periodic Maintenance Support", "After-Sales Technical Consulting", "Spare Parts & Service Support"]
     }
   },
   "steps": {
@@ -145,6 +140,8 @@
       "submit": "Send",
       "sending": "Sending…",
       "success": "Your message has been received! We'll get back to you shortly.",
+      "successTitle": "Thank you!",
+      "newMessage": "Send New Message",
       "error": "Something went wrong, please try again.",
       "subjects": {
         "analysis": "Dealer Price Quote",
@@ -159,7 +156,11 @@
       "email": "info{'@'}eurofil.com.tr",
       "address": "Istanbul, Turkey",
       "hours": "Monday – Saturday, 08:00 – 18:00",
-      "support": "24/7 Technical Support Line"
+      "support": "24/7 Technical Support Line",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "addressLabel": "Address",
+      "hoursLabel": "Business Hours"
     }
   },
   "productsPage": {
@@ -175,7 +176,25 @@
       "addon": "Add-on Units"
     },
     "cta": "Get Dealer Quote",
-    "count": "products"
+    "count": "products",
+    "empty": "No products found in this category."
+  },
+  "viewer": {
+    "loading": "Loading...",
+    "frameAlt": "Product view {n}"
+  },
+  "productDetail": {
+    "breadcrumbHome": "Home",
+    "ctaPrimary": "Get Dealer Quote",
+    "ctaSecondary": "All Products",
+    "specsTitle": "Technical Specifications",
+    "table": {
+      "code": "Product Code",
+      "cins": "Type",
+      "maxPressure": "Max. Pressure",
+      "maxTemp": "Max. Operating Temp.",
+      "connection": "Connection Size"
+    }
   },
   "footer": {
     "desc": "Reaching clean water with professional water purification solutions has never been easier.",
@@ -186,6 +205,10 @@
     "madeBySuffix": ""
   },
   "corp": {
+    "seo": {
+      "title": "About",
+      "description": "Euro Fil is an engineering company that designs, manufactures and installs TSE-certified water treatment systems for homes, offices and industrial facilities."
+    },
     "hero": {
       "badge": "Water Treatment Engineering",
       "titleWords": ["Engineering", "meets", "clean", "water."],
@@ -229,6 +252,24 @@
       "desc": "Let's determine the ideal system for your needs through our dealer network and provide a custom price quote.",
       "primary": "Get Dealer Quote",
       "secondary": "Browse Products"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Water Treatment Systems – Residential, Office and Industrial Solutions",
+      "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes, installation within 24 hours, and 24/7 technical support.",
+      "keywords": "water treatment system, water purification device, reverse osmosis, industrial water treatment, residential water treatment, Euro Fil, TSE certified, water filter, water treatment Istanbul",
+      "ogTitle": "Professional Water Treatment Systems",
+      "ogDescription": "TSE-certified water treatment systems for homes, offices and industrial facilities. Dealer price quotes and 24/7 technical support.",
+      "twitterTitle": "Water Treatment Systems",
+      "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, installation within 24 hours, 24/7 support.",
+      "jsonLdDescription": "Professional water treatment systems for homes, offices and industrial facilities. TSE-certified products, dealer price quotes and 24/7 technical support.",
+      "offerCatalogName": "Water Treatment Systems",
+      "offers": [
+        { "name": "5-Stage RO System", "description": "99.9% pure water with reverse osmosis technology. Compact design, easy installation.", "category": "Residential Water Treatment" },
+        { "name": "Industrial Pro Series", "description": "High-capacity pure water production system for factories and large businesses.", "category": "Industrial Water Treatment" },
+        { "name": "UV Sterilizer", "description": "Neutralizes 100% of bacteria and viruses with UV light technology.", "category": "Water Treatment Add-on Units" }
+      ]
     }
   }
 }

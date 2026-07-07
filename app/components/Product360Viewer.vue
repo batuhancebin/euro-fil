@@ -18,7 +18,7 @@
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
         </svg>
-        <div class="text-sm text-zinc-400 mb-2">Yükleniyor...</div>
+        <div class="text-sm text-zinc-400 mb-2">{{ t('viewer.loading') }}</div>
         <div class="w-40 h-1.5 bg-surface-4 rounded-full overflow-hidden">
           <div class="h-full bg-brand-500 rounded-full transition-all duration-150" :style="{ width: `${progress}%` }" />
         </div>
@@ -30,7 +30,7 @@
     <img
       v-if="loaded"
       :src="urls[currentFrame]"
-      :alt="`Ürün görünümü ${currentFrame + 1}`"
+      :alt="t('viewer.frameAlt', { n: currentFrame + 1 })"
       class="w-full h-full object-contain pointer-events-none"
       draggable="false"
     />
@@ -39,6 +39,8 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n()
+
 const props = defineProps<{
   folder: string
   totalFrames: number

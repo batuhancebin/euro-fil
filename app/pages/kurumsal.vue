@@ -114,12 +114,13 @@ import { Ruler, ShieldCheck, Eye, Headphones, BadgeCheck } from 'lucide-vue-next
 definePageMeta({ layout: 'default' })
 
 const localePath = useLocalePath()
-const { tm, rt } = useI18n()
+const { t, tm, rt } = useI18n()
 
 useSeoMeta({
-  title: 'Euro Fil | Kurumsal',
-  description: 'Euro Fil, ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlıyor, üretiyor ve kuruyoruz.',
-  ogTitle: 'Euro Fil | Kurumsal',
+  title: () => t('corp.seo.title'),
+  description: () => t('corp.seo.description'),
+  ogTitle: () => t('corp.seo.title'),
+  ogDescription: () => t('corp.seo.description'),
   ogType: 'website',
 })
 
