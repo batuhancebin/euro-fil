@@ -139,6 +139,8 @@
       "message": "Mesajınız",
       "submit": "Gönder",
       "sending": "Gönderiliyor…",
+      "responseTime": "Ortalama yanıt süresi 24 saat",
+      "requiredNote": "* işaretli alanlar zorunludur.",
       "success": "Mesajınız alındı! En kısa sürede dönüş yapacağız.",
       "successTitle": "Teşekkürler!",
       "newMessage": "Yeni Mesaj Gönder",
@@ -153,10 +155,39 @@
     "info": {
       "title": "İletişim Bilgileri",
       "phone": "+90 554 025 15 80",
+      "email": "info{'@'}eurofilwater.com",
+      "fax": "+90 232 461 01 05",
+      "address": "Bahçelievler, 430. Sk. No: 17, 35170\nTorbalı / İzmir",
       "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
       "support": "7/24 Teknik Destek Hattı",
       "phoneLabel": "Telefon",
+      "emailLabel": "E-posta",
+      "faxLabel": "Faks",
+      "addressLabel": "Adres",
       "hoursLabel": "Çalışma Saatleri"
+    },
+    "brief": {
+      "label": "TEKLİF İÇİN",
+      "title": "Mesajınıza şunları ekleyin",
+      "desc": "Bu dört bilgiyi yazarsanız uzmanımız ilk aramada net bir bayi fiyatı verebilir.",
+      "items": [
+        {
+          "label": "Kullanım alanı",
+          "hint": "Ev, iş yeri, üretim tesisi ya da tarımsal sulama."
+        },
+        {
+          "label": "Debi",
+          "hint": "Dakikada ihtiyaç duyduğunuz su miktarı (L/dk)."
+        },
+        {
+          "label": "Gövde boyu",
+          "hint": "5, 10 veya 20 inç. Bilmiyorsanız boş bırakın."
+        },
+        {
+          "label": "Mevcut sistem",
+          "hint": "Şu an kullandığınız filtre ve kademe sayısı."
+        }
+      ]
     },
     "branches": {
       "title": "Şubelerimiz",
@@ -194,6 +225,10 @@
   "viewer": {
     "loading": "Yükleniyor...",
     "frameAlt": "Ürün görünümü {n}"
+  },
+  "whatsapp": {
+    "aria": "WhatsApp",
+    "message": "Merhabalar, ürünler hakkında bilgi almak istiyorum."
   },
   "productDetail": {
     "breadcrumbHome": "Ana Sayfa",

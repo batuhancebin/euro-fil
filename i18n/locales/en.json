@@ -139,6 +139,8 @@
       "message": "Your Message",
       "submit": "Send",
       "sending": "Sending…",
+      "responseTime": "Average reply time 24 hours",
+      "requiredNote": "* Marked fields are required.",
       "success": "Your message has been received! We'll get back to you shortly.",
       "successTitle": "Thank you!",
       "newMessage": "Send New Message",
@@ -153,10 +155,39 @@
     "info": {
       "title": "Contact Info",
       "phone": "+90 554 025 15 80",
+      "email": "info{'@'}eurofilwater.com",
+      "fax": "+90 232 461 01 05",
+      "address": "Bahçelievler, 430. Sk. No: 17, 35170\nTorbalı / İzmir",
       "hours": "Monday – Saturday, 08:00 – 18:00",
       "support": "24/7 Technical Support Line",
       "phoneLabel": "Phone",
+      "emailLabel": "E-mail",
+      "faxLabel": "Fax",
+      "addressLabel": "Address",
       "hoursLabel": "Business Hours"
+    },
+    "brief": {
+      "label": "FOR A FAST QUOTE",
+      "title": "Add these to your message",
+      "desc": "With these four details our specialist can quote a firm dealer price on the first call.",
+      "items": [
+        {
+          "label": "Application",
+          "hint": "Home, workplace, production plant or agricultural irrigation."
+        },
+        {
+          "label": "Flow rate",
+          "hint": "How much water you need per minute (L/min)."
+        },
+        {
+          "label": "Housing size",
+          "hint": "5, 10 or 20 inches. Leave it blank if you are unsure."
+        },
+        {
+          "label": "Current system",
+          "hint": "The filter you use today and its stage count."
+        }
+      ]
     },
     "branches": {
       "title": "Our Branches",
@@ -194,6 +225,10 @@
   "viewer": {
     "loading": "Loading...",
     "frameAlt": "Product view {n}"
+  },
+  "whatsapp": {
+    "aria": "WhatsApp",
+    "message": "Hello, I would like to get information about your products."
   },
   "productDetail": {
     "breadcrumbHome": "Home",

@@ -26,6 +26,10 @@
           <h3 class="text-sm font-semibold text-zinc-300 mb-4">{{ $t('footer.contact') }}</h3>
           <ul class="space-y-2 text-sm text-zinc-500">
             <li>+90 554 025 15 80</li>
+            <li>
+              <a href="mailto:info@eurofilwater.com" class="hover:text-brand-400 transition-colors">info@eurofilwater.com</a>
+            </li>
+            <li class="leading-relaxed">{{ $t('contactPage.info.address').replace('\n', ' ') }}</li>
           </ul>
         </div>
       </div>

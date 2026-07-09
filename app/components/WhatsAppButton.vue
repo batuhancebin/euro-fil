@@ -1,9 +1,17 @@
+<script setup lang="ts">
+const { t } = useI18n()
+
+const href = computed(
+  () => `https://wa.me/905540251580?text=${encodeURIComponent(t('whatsapp.message'))}`,
+)
+</script>
+
 <template>
   <a
-    href="https://wa.me/905540251580"
+    :href="href"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="WhatsApp"
+    :aria-label="t('whatsapp.aria')"
     class="fixed right-4 sm:right-6 bottom-24 sm:bottom-6 z-50 w-14 h-14 rounded-full bg-surface-2 border border-surface-4 shadow-lg shadow-black/40 flex items-center justify-center transition-all duration-300 hover:border-[#25D366]/50 hover:bg-surface-3 hover:scale-110 hover:shadow-[0_0_28px_rgba(37,211,102,0.55)]"
   >
     <svg viewBox="0 0 24 24" class="w-7 h-7 fill-[#25D366]">

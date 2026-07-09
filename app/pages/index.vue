@@ -398,6 +398,16 @@ useHead({
         description: t('seo.home.jsonLdDescription'),
         url: runtimeConfig.public.siteUrl,
         telephone: '+905540251580',
+        faxNumber: '+902324610105',
+        email: 'info@eurofilwater.com',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Bahçelievler, 430. Sk. No: 17',
+          postalCode: '35170',
+          addressLocality: 'Torbalı',
+          addressRegion: 'İzmir',
+          addressCountry: 'TR',
+        },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: t('seo.home.offerCatalogName'),
