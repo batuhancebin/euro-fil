@@ -1,10 +1,10 @@
 <template>
   <header ref="headerEl" class="fixed inset-x-0 z-50 px-4 sm:px-6 lg:px-8" style="top: 8px;">
     <div ref="containerEl" class="max-w-7xl mx-auto">
-      <nav ref="navEl" class="flex items-center justify-between h-14 px-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg shadow-black/10 border border-zinc-200/60">
+      <nav ref="navEl" class="flex items-center justify-between h-14 px-3 bg-surface-2/90 backdrop-blur-xl rounded-full shadow-xl shadow-black/40 border border-white/10">
         <!-- Logo -->
         <NuxtLink :to="localePath('/')" class="flex-shrink-0 ps-1">
-          <img src="/light-logo.png" alt="Euro Fil" class="h-[60px] w-auto" />
+          <img src="/dark-logo.png" alt="Euro Fil" class="h-[60px] w-auto" />
         </NuxtLink>
 
         <!-- Nav links -->
@@ -15,8 +15,8 @@
             :to="localePath(link.to)"
             class="px-4 py-2 rounded text-sm font-medium transition-colors"
             :class="$route.path === localePath(link.to)
-              ? 'bg-brand-900 text-white'
-              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'"
+              ? 'bg-white/10 text-white'
+              : 'text-zinc-400 hover:text-white hover:bg-white/5'"
           >
             {{ $t(link.key) }}
           </NuxtLink>
@@ -26,16 +26,16 @@
           <!-- Dil switcher -->
           <div class="hidden md:flex items-center gap-1.5 me-1">
             <template v-for="(loc, i) in locales" :key="loc.code">
-              <span v-if="i > 0" class="w-px h-4 bg-zinc-300" />
+              <span v-if="i > 0" class="w-px h-4 bg-white/15" />
               <button
                 class="flex items-center gap-1.5 px-1.5 py-1 rounded-full transition-opacity"
                 :class="locale === loc.code ? 'opacity-100' : 'opacity-50 hover:opacity-80'"
                 @click="setLocale(loc.code as LocaleCode)"
               >
-                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-black/10" :class="locale === loc.code ? 'ring-2 ring-brand-500 ring-offset-1' : ''">
+                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-white/15" :class="locale === loc.code ? 'ring-2 ring-brand-400' : ''">
                   <img :src="`https://flagcdn.com/w40/${flagFor(loc.code)}.png`" :alt="loc.code" class="w-full h-full object-cover" />
                 </span>
-                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-500' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
+                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-400' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
               </button>
             </template>
           </div>
@@ -50,7 +50,7 @@
 
           <!-- Hamburger (mobil) -->
           <button
-            class="md:hidden flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-zinc-700 hover:bg-zinc-100 transition-colors me-1"
+            class="md:hidden flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-zinc-300 hover:bg-white/10 transition-colors me-1"
             :aria-expanded="mobileMenuOpen"
             :aria-label="$t('nav.menu')"
             @click="mobileMenuOpen = !mobileMenuOpen"
@@ -63,7 +63,7 @@
 
       <!-- Mobil menü paneli -->
       <Transition name="mobile-menu">
-        <div v-if="mobileMenuOpen" class="md:hidden mt-2 bg-white rounded-2xl shadow-lg shadow-black/10 border border-zinc-200/60 overflow-hidden">
+        <div v-if="mobileMenuOpen" class="md:hidden mt-2 bg-surface-2/95 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/40 border border-white/10 overflow-hidden">
           <nav class="flex flex-col p-2">
             <NuxtLink
               v-for="link in links"
@@ -71,26 +71,26 @@
               :to="localePath(link.to)"
               class="px-4 py-3 rounded-xl text-sm font-medium transition-colors"
               :class="$route.path === localePath(link.to)
-                ? 'bg-brand-900 text-white'
-                : 'text-zinc-700 hover:bg-zinc-100'"
+                ? 'bg-white/10 text-white'
+                : 'text-zinc-300 hover:bg-white/5'"
               @click="mobileMenuOpen = false"
             >
               {{ $t(link.key) }}
             </NuxtLink>
           </nav>
 
-          <div class="flex items-center justify-center gap-4 py-3 border-t border-zinc-200/60">
+          <div class="flex items-center justify-center gap-4 py-3 border-t border-white/10">
             <template v-for="(loc, i) in locales" :key="loc.code">
-              <span v-if="i > 0" class="w-px h-4 bg-zinc-300" />
+              <span v-if="i > 0" class="w-px h-4 bg-white/15" />
               <button
                 class="flex items-center gap-1.5 px-2 py-1 rounded-full transition-opacity"
                 :class="locale === loc.code ? 'opacity-100' : 'opacity-50'"
                 @click="setLocale(loc.code as LocaleCode)"
               >
-                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-black/10" :class="locale === loc.code ? 'ring-2 ring-brand-500 ring-offset-1' : ''">
+                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-white/15" :class="locale === loc.code ? 'ring-2 ring-brand-400' : ''">
                   <img :src="`https://flagcdn.com/w40/${flagFor(loc.code)}.png`" :alt="loc.code" class="w-full h-full object-cover" />
                 </span>
-                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-500' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
+                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-400' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
               </button>
             </template>
           </div>
