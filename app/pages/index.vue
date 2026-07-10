@@ -469,11 +469,17 @@ const INTRO_FRAMES = 120        // frames the takeover timeline plays through
 const INTRO_HEAD = 24          // enough of a head start to begin; the rest streams in behind us
 const HEAD_BUDGET_MS = 1500    // scroll stays locked while the head loads — never hold longer
 
-// A full-screen 30fps image sequence is a GPU fill-rate problem on phones (a DPR-3 handset
-// rasterises ~11M device px per frame here), and it is pure decoration. Sit it out when the
-// device or the user tells us to.
-function prefersNoIntro() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+function reducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+// A full-screen 30fps image sequence is a GPU fill-rate problem on touch devices (a DPR-3 handset
+// rasterises ~11M device px per frame here) and a bandwidth problem on metered connections. Both
+// skip the takeover and get the hero and the 360° viewer straight away.
+// `pointer: coarse` is the primary input, so it means phones and tablets — a touch-screen laptop
+// with a trackpad reports `fine` and keeps the takeover.
+function skipTakeover() {
+  if (window.matchMedia('(pointer: coarse)').matches) return true
   const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection
   if (conn?.saveData) return true
   return !!conn?.effectiveType && ['slow-2g', '2g', '3g'].includes(conn.effectiveType)
@@ -539,8 +545,17 @@ function unlockScroll() {
 async function playIntro() {
   // Reloads and back/forward navigation restore a non-zero scroll position — don't hijack the
   // page with a full-hero takeover in that case.
-  if (pendingScrollTop() > 0 || !heroSection.value || !heroViewerBox.value || prefersNoIntro()) {
+  if (pendingScrollTop() > 0 || !heroSection.value || !heroViewerBox.value || reducedMotion()) {
     endIntro()
+    return
+  }
+
+  // No takeover here, but the page is at the top and motion is welcome: let the hero copy animate
+  // in over the 360° viewer, which now takes the takeover's place immediately.
+  if (skipTakeover()) {
+    introDone.value = true
+    unlockScroll()
+    revealHero()
     return
   }
 
