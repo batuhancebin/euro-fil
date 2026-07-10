@@ -29,9 +29,10 @@
               class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
               :aria-label="$t('nav.language')"
             >
-              <Globe class="w-4 h-4" />
-              <span class="whitespace-nowrap">{{ $t('nav.language') }}</span>
-              <ChevronDown class="w-3.5 h-3.5 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
+              <Globe class="w-4 h-4 flex-shrink-0" />
+              <!-- fixed width so the cycling label doesn't resize the button and shift the navbar -->
+              <span class="inline-block text-center whitespace-nowrap min-w-[7.5rem]">{{ cyclingLanguageLabel }}</span>
+              <ChevronDown class="w-3.5 h-3.5 flex-shrink-0 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
             </button>
             <!-- pt-2: butonla liste arasında hover köprüsü, boşlukta kapanmasın -->
             <div class="absolute end-0 top-full pt-2 w-48 z-50 invisible opacity-0 translate-y-1 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0">
@@ -136,6 +137,18 @@ const route = useRoute()
 const FLAGS: Record<LocaleCode, string> = { tr: 'tr', en: 'gb', ar: 'sa', ru: 'ru' }
 const flagFor = (code: string) => FLAGS[code as LocaleCode] ?? 'gb'
 
+// The switcher label cycles through all four languages every 5s, so a visitor in any language
+// recognises it as the language picker. Mirrors nav.language in the locale files; hard-coded here
+// because i18n is lazy and the non-active locales' messages aren't loaded to read from.
+const LANGUAGE_SEQUENCE = ['tr', 'en', 'ar', 'ru'] as const
+const LANGUAGE_LABELS: Record<LocaleCode, string> = {
+  tr: 'Dil Seçin', en: 'Select Language', ar: 'اختر اللغة', ru: 'Выбрать язык',
+}
+// Start on the current locale's label (same on server and client, so no hydration mismatch).
+const langCycleIndex = ref(Math.max(0, LANGUAGE_SEQUENCE.indexOf(locale.value as typeof LANGUAGE_SEQUENCE[number])))
+const cyclingLanguageLabel = computed(() => LANGUAGE_LABELS[LANGUAGE_SEQUENCE[langCycleIndex.value]])
+let langCycleTimer: ReturnType<typeof setInterval> | undefined
+
 // The CTA is a pill left open on the side where it meets the navbar, so it swaps ends in Arabic.
 // The scroll animation restores this exact value, hence one source of truth rather than a literal.
 const isRtl = computed(() => locale.value === 'ar')
@@ -185,10 +198,14 @@ function onScroll() {
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
+  langCycleTimer = setInterval(() => {
+    langCycleIndex.value = (langCycleIndex.value + 1) % LANGUAGE_SEQUENCE.length
+  }, 5000)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
+  clearInterval(langCycleTimer)
 })
 </script>
 
