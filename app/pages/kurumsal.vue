@@ -27,7 +27,32 @@
       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-brand-500 to-transparent opacity-40" />
     </div>
 
-    <!-- ② MANIFESTO -->
+    <!-- ② HAKKIMIZDA -->
+    <section ref="aboutSection" class="py-24 bg-surface-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div ref="aboutHeader" class="lg:col-span-5">
+            <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('corp.about.label') }}</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">{{ $t('corp.about.title') }}</h2>
+          </div>
+          <div class="lg:col-span-7 space-y-5">
+            <p v-for="(para, i) in aboutParagraphs" :key="i" class="text-zinc-400 leading-relaxed">
+              {{ rt(para) }}
+            </p>
+          </div>
+        </div>
+
+        <!-- gap-px over a surface-4 background paints the hairlines between tiles -->
+        <div class="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-surface-4 rounded-xl overflow-hidden border border-surface-4">
+          <div v-for="(stat, i) in aboutStats" :key="i" class="stat-tile bg-surface-2 px-4 py-6 text-center">
+            <div class="text-xl sm:text-2xl font-extrabold text-white tabular-nums">{{ rt(stat.value) }}</div>
+            <div class="text-[11px] text-zinc-500 mt-1.5 leading-snug">{{ rt(stat.label) }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ MANIFESTO -->
     <section ref="manifestoSection" class="py-24">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p ref="manifestoQuote" class="text-2xl sm:text-3xl font-semibold text-white leading-snug">
@@ -36,15 +61,38 @@
       </div>
     </section>
 
-    <!-- ③ İLKELER -->
-    <section ref="valuesSection" class="py-24 bg-surface-2">
+    <!-- ④ VİZYON & MİSYON -->
+    <section ref="vmSection" class="py-24 bg-surface-2">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref="vmHeader" class="mb-14 text-center">
+          <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('corp.vm.label') }}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white">{{ $t('corp.vm.title') }}</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="vm-card card p-8">
+            <Compass class="w-7 h-7 text-brand-400 mb-5" />
+            <h3 class="text-lg font-bold text-white mb-2">{{ $t('corp.vm.vision.title') }}</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">{{ $t('corp.vm.vision.desc') }}</p>
+          </div>
+          <div class="vm-card card p-8">
+            <Target class="w-7 h-7 text-brand-400 mb-5" />
+            <h3 class="text-lg font-bold text-white mb-2">{{ $t('corp.vm.mission.title') }}</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">{{ $t('corp.vm.mission.desc') }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ DEĞERLER -->
+    <section ref="valuesSection" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref="valuesHeader" class="mb-14 text-center">
           <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('corp.values.label') }}</p>
           <h2 class="text-3xl sm:text-4xl font-bold text-white">{{ $t('corp.values.title') }}</h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div
             v-for="(item, i) in valueItems"
             :key="i"
@@ -61,8 +109,8 @@
       </div>
     </section>
 
-    <!-- ④ STANDARTLAR (marquee) -->
-    <section ref="standardsSection" class="py-24">
+    <!-- ⑥ STANDARTLAR (marquee) -->
+    <section ref="standardsSection" class="py-24 bg-surface-2">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref="standardsHeader" class="mb-12 text-center">
           <p class="text-white text-xs font-semibold uppercase tracking-widest mb-3">{{ $t('corp.standards.label') }}</p>
@@ -71,8 +119,9 @@
       </div>
 
       <div class="relative border-y border-surface-4 py-6 overflow-hidden">
-        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
-        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
+        <!-- the fade must match the section background, not the page background -->
+        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface-2 to-transparent z-10 pointer-events-none" />
+        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface-2 to-transparent z-10 pointer-events-none" />
         <div class="flex w-max animate-marquee">
           <div v-for="n in 2" :key="n" class="flex items-center flex-shrink-0">
             <template v-for="(std, si) in standardItems" :key="si + '-' + n">
@@ -109,7 +158,7 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Ruler, ShieldCheck, Eye, Headphones, BadgeCheck } from 'lucide-vue-next'
+import { Award, HeartHandshake, Leaf, Scale, Users, Compass, Target, BadgeCheck } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'default' })
 
@@ -125,15 +174,22 @@ useSeoMeta({
 })
 
 const heroWords = computed<string[]>(() => tm('corp.hero.titleWords') as unknown as string[])
+const aboutParagraphs = computed<string[]>(() => tm('corp.about.paragraphs') as unknown as string[])
+const aboutStats = computed<{ value: string; label: string }[]>(() => tm('corp.about.stats') as unknown as { value: string; label: string }[])
 const valueItems = computed<{ title: string; desc: string }[]>(() => tm('corp.values.items') as unknown as { title: string; desc: string }[])
 const standardItems = computed<string[]>(() => tm('corp.standards.items') as unknown as string[])
 
-const valueIcons = [Ruler, ShieldCheck, Eye, Headphones]
+// Index-aligned with corp.values.items — keep the two in step.
+const valueIcons = [Award, HeartHandshake, Leaf, Scale, Users]
 
 const heroWordEls   = ref<HTMLElement[]>([])
 const heroDesc      = ref<HTMLElement>()
+const aboutSection  = ref<HTMLElement>()
+const aboutHeader   = ref<HTMLElement>()
 const manifestoSection = ref<HTMLElement>()
 const manifestoQuote   = ref<HTMLElement>()
+const vmSection     = ref<HTMLElement>()
+const vmHeader      = ref<HTMLElement>()
 const valuesSection = ref<HTMLElement>()
 const valuesHeader  = ref<HTMLElement>()
 const standardsSection = ref<HTMLElement>()
@@ -152,9 +208,27 @@ onMounted(() => {
       .from(heroDesc.value!, { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
 
     ScrollTrigger.create({
+      trigger: aboutSection.value,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.from(aboutHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from('.stat-tile', { y: 24, opacity: 0, duration: 0.5, ease: 'power3.out', stagger: 0.06, delay: 0.2 })
+      },
+    })
+
+    ScrollTrigger.create({
       trigger: manifestoSection.value,
       start: 'top 78%',
       onEnter: () => gsap.from(manifestoQuote.value!, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }),
+    })
+
+    ScrollTrigger.create({
+      trigger: vmSection.value,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.from(vmHeader.value!, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+        gsap.from('.vm-card', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.12, delay: 0.15 })
+      },
     })
 
     ScrollTrigger.create({

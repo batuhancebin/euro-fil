@@ -259,45 +259,61 @@
   "corp": {
     "seo": {
       "title": "Kurumsal",
-      "description": "Euro Fil; ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlayan, üreten ve kuran bir mühendislik firmasıdır."
+      "description": "Euro Fil, 2004'ten beri su arıtma üreten Filtek A.Ş.'nin 2025'te kurulan alt markasıdır. 45 ülkeye ihracat yapıyor, Arnavutköy'deki fabrikalarda üretiliyor."
     },
     "hero": {
       "badge": "Su Arıtma Mühendisliği",
       "titleWords": ["Temiz", "suyu", "mühendislikle", "buluşturuyoruz."],
-      "desc": "Euro Fil; ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlıyor, üretiyor ve kuruyoruz."
+      "desc": "Euro Fil, Filtek çatısı altında ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri tasarlıyor ve üretiyor. 2025'te başladığımız yolda bugün 45 ülkeye ihracat yapıyoruz."
     },
-    "manifesto": {
-      "quote": "Su arıtma bir ürün değil, bir sorumluluktur. Her sistemi kendi evimize kuracakmışız gibi tasarlıyoruz.",
-      "specs": [
-        { "label": "Faaliyet Alanı", "value": "Ev Tipi · Küçük İşletme · Profesyonel Kullanım" },
-        { "label": "Sertifikasyon", "value": "TSE Onaylı" },
-        { "label": "Kurulum Süresi", "value": "24 Saat" },
-        { "label": "Garanti", "value": "2 Yıl" },
-        { "label": "Teknik Destek", "value": "7/24" }
+    "about": {
+      "label": "Hakkımızda",
+      "title": "Köklü bir üretimin genç markası",
+      "paragraphs": [
+        "Filtek Filtre ve Su Arıtma Sistemleri Sanayi A.Ş., 2004 yılından beri su arıtma sektöründe faaliyet göstermektedir. 2009 yılında üretim faaliyetlerine başlayarak Türkiye'de ilk yerli ve öncü üretici firma olma gururunu taşıyan Filtek, sektörde lider olmanın bilinci ve sorumluluğuyla yatırımlarına ara vermemiştir.",
+        "2020 yılında TR Tank adı altında Türkiye'nin ilk yerli su arıtma tankı fabrikasını kuran Filtek, bu alanda dünya genelinde nadir bulunan üreticilerden biri olarak su arıtma tankı üretimine liderlik etmektedir.",
+        "Ana fabrikamız ile TR Tank fabrikamız İstanbul Arnavutköy'de konumlanmıştır; ana fabrika 16.000 m², TR Tank fabrikası ise 4.000 m² alana sahiptir. 400 personelimizle üretim yapıyor, bölge müdürlüklerimiz ve ana satış mağazalarımız aracılığıyla faaliyetlerimizi sürdürüyoruz.",
+        "Euro Fil, Filtek'in 2025 yılında faaliyete başlayan alt markasıdır. Bu köklü üretim altyapısının arkasında durduğu Euro Fil, bugün 45 ülkeye ihracat yapmaktadır."
+      ],
+      "stats": [
+        { "value": "2009", "label": "Yerli Üretime Başlangıç" },
+        { "value": "2025", "label": "Euro Fil'in Kuruluşu" },
+        { "value": "45", "label": "İhracat Yapılan Ülke" },
+        { "value": "400", "label": "Personel" },
+        { "value": "16.000 m²", "label": "Ana Fabrika" },
+        { "value": "4.000 m²", "label": "TR Tank Fabrikası" }
       ]
     },
+    "manifesto": {
+      "quote": "Su arıtma bir ürün değil, bir sorumluluktur. Her sistemi kendi evimizde kullanacakmışız gibi tasarlıyoruz."
+    },
+    "vm": {
+      "label": "Vizyon & Misyon",
+      "title": "Nereye Gidiyoruz",
+      "vision": {
+        "title": "Vizyon",
+        "desc": "Filtek Filtre ve Su Arıtma Sistemleri Sanayi A.Ş. olarak, yerel pazardaki güçlü konumumuzu sürdürüyoruz. Vizyonumuz, su arıtma sektöründe hem yurt içinde hem de yurt dışında su arıtma üretiminin ve tedarikinin öncüsü olmaktır."
+      },
+      "mission": {
+        "title": "Misyon",
+        "desc": "Filtek olarak hız kesmeden yatırımlara devam ediyoruz. Misyonumuz, bulunduğumuz sektörde en güvenilir firma olarak tanınmak ve ülke ekonomisine katma değer sağlamaktır."
+      }
+    },
     "values": {
-      "label": "İlkelerimiz",
-      "title": "Bizi Biz Yapan Dört İlke",
+      "label": "Değerlerimiz",
+      "title": "Bizi Biz Yapan Beş İlke",
       "items": [
-        { "title": "Mühendislik Hassasiyeti", "desc": "Her sistem, su kaynağının analizine göre özel tasarlanır; hazır kalıp çözüm sunmayız." },
-        { "title": "Dayanıklı Malzeme", "desc": "Yalnızca basınca ve zamana dayanıklı, sertifikalı bileşenler kullanırız." },
-        { "title": "Şeffaf Süreç", "desc": "Teklif, kurulum ve bakım sürecinin her adımını netlikle paylaşırız." },
-        { "title": "Sürekli Destek", "desc": "Kurulumla iş bitmez; 7/24 teknik destek hattımız her zaman yanınızda." }
+        { "title": "Kalite ve Süreklilik", "desc": "Ürünlerimizin üstün kalitesi ve sürekli gelişimi bizim önceliğimizdir." },
+        { "title": "İlişki Odaklı Yaklaşım", "desc": "Müşterilerimiz, markamız ve çalışanlarımız en değer verdiğimiz varlıklardır; onlara değer katma ilkesini benimseriz." },
+        { "title": "İş Sağlığı ve Çevre Duyarlılığı", "desc": "İş sağlığı ve güvenliği ile çevre duyarlılığı, faaliyetlerimizin temelini oluşturan bir önceliktir." },
+        { "title": "İş Ahlakı", "desc": "İş ahlakı prensiplerine sıkı sıkıya bağlı kalarak etik değerlere ve dürüstlüğe önem veririz." },
+        { "title": "Değer Odaklı İnsan Kaynakları", "desc": "Emeğe ve insana değer verme anlayışımız, çalışanlarımızın başarısını ve refahını destekler." }
       ]
     },
     "standards": {
       "label": "Standartlarımız",
       "title": "Kalite, Her Aşamada Kontrol Edilir",
-      "items": ["TSE Sertifikalı Üretim", "Gıda Sınıfı Malzeme", "Çok Aşamalı Basınç Testi", "Sertifikalı Montaj Ekibi", "Periyodik Bakım Sözleşmesi"]
-    },
-    "stats": {
-      "items": [
-        { "value": "24 SA", "label": "Kurulum Süresi" },
-        { "value": "2 YIL", "label": "Garanti Kapsamı" },
-        { "value": "7/24", "label": "Teknik Destek" },
-        { "value": "TSE", "label": "Sertifikalı Üretim" }
-      ]
+      "items": ["TSE Sertifikalı Üretim", "Gıda Sınıfı Malzeme", "Çok Aşamalı Basınç Testi", "Satış Sonrası Teknik Destek", "Yedek Parça Tedariki"]
     },
     "cta": {
       "title": "Su Kaynağınızı Birlikte Değerlendirelim",

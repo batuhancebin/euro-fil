@@ -259,45 +259,61 @@
   "corp": {
     "seo": {
       "title": "About",
-      "description": "Euro Fil is an engineering company that designs, manufactures and installs TSE-certified water treatment systems for homes, offices and industrial facilities."
+      "description": "Euro Fil is the 2025-launched sub-brand of Filtek, a water treatment manufacturer since 2004. It exports to 45 countries and is produced in Arnavutköy, İstanbul."
     },
     "hero": {
       "badge": "Water Treatment Engineering",
       "titleWords": ["Engineering", "meets", "clean", "water."],
-      "desc": "Euro Fil designs, manufactures and installs TSE-certified water purification systems for homes, offices and industrial facilities."
+      "desc": "Under the Filtek group, Euro Fil designs and manufactures TSE-certified water treatment systems for homes, offices and industrial facilities. We set out in 2025 and today we export to 45 countries."
     },
-    "manifesto": {
-      "quote": "Water treatment isn't a product, it's a responsibility. We design every system as if we were installing it in our own home.",
-      "specs": [
-        { "label": "Scope", "value": "Residential · Small Business · Professional Use" },
-        { "label": "Certification", "value": "TSE Approved" },
-        { "label": "Installation Time", "value": "24 Hours" },
-        { "label": "Warranty", "value": "2 Years" },
-        { "label": "Technical Support", "value": "24/7" }
+    "about": {
+      "label": "About Us",
+      "title": "A young brand from a deep-rooted manufacturer",
+      "paragraphs": [
+        "Filtek Filtre ve Su Arıtma Sistemleri Sanayi A.Ş. has worked in the water treatment sector since 2004. On starting production in 2009 it became Turkey's first domestic and pioneering manufacturer, and it has never paused its investment since.",
+        "In 2020 Filtek founded Turkey's first domestic water treatment tank factory under the TR Tank name. As one of the few manufacturers of its kind worldwide, it leads in water treatment tank production.",
+        "Our main factory and our TR Tank factory are located in Arnavutköy, İstanbul; the main factory covers 16,000 m² and the TR Tank factory 4,000 m². We manufacture with 400 employees and carry on through our regional offices and flagship sales stores.",
+        "Euro Fil is Filtek's sub-brand, launched in 2025. Backed by that manufacturing base, Euro Fil today exports to 45 countries."
+      ],
+      "stats": [
+        { "value": "2009", "label": "Domestic Production Began" },
+        { "value": "2025", "label": "Euro Fil Founded" },
+        { "value": "45", "label": "Export Countries" },
+        { "value": "400", "label": "Employees" },
+        { "value": "16,000 m²", "label": "Main Factory" },
+        { "value": "4,000 m²", "label": "TR Tank Factory" }
       ]
     },
+    "manifesto": {
+      "quote": "Water treatment isn't a product, it's a responsibility. We design every system as if it were going into our own home."
+    },
+    "vm": {
+      "label": "Vision & Mission",
+      "title": "Where We Are Headed",
+      "vision": {
+        "title": "Vision",
+        "desc": "As Filtek Filtre ve Su Arıtma Sistemleri Sanayi A.Ş., we hold our strong position in the domestic market. Our vision is to lead water treatment production and supply, both in Turkey and abroad."
+      },
+      "mission": {
+        "title": "Mission",
+        "desc": "As Filtek, we keep investing without slowing down. Our mission is to be known as the most trusted company in our sector and to add value to the national economy."
+      }
+    },
     "values": {
-      "label": "Our Principles",
-      "title": "Four Principles That Define Us",
+      "label": "Our Values",
+      "title": "Five Principles That Define Us",
       "items": [
-        { "title": "Engineering Precision", "desc": "Every system is custom-designed based on water source analysis; we don't offer off-the-shelf solutions." },
-        { "title": "Durable Materials", "desc": "We only use certified components built to withstand pressure and time." },
-        { "title": "Transparent Process", "desc": "We share every step of the quote, installation and maintenance process clearly." },
-        { "title": "Continuous Support", "desc": "The work doesn't end at installation; our 24/7 technical support line is always with you." }
+        { "title": "Quality and Continuity", "desc": "The superior quality of our products and their continuous improvement is our priority." },
+        { "title": "Relationship-Driven Approach", "desc": "Our customers, our brand and our employees are the assets we value most; we hold to the principle of adding value for them." },
+        { "title": "Occupational Health and Environmental Care", "desc": "Occupational health and safety together with environmental care are a priority at the foundation of everything we do." },
+        { "title": "Business Ethics", "desc": "We adhere strictly to the principles of business ethics, and we value integrity and honesty." },
+        { "title": "People-Centred Human Resources", "desc": "Valuing labour and people supports the success and wellbeing of our employees." }
       ]
     },
     "standards": {
       "label": "Our Standards",
       "title": "Quality Is Checked at Every Stage",
-      "items": ["TSE Certified Manufacturing", "Food-Grade Materials", "Multi-Stage Pressure Testing", "Certified Installation Team", "Scheduled Maintenance Plans"]
-    },
-    "stats": {
-      "items": [
-        { "value": "24 HRS", "label": "Installation Time" },
-        { "value": "2 YRS", "label": "Warranty Coverage" },
-        { "value": "24/7", "label": "Technical Support" },
-        { "value": "TSE", "label": "Certified Production" }
-      ]
+      "items": ["TSE Certified Manufacturing", "Food-Grade Materials", "Multi-Stage Pressure Testing", "After-Sales Technical Support", "Spare Parts Supply"]
     },
     "cta": {
       "title": "Let's Assess Your Water Source Together",
