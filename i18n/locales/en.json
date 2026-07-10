@@ -235,6 +235,11 @@
     "ctaPrimary": "Get Dealer Quote",
     "ctaSecondary": "All Products",
     "specsTitle": "Technical Specifications",
+    "variantTitle": "Choose a model",
+    "variants": {
+      "standard": "Standard",
+      "gauge": "With gauge"
+    },
     "photos": "Photos",
     "view3d": "3D View",
     "table": {

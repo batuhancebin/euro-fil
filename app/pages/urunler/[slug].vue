@@ -97,6 +97,27 @@
           <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 leading-tight">{{ name }}</h1>
           <p class="text-zinc-400 leading-relaxed text-[15px]">{{ desc }}</p>
 
+          <!-- Standart / Manometreli seçimi: her varyantın kendi sayfası var -->
+          <div v-if="product.variantGroup" class="mt-6">
+            <h2 class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">
+              {{ $t('productDetail.variantTitle') }}
+            </h2>
+            <div class="grid grid-cols-2 gap-2.5">
+              <NuxtLink
+                v-for="variant in product.variantGroup"
+                :key="variant.slug"
+                :to="localePath(`/urunler/${variant.slug}`)"
+                :aria-current="variant.slug === product.slug ? 'page' : undefined"
+                class="rounded-lg border px-4 py-3 text-sm font-medium text-center transition-colors"
+                :class="variant.slug === product.slug
+                  ? 'border-brand-500 bg-brand-500/10 text-white'
+                  : 'border-surface-4 bg-surface-2 text-zinc-400 hover:border-zinc-500 hover:text-white'"
+              >
+                {{ $t(`productDetail.variants.${variant.key}`) }}
+              </NuxtLink>
+            </div>
+          </div>
+
           <!-- Fiyat + CTA kartı -->
           <div class="mt-6 p-5 rounded-2xl bg-surface-2 border border-surface-4">
             <div v-if="product.price" class="flex items-baseline gap-2 mb-4">
@@ -188,7 +209,9 @@ const route = useRoute()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
-const { data: product } = await useFetch<any>(`/api/products/${route.params.slug}`)
+// Getter, not a plain string: switching between the standard and gauge variant only changes the
+// route param, so the page component is reused and a static URL would never re-fetch.
+const { data: product } = await useFetch<any>(() => `/api/products/${route.params.slug}`)
 
 if (!product.value) {
   throw createError({ statusCode: 404, statusMessage: 'Ürün bulunamadı' })
@@ -220,6 +243,13 @@ const categoryName = computed(() => {
 
 const activeImage = ref<string>(product.value?.images?.[0] ?? '')
 const viewMode = ref<'photo' | '3d'>('photo')
+
+// Same reason: on a variant switch the component survives, so the gallery has to be re-pointed at
+// the new product's photos instead of holding the previous one's.
+watch(product, (next) => {
+  activeImage.value = next?.images?.[0] ?? ''
+  viewMode.value = 'photo'
+})
 
 function cinsLabel(cins: string): string {
   const key = `productDetail.cinsValues.${cins}`

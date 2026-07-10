@@ -235,6 +235,11 @@
     "ctaPrimary": "Bayi Teklifi Al",
     "ctaSecondary": "Tüm Ürünler",
     "specsTitle": "Teknik Özellikler",
+    "variantTitle": "Model Seçimi",
+    "variants": {
+      "standard": "Standart",
+      "gauge": "Manometreli"
+    },
     "photos": "Fotoğraflar",
     "view3d": "3D Görünüm",
     "table": {

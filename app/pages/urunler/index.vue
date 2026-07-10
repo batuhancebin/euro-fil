@@ -34,7 +34,7 @@
             <span class="ml-1.5 text-xs opacity-70">({{ products?.length ?? 0 }})</span>
           </button>
           <button
-            v-for="cat in dbCategories"
+            v-for="cat in visibleCategories"
             :key="cat.slug"
             class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
             :class="activeCategory === cat.slug
@@ -146,6 +146,12 @@ const filteredProducts = computed(() =>
 function countBySlug(slug: string) {
   return (products.value ?? []).filter((p: any) => p.category === slug).length
 }
+
+// The gauge housings are variants rather than listings, so their category has nothing to show.
+// Keying off the count rather than the slug means any future empty category drops out too.
+const visibleCategories = computed(() =>
+  (dbCategories.value ?? []).filter((c: any) => countBySlug(c.slug) > 0)
+)
 
 function categoryName(slug: string) {
   const cat = (dbCategories.value ?? []).find((c: any) => c.slug === slug)

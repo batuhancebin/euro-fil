@@ -739,35 +739,46 @@ const activeCategory = ref<string>('all')
 
 const productCategories = computed(() => [
   { key: 'all', label: t('products.categories.all') },
-  ...(dbCategories.value ?? []).map((c: any) => ({
-    key: c.slug,
-    label: locale.value === 'en' ? c.nameEn || c.nameTr : c.nameTr,
-  })),
+  // A category with nothing to list gets no tab — the gauge housings are variants of the
+  // standard ones now, so their category is empty here.
+  ...(dbCategories.value ?? [])
+    .filter((c: any) => (dbProducts.value ?? []).some((p: any) => p.category === c.slug))
+    .map((c: any) => ({
+      key: c.slug,
+      label: locale.value === 'en' ? c.nameEn || c.nameTr : c.nameTr,
+    })),
 ])
 
-// Fixed display order for the homepage's featured picks: 5/10/20" standart first, then their manometreli counterparts.
+const HOMEPAGE_PICKS = 6
+const HOUSING_CATEGORY = 'standart-filtre-kabi'
+
+// Fixed display order for the homepage's featured picks: 5/10/20" standart.
 const FEATURED_ORDER = [
   'eurofil-standart-5-tekli-filtre-kabi',
   'eurofil-standart-10-tekli-filtre-kabi',
   'eurofil-standart-20-tekli-filtre-kabi',
-  'eurofil-manometreli-5-tekli-filtre-kabi',
-  'eurofil-manometreli-10-tekli-filtre-kabi',
-  'eurofil-manometreli-20-tekli-filtre-kabi',
 ]
 
 const filteredProducts = computed(() => {
   if (activeCategory.value === 'all') {
     // Only show products that are both marked featured AND part of the curated order —
     // an isFeatured product outside FEATURED_ORDER would otherwise get indexOf() === -1
-    // and sort to the very front. Cap at 6 regardless of how many are marked featured.
-    return (dbProducts.value ?? [])
+    // and sort to the very front.
+    const featured = (dbProducts.value ?? [])
       .filter((p: any) => p.isFeatured && FEATURED_ORDER.includes(p.slug))
       .sort((a: any, b: any) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug))
-      .slice(0, 6)
+
+    // The featured picks used to be three housings times two variants. Now that the gauge
+    // variants live behind their standard sibling, that curation only fills half the shelf —
+    // top it up with the remaining housings so the grid still reads as a full showcase.
+    const rest = (dbProducts.value ?? [])
+      .filter((p: any) => p.category === HOUSING_CATEGORY && !featured.some((f: any) => f.slug === p.slug))
+
+    return [...featured, ...rest].slice(0, HOMEPAGE_PICKS)
   }
   return (dbProducts.value ?? [])
     .filter((p: any) => p.category === activeCategory.value)
-    .slice(0, 6)
+    .slice(0, HOMEPAGE_PICKS)
 })
 
 function categoryName(slug: string) {
