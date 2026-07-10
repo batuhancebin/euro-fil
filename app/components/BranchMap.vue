@@ -71,25 +71,32 @@ import { PROVINCES, TURKEY_VIEWBOX, projectLonLat } from '~/data/turkeyMap'
 
 const { t, tm, rt } = useI18n()
 
-const branchItems = computed<{ name: string; address: string; phone: string }[]>(
-  () => tm('contactPage.branches.items') as unknown as { name: string; address: string; phone: string }[]
+const branchItems = computed<{ name: string; address: string; phone: string; city: string }[]>(
+  () => tm('contactPage.branches.items') as unknown as { name: string; address: string; phone: string; city: string }[]
 )
 
+// Each branch names its own city. Hard-coding index lists here (e.g. İstanbul: [0,1,2,3,4,5])
+// meant that adding or removing a branch silently re-pointed a marker at the wrong entries —
+// a wrong address under a city pin, with nothing to crash and nothing to notice.
 const CLUSTER_DEFS = [
-  { city: 'İstanbul', lon: 28.95, lat: 41.05, indices: [0, 1, 2, 3, 4, 5] },
-  { city: 'İzmir',    lon: 27.25, lat: 38.30, indices: [6, 7] },
-  { city: 'Gaziantep', lon: 37.38, lat: 37.07, indices: [8] },
-  { city: 'Antalya',  lon: 30.68, lat: 36.92, indices: [9] },
+  { city: 'İstanbul', lon: 28.95, lat: 41.05 },
+  { city: 'İzmir',    lon: 27.25, lat: 38.30 },
+  { city: 'Gaziantep', lon: 37.38, lat: 37.07 },
+  { city: 'Antalya',  lon: 30.68, lat: 36.92 },
 ]
 
-const highlightedProvinces = new Set(['İstanbul', 'İzmir', 'Gaziantep', 'Antalya'])
+const highlightedProvinces = new Set(CLUSTER_DEFS.map(c => c.city))
 
 const clusters = computed(() =>
-  CLUSTER_DEFS.map(c => ({
-    city: c.city,
-    pos: projectLonLat(c.lon, c.lat),
-    branches: c.indices,
-  }))
+  CLUSTER_DEFS
+    .map(c => ({
+      city: c.city,
+      pos: projectLonLat(c.lon, c.lat),
+      branches: branchItems.value
+        .map((b, i) => (rt(b.city) === c.city ? i : -1))
+        .filter(i => i !== -1),
+    }))
+    .filter(c => c.branches.length > 0)
 )
 
 const pinnedCity = ref<string | null>(null)
