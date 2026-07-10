@@ -31,7 +31,7 @@
   "features": {
     "label": "Why Euro Fil",
     "title": "We don't just sell devices",
-    "desc": "From choosing the right product to spare parts, from periodic maintenance to 24/7 technical support — we are with you throughout.",
+    "desc": "From choosing the right product to spare parts, from periodic maintenance to technical support — we are with you throughout.",
     "ro": {
       "title": "Modular Filter Housing Systems",
       "desc": "We manufacture modular filtration systems in 5\", 10\" and 20\" body sizes, in single, double, triple and quadruple configurations. Standard and gauge-equipped models deliver balanced flow and long-lasting performance for every need.",
@@ -67,7 +67,7 @@
       },
       {
         "title": "Ongoing Support",
-        "desc": "Our 24/7 technical support line and spare parts supply keep your system performing at its best."
+        "desc": "Our technical support line and spare parts supply keep your system performing at its best."
       }
     ]
   },
@@ -81,7 +81,7 @@
       },
       {
         "q": "Do you provide installation or assembly services?",
-        "a": "No, we do not carry out installation or assembly. We supply our products through our dealer network and provide 24/7 technical support on product selection, specifications and use."
+        "a": "No, we do not carry out installation or assembly. We supply our products through our dealer network and provide technical support on product selection, specifications and use."
       },
       {
         "q": "Which water sources is it suitable for?",
@@ -89,7 +89,7 @@
       },
       {
         "q": "What does the warranty cover?",
-        "a": "All Euro Fil products are covered by a 2-year official warranty. For faults covered by the warranty, our 24/7 technical support line is always at your service."
+        "a": "All Euro Fil products are covered by a 2-year official warranty. For faults covered by the warranty, our technical support line is always at your service."
       },
       {
         "q": "What do I need to do to get a quote?",
@@ -118,8 +118,8 @@
         "desc": "Settle the housing size and stage count with our specialists so you pick the right system."
       },
       {
-        "title": "2-Year Warranty + 24/7 Support",
-        "desc": "2-year factory warranty on all products. Our 24/7 technical support line is at your service in case of any issues."
+        "title": "2-Year Warranty + Technical Support",
+        "desc": "2-year factory warranty on all products. Our technical support line is at your service in case of any issues."
       }
     ]
   },
@@ -155,7 +155,7 @@
       "fax": "+90 232 461 01 05",
       "address": "Bahçelievler, 430. Sk. No: 17, 35170\nTorbalı / İzmir",
       "hours": "Monday – Saturday, 08:00 – 18:00",
-      "support": "24/7 Technical Support Line",
+      "support": "Technical Support Line",
       "phoneLabel": "Phone",
       "emailLabel": "E-mail",
       "faxLabel": "Fax",
@@ -325,13 +325,13 @@
   "seo": {
     "home": {
       "title": "Water Treatment Systems – Residential, Office and Industrial Solutions",
-      "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes and 24/7 technical support.",
+      "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes and technical support.",
       "keywords": "filter housing, modular filtration system, water treatment system, gauge-equipped filter housing, standard filter housing, residential water treatment, Euro Fil, TSE certified, water filter, water treatment Istanbul",
       "ogTitle": "Professional Water Treatment Systems",
-      "ogDescription": "TSE-certified water treatment systems for homes, offices and industrial facilities. Dealer price quotes and 24/7 technical support.",
+      "ogDescription": "TSE-certified water treatment systems for homes, offices and industrial facilities. Dealer price quotes and technical support.",
       "twitterTitle": "Water Treatment Systems",
-      "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, 24/7 technical support.",
-      "jsonLdDescription": "Professional water treatment systems for homes, offices and industrial facilities. TSE-certified products, dealer price quotes and 24/7 technical support.",
+      "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, technical support.",
+      "jsonLdDescription": "Professional water treatment systems for homes, offices and industrial facilities. TSE-certified products, dealer price quotes and technical support.",
       "offerCatalogName": "Modular Filter Housing Systems",
       "offers": [
         { "name": "5\" Modular Filter Housing System", "description": "Compact body size available in single, double, triple and quad configurations, with standard or gauge-equipped options.", "category": "Residential Use" },

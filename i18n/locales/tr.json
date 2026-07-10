@@ -31,7 +31,7 @@
   "features": {
     "label": "Neden Euro Fil",
     "title": "Yalnızca cihaz satmıyoruz",
-    "desc": "Doğru ürün seçiminden yedek parçaya, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreçte yanınızdayız.",
+    "desc": "Doğru ürün seçiminden yedek parçaya, periyodik bakımdan teknik desteğe kadar tüm süreçte yanınızdayız.",
     "ro": {
       "title": "Modüler Filtre Kabı Sistemleri",
       "desc": "5\", 10\" ve 20\" gövde boylarında; tekli, ikili, üçlü ve dörtlü konfigürasyonlarda modüler filtrasyon sistemleri üretiyoruz. Standart ve manometre opsiyonlu modellerle her ihtiyaca dengeli akış ve uzun ömürlü performans sağlıyoruz.",
@@ -67,7 +67,7 @@
       },
       {
         "title": "Kesintisiz Destek",
-        "desc": "7/24 teknik destek hattımız ve yedek parça tedarikimizle sisteminiz her zaman en iyi performansta."
+        "desc": "Teknik destek hattımız ve yedek parça tedarikimizle sisteminiz her zaman en iyi performansta."
       }
     ]
   },
@@ -81,7 +81,7 @@
       },
       {
         "q": "Kurulum ve montaj hizmeti veriyor musunuz?",
-        "a": "Hayır, kurulum ve montaj hizmeti vermiyoruz. Ürünlerimizi bayi ağımız üzerinden sunuyor; ürün seçimi, teknik özellikler ve kullanım konularında 7/24 teknik destek sağlıyoruz."
+        "a": "Hayır, kurulum ve montaj hizmeti vermiyoruz. Ürünlerimizi bayi ağımız üzerinden sunuyor; ürün seçimi, teknik özellikler ve kullanım konularında teknik destek sağlıyoruz."
       },
       {
         "q": "Hangi su kaynakları için uygundur?",
@@ -89,7 +89,7 @@
       },
       {
         "q": "Garanti kapsamı nedir?",
-        "a": "Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti kapsamındaki arızalarda çözüm için 7/24 teknik destek hattımız her zaman hizmetinizde."
+        "a": "Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti kapsamındaki arızalarda çözüm için teknik destek hattımız her zaman hizmetinizde."
       },
       {
         "q": "Teklif almak için ne yapmam gerekiyor?",
@@ -118,8 +118,8 @@
         "desc": "Gövde boyu ve kademe sayısını uzman ekibimizle birlikte belirleyin; doğru sistemi seçmenize yardımcı olalım."
       },
       {
-        "title": "2 Yıl Garanti + 7/24 Destek",
-        "desc": "Tüm ürünlerde 2 yıl fabrika garantisi. Arıza durumunda 7/24 teknik destek hattımız hizmetinizde."
+        "title": "2 Yıl Garanti + Teknik Destek",
+        "desc": "Tüm ürünlerde 2 yıl fabrika garantisi. Arıza durumunda teknik destek hattımız hizmetinizde."
       }
     ]
   },
@@ -155,7 +155,7 @@
       "fax": "+90 232 461 01 05",
       "address": "Bahçelievler, 430. Sk. No: 17, 35170\nTorbalı / İzmir",
       "hours": "Pazartesi – Cumartesi, 08:00 – 18:00",
-      "support": "7/24 Teknik Destek Hattı",
+      "support": "Teknik Destek Hattı",
       "phoneLabel": "Telefon",
       "emailLabel": "E-posta",
       "faxLabel": "Faks",
@@ -325,13 +325,13 @@
   "seo": {
     "home": {
       "title": "Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler",
-      "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi ve 7/24 teknik destek.",
+      "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi ve teknik destek.",
       "keywords": "filtre kabı, modüler filtrasyon sistemi, su arıtma sistemi, manometreli filtre kabı, standart filtre kabı, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul",
       "ogTitle": "Profesyonel Su Arıtma Sistemleri",
-      "ogDescription": "Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.",
+      "ogDescription": "Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve teknik destek.",
       "twitterTitle": "Su Arıtma Sistemleri",
-      "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 7/24 teknik destek.",
-      "jsonLdDescription": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.",
+      "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, teknik destek.",
+      "jsonLdDescription": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve teknik destek.",
       "offerCatalogName": "Modüler Filtre Kabı Sistemleri",
       "offers": [
         { "name": "5\" Modüler Filtre Kabı Sistemi", "description": "Kompakt gövde boyunda tekli, ikili, üçlü ve dörtlü konfigürasyonlarda, standart veya manometreli seçenekleriyle.", "category": "Ev Tipi Kullanım" },
