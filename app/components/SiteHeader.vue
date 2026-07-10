@@ -13,7 +13,7 @@
             v-for="link in links"
             :key="link.key"
             :to="localePath(link.to)"
-            class="px-4 py-2 rounded text-sm font-medium transition-colors"
+            class="px-4 py-2 rounded text-sm font-medium whitespace-nowrap transition-colors"
             :class="$route.path === localePath(link.to)
               ? 'bg-white/10 text-white'
               : 'text-zinc-400 hover:text-white hover:bg-white/5'"
@@ -23,21 +23,34 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <!-- Dil switcher -->
-          <div class="hidden md:flex items-center gap-1.5 me-1">
-            <template v-for="(loc, i) in locales" :key="loc.code">
-              <span v-if="i > 0" class="w-px h-4 bg-white/15" />
-              <button
-                class="flex items-center gap-1.5 px-1.5 py-1 rounded-full transition-opacity"
-                :class="locale === loc.code ? 'opacity-100' : 'opacity-50 hover:opacity-80'"
-                @click="setLocale(loc.code as LocaleCode)"
-              >
-                <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-white/15" :class="locale === loc.code ? 'ring-2 ring-brand-400' : ''">
-                  <img :src="`https://flagcdn.com/w40/${flagFor(loc.code)}.png`" :alt="loc.code" class="w-full h-full object-cover" />
-                </span>
-                <span class="text-xs font-semibold" :class="locale === loc.code ? 'text-brand-400' : 'text-zinc-500'">{{ loc.code.toUpperCase() }}</span>
-              </button>
-            </template>
+          <!-- Dil seçici (masaüstü): dünya ikonlu buton, üzerine gelince açılır liste -->
+          <div class="hidden md:block relative group me-1">
+            <button
+              class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+              :aria-label="$t('nav.language')"
+            >
+              <Globe class="w-4 h-4" />
+              <span class="whitespace-nowrap">{{ $t('nav.language') }}</span>
+              <ChevronDown class="w-3.5 h-3.5 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <!-- pt-2: butonla liste arasında hover köprüsü, boşlukta kapanmasın -->
+            <div class="absolute end-0 top-full pt-2 w-48 z-50 invisible opacity-0 translate-y-1 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0">
+              <div class="rounded-xl bg-surface-2/95 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40 p-1.5">
+                <button
+                  v-for="loc in locales"
+                  :key="loc.code"
+                  class="flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm transition-colors"
+                  :class="locale === loc.code ? 'bg-white/10 text-white' : 'text-zinc-300 hover:bg-white/5 hover:text-white'"
+                  @click="setLocale(loc.code as LocaleCode)"
+                >
+                  <span class="w-6 h-4 rounded-[3px] overflow-hidden flex-shrink-0 border border-white/15">
+                    <img :src="`https://flagcdn.com/w40/${flagFor(loc.code)}.png`" :alt="loc.code" class="w-full h-full object-cover" />
+                  </span>
+                  <span class="font-medium whitespace-nowrap">{{ loc.name }}</span>
+                  <Check v-if="locale === loc.code" class="w-4 h-4 ms-auto text-brand-400 flex-shrink-0" />
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- CTA -->
@@ -111,7 +124,7 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { Menu, X } from 'lucide-vue-next'
+import { Menu, X, Globe, ChevronDown, Check } from 'lucide-vue-next'
 import type { LocaleCode } from '~/utils/localized'
 
 const { locale, locales, setLocale } = useI18n()
