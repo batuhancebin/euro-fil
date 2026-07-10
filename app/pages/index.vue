@@ -235,9 +235,9 @@
 
         <!-- Desktop: yatay timeline -->
         <div class="hidden md:block">
-          <div class="relative grid grid-cols-4">
-            <!-- Bağlantı çizgisi -->
-            <div class="absolute top-5 left-[12.5%] right-[12.5%] h-px">
+          <div class="relative grid grid-cols-3">
+            <!-- Bağlantı çizgisi: her iki uçta yarım sütun boşluk bırakır (50% / sütun sayısı) -->
+            <div class="absolute top-5 left-[16.667%] right-[16.667%] h-px">
               <div class="w-full h-full bg-gradient-to-r from-brand-500/20 via-brand-500/50 to-brand-500/20" />
             </div>
 
@@ -259,7 +259,7 @@
               <div class="w-10 h-10 rounded-full border border-brand-500/50 bg-surface flex items-center justify-center flex-shrink-0">
                 <span class="text-xs font-bold text-white">{{ String(i + 1).padStart(2, '0') }}</span>
               </div>
-              <div v-if="i < 3" class="w-px flex-1 bg-brand-500/20 my-2" />
+              <div v-if="i < stepItems.length - 1" class="w-px flex-1 bg-brand-500/20 my-2" />
             </div>
             <div class="pb-8 pt-2">
               <h3 class="font-semibold text-white mb-1">{{ step.title }}</h3>
@@ -351,12 +351,12 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ChevronDown, Droplets, ShieldCheck, Layers, Headphones, FlaskConical, Clock, BadgeCheck } from 'lucide-vue-next'
+import { ChevronDown, Droplets, ShieldCheck, Layers, Headphones, FlaskConical, BadgeCheck } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'default' })
 
 const localePath = useLocalePath()
-const { t, locale } = useI18n()
+const { t, tm, rt, locale } = useI18n()
 const runtimeConfig = useRuntimeConfig()
 
 useSeoMeta({
@@ -379,10 +379,11 @@ useSeoMeta({
 // once per mount, not continuously reactive. Computing it eagerly (rather than passing
 // unhead reactive getters) sidesteps a dev-mode unhead/Vue teardown error seen when this
 // page's script[] head entries were defined as functions.
-const faqItemsForJsonLd = [0, 1, 2, 3, 4, 5].map(i => ({
-  q: t(`faq.items[${i}].q`),
-  a: t(`faq.items[${i}].a`),
-}))
+// Read the array itself rather than a hand-written index list: the FAQ has changed length twice,
+// and a stale [0..n] list silently renders the raw i18n key (here, straight into the FAQPage
+// structured data that Google reads).
+const faqItemsForJsonLd = (tm('faq.items') as unknown as { q: string; a: string }[])
+  .map(item => ({ q: rt(item.q), a: rt(item.a) }))
 
 useHead({
   link: [
@@ -795,21 +796,19 @@ const roTags = computed(() => [0,1,2,3,4].map(i => t(`features.ro.tags[${i}]`)))
 const certItems = computed(() => [0,1,2,3].map(i => t(`features.cert.items[${i}]`)))
 const supportItems = computed(() => [0,1,2,3].map(i => t(`features.support.items[${i}]`)))
 
-const ctaIcons = [FlaskConical, Clock, BadgeCheck]
-const stepIcons = [FlaskConical, Layers, Clock, Headphones]
+const ctaIcons = [FlaskConical, Headphones, BadgeCheck]
+const stepIcons = [FlaskConical, Layers, Headphones]
 
 const stepItems = computed(() =>
-  [0, 1, 2, 3].map(i => ({
+  [0, 1, 2].map(i => ({
     title: t(`steps.items[${i}].title`),
     desc:  t(`steps.items[${i}].desc`),
   }))
 )
 
 const faqItems = computed(() =>
-  [0, 1, 2, 3, 4, 5].map(i => ({
-    q: t(`faq.items[${i}].q`),
-    a: t(`faq.items[${i}].a`),
-  }))
+  (tm('faq.items') as unknown as { q: string; a: string }[])
+    .map(item => ({ q: rt(item.q), a: rt(item.a) }))
 )
 
 const ctaAssurances = computed(() =>

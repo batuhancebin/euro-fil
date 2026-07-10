@@ -31,7 +31,7 @@
   "features": {
     "label": "Neden Euro Fil",
     "title": "Yalnızca cihaz satmıyoruz",
-    "desc": "Proje tasarımından kuruluma, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreci biz yönetiyoruz.",
+    "desc": "Doğru ürün seçiminden yedek parçaya, periyodik bakımdan 7/24 teknik desteğe kadar tüm süreçte yanınızdayız.",
     "ro": {
       "title": "Modüler Filtre Kabı Sistemleri",
       "desc": "5\", 10\" ve 20\" gövde boylarında; tekli, ikili, üçlü ve dörtlü konfigürasyonlarda modüler filtrasyon sistemleri üretiyoruz. Standart ve manometre opsiyonlu modellerle her ihtiyaca dengeli akış ve uzun ömürlü performans sağlıyoruz.",
@@ -47,15 +47,15 @@
       "desc": "Müstakil evlerden apartmanlara, restoranlardan otellere, küçük işletmelerden üretim tesislerine kadar farklı ihtiyaçlara uygun su filtrasyon çözümleri sunuyoruz. Doğru ürün seçimi ve teknik yönlendirme ile her proje için uygun sistemi belirliyoruz."
     },
     "support": {
-      "title": "Kurulumdan Sonra da Yanınızdayız",
-      "desc": "Euro Fil'de süreç yalnızca ürün teslimiyle bitmez. İhtiyaca uygun sistem seçimi, profesyonel kurulum, periyodik bakım ve satış sonrası teknik destekle sisteminizin uzun ömürlü ve verimli şekilde çalışmasını sağlıyoruz.",
-      "items": ["Uzman Ekip ile Kurulum", "Periyodik Bakım Desteği", "Satış Sonrası Teknik Danışmanlık", "Yedek Parça ve Servis Desteği"]
+      "title": "Satıştan Sonra da Yanınızdayız",
+      "desc": "Euro Fil'de süreç yalnızca ürün teslimiyle bitmez. İhtiyaca uygun sistem seçimi, periyodik bakım desteği ve satış sonrası teknik destekle sisteminizin uzun ömürlü ve verimli şekilde çalışmasını sağlıyoruz.",
+      "items": ["Ürün Seçiminde Uzman Desteği", "Periyodik Bakım Desteği", "Satış Sonrası Teknik Danışmanlık", "Yedek Parça ve Servis Desteği"]
     }
   },
   "steps": {
     "label": "Süreç",
     "title": "Euro Fil ile Başlamak Çok Kolay",
-    "desc": "Bayi fiyat teklifinden kesintisiz desteğe — 4 adımda profesyonel çözüm",
+    "desc": "Bayi fiyat teklifinden kesintisiz desteğe — 3 adımda profesyonel çözüm",
     "items": [
       {
         "title": "Bayi Fiyat Teklifi",
@@ -66,12 +66,8 @@
         "desc": "Talebinize göre ihtiyacınıza uygun gövde boyu ve filtre sayısında modüler sistem teklifi 24 saat içinde sunulur."
       },
       {
-        "title": "Hızlı Kurulum",
-        "desc": "Sertifikalı kurulum ekibimiz anlaşmanın hemen ardından devreye girer, sisteminizi 24 saatte teslim eder."
-      },
-      {
         "title": "Kesintisiz Destek",
-        "desc": "Yıllık periyodik bakım sözleşmesi ve 7/24 teknik destek hattıyla sisteminiz her zaman en iyi performansta."
+        "desc": "7/24 teknik destek hattımız ve yedek parça tedarikimizle sisteminiz her zaman en iyi performansta."
       }
     ]
   },
@@ -81,11 +77,11 @@
     "items": [
       {
         "q": "Su arıtma cihazı hangi sıklıkta bakım istiyor?",
-        "a": "Euro Fil sistemleri yılda bir kez periyodik bakım gerektirir. Filtrelerin değişim süresi su kalitesine ve kullanım miktarına göre 6-12 ay arasında değişir. Bakım sözleşmesi olan müşterilerimize hatırlatma yapılır."
+        "a": "Euro Fil sistemleri yılda bir kez periyodik bakım gerektirir. Filtrelerin değişim süresi su kalitesine ve kullanım miktarına göre 6-12 ay arasında değişir. Değişim zamanı ve doğru filtre seçimi için teknik destek hattımızdan bilgi alabilirsiniz."
       },
       {
-        "q": "Kurulum ne kadar sürer ve kim yapar?",
-        "a": "Tüm kurulumlar Euro Fil'in sertifikalı teknik ekibi tarafından yapılır. Standart ev tipi sistemler 1-2 saat, endüstriyel sistemler ise tesisin büyüklüğüne göre 1-3 gün içinde tamamlanır."
+        "q": "Kurulum ve montaj hizmeti veriyor musunuz?",
+        "a": "Hayır, kurulum ve montaj hizmeti vermiyoruz. Ürünlerimizi bayi ağımız üzerinden sunuyor; ürün seçimi, teknik özellikler ve kullanım konularında 7/24 teknik destek sağlıyoruz."
       },
       {
         "q": "Hangi su kaynakları için uygundur?",
@@ -93,7 +89,7 @@
       },
       {
         "q": "Garanti kapsamı nedir?",
-        "a": "Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti süresi içinde oluşan arızalarda parça ve işçilik ücretsiz olarak karşılanır. 7/24 teknik destek hattımız her zaman hizmetinizde."
+        "a": "Tüm Euro Fil ürünleri 2 yıl resmi garanti kapsamındadır. Garanti kapsamındaki arızalarda çözüm için 7/24 teknik destek hattımız her zaman hizmetinizde."
       },
       {
         "q": "Teklif almak için ne yapmam gerekiyor?",
@@ -118,8 +114,8 @@
         "desc": "Formu doldurun, 24 saat içinde size özel bayi fiyat teklifini sunalım — hiçbir ön ödeme gerekmez."
       },
       {
-        "title": "24 Saatte Kurulum",
-        "desc": "Anlaşmanın ardından sertifikalı ekibimiz sisteminizi 24 saat içinde devreye alır."
+        "title": "Uzman Teknik Danışmanlık",
+        "desc": "Gövde boyu ve kademe sayısını uzman ekibimizle birlikte belirleyin; doğru sistemi seçmenize yardımcı olalım."
       },
       {
         "title": "2 Yıl Garanti + 7/24 Destek",
@@ -315,12 +311,12 @@
   "seo": {
     "home": {
       "title": "Su Arıtma Sistemleri – Ev, Ofis ve Endüstriyel Çözümler",
-      "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi, 24 saatte kurulum ve 7/24 teknik destek.",
+      "description": "Euro Fil ile temiz su garantisi. Ev, ofis, fabrika ve otel için TSE sertifikalı su arıtma sistemleri, bayi fiyat teklifi ve 7/24 teknik destek.",
       "keywords": "filtre kabı, modüler filtrasyon sistemi, su arıtma sistemi, manometreli filtre kabı, standart filtre kabı, ev tipi su arıtma, Euro Fil, TSE sertifikalı, su filtresi, su arıtma İstanbul",
       "ogTitle": "Profesyonel Su Arıtma Sistemleri",
       "ogDescription": "Ev, ofis ve endüstriyel tesisler için TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi ve 7/24 teknik destek.",
       "twitterTitle": "Su Arıtma Sistemleri",
-      "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 24 saatte kurulum, 7/24 destek.",
+      "twitterDescription": "TSE sertifikalı su arıtma sistemleri. Bayi fiyat teklifi, 7/24 teknik destek.",
       "jsonLdDescription": "Ev, ofis ve endüstriyel tesisler için profesyonel su arıtma sistemleri. TSE sertifikalı ürünler, bayi fiyat teklifi ve 7/24 teknik destek.",
       "offerCatalogName": "Modüler Filtre Kabı Sistemleri",
       "offers": [

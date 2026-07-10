@@ -31,7 +31,7 @@
   "features": {
     "label": "Why Euro Fil",
     "title": "We don't just sell devices",
-    "desc": "From project design to installation, from periodic maintenance to 24/7 technical support — we manage the entire process.",
+    "desc": "From choosing the right product to spare parts, from periodic maintenance to 24/7 technical support — we are with you throughout.",
     "ro": {
       "title": "Modular Filter Housing Systems",
       "desc": "We manufacture modular filtration systems in 5\", 10\" and 20\" body sizes, in single, double, triple and quadruple configurations. Standard and gauge-equipped models deliver balanced flow and long-lasting performance for every need.",
@@ -47,15 +47,15 @@
       "desc": "From single-family homes to apartment buildings, restaurants to hotels, and small businesses to production facilities, we offer water filtration solutions tailored to different needs. We identify the right system for every project through correct product selection and technical guidance."
     },
     "support": {
-      "title": "We're With You After Installation, Too",
-      "desc": "At Euro Fil, the process doesn't end with product delivery. We ensure your system runs efficiently for the long term through the right system selection, professional installation, periodic maintenance and after-sales technical support.",
-      "items": ["Installation by Expert Team", "Periodic Maintenance Support", "After-Sales Technical Consulting", "Spare Parts & Service Support"]
+      "title": "We're With You After the Sale, Too",
+      "desc": "At Euro Fil, the process doesn't end with product delivery. We ensure your system runs efficiently for the long term through the right system selection, periodic maintenance support and after-sales technical support.",
+      "items": ["Expert Help Choosing the Right Product", "Periodic Maintenance Support", "After-Sales Technical Consulting", "Spare Parts & Service Support"]
     }
   },
   "steps": {
     "label": "Process",
     "title": "Getting Started with Euro Fil is Easy",
-    "desc": "From dealer price quote to uninterrupted support — a professional solution in 4 steps",
+    "desc": "From dealer price quote to uninterrupted support — a professional solution in 3 steps",
     "items": [
       {
         "title": "Dealer Price Quote",
@@ -66,12 +66,8 @@
         "desc": "Based on your request, a modular system proposal with the right body size and filter count is presented within 24 hours."
       },
       {
-        "title": "Fast Installation",
-        "desc": "Our certified installation team gets to work immediately after the agreement and delivers your system within 24 hours."
-      },
-      {
         "title": "Ongoing Support",
-        "desc": "Annual maintenance contracts and 24/7 technical support ensure your system always operates at its best."
+        "desc": "Our 24/7 technical support line and spare parts supply keep your system performing at its best."
       }
     ]
   },
@@ -81,11 +77,11 @@
     "items": [
       {
         "q": "How often does a water purification device need maintenance?",
-        "a": "Euro Fil systems require periodic maintenance once a year. Filter replacement times vary between 6-12 months depending on water quality and usage. Customers with maintenance contracts receive reminders."
+        "a": "Euro Fil systems require periodic maintenance once a year. Filter replacement times vary between 6-12 months depending on water quality and usage. For replacement timing and the right filter choice, ask our technical support line."
       },
       {
-        "q": "How long does installation take and who does it?",
-        "a": "All installations are carried out by Euro Fil's certified technical team. Standard residential systems take 1-2 hours, while industrial systems are completed within 1-3 days depending on the size of the facility."
+        "q": "Do you provide installation or assembly services?",
+        "a": "No, we do not carry out installation or assembly. We supply our products through our dealer network and provide 24/7 technical support on product selection, specifications and use."
       },
       {
         "q": "Which water sources is it suitable for?",
@@ -93,7 +89,7 @@
       },
       {
         "q": "What does the warranty cover?",
-        "a": "All Euro Fil products are covered by a 2-year official warranty. Parts and labour costs are covered free of charge for faults occurring within the warranty period. Our 24/7 technical support line is always at your service."
+        "a": "All Euro Fil products are covered by a 2-year official warranty. For faults covered by the warranty, our 24/7 technical support line is always at your service."
       },
       {
         "q": "What do I need to do to get a quote?",
@@ -118,8 +114,8 @@
         "desc": "Fill out the form and we'll send you a custom dealer price quote within 24 hours — no upfront payment required."
       },
       {
-        "title": "Installation Within 24 Hours",
-        "desc": "After the agreement, our certified team puts your system into operation within 24 hours."
+        "title": "Expert Technical Guidance",
+        "desc": "Settle the housing size and stage count with our specialists so you pick the right system."
       },
       {
         "title": "2-Year Warranty + 24/7 Support",
@@ -315,12 +311,12 @@
   "seo": {
     "home": {
       "title": "Water Treatment Systems – Residential, Office and Industrial Solutions",
-      "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes, installation within 24 hours, and 24/7 technical support.",
+      "description": "Reliable water treatment guarantee with Euro Fil. TSE-certified water treatment systems for homes, offices, factories and hotels, dealer price quotes and 24/7 technical support.",
       "keywords": "filter housing, modular filtration system, water treatment system, gauge-equipped filter housing, standard filter housing, residential water treatment, Euro Fil, TSE certified, water filter, water treatment Istanbul",
       "ogTitle": "Professional Water Treatment Systems",
       "ogDescription": "TSE-certified water treatment systems for homes, offices and industrial facilities. Dealer price quotes and 24/7 technical support.",
       "twitterTitle": "Water Treatment Systems",
-      "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, installation within 24 hours, 24/7 support.",
+      "twitterDescription": "TSE-certified water treatment systems. Dealer price quotes, 24/7 technical support.",
       "jsonLdDescription": "Professional water treatment systems for homes, offices and industrial facilities. TSE-certified products, dealer price quotes and 24/7 technical support.",
       "offerCatalogName": "Modular Filter Housing Systems",
       "offers": [
