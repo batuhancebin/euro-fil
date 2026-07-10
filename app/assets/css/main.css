@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +7,11 @@
 @layer base {
   html {
     @apply bg-surface text-zinc-100 scroll-smooth;
+  }
+  /* Inter carries no Arabic glyphs; without this the Arabic pages fall back to whatever the OS
+     happens to ship. The woff2 only downloads where Arabic glyphs actually render. */
+  html[lang='ar'] {
+    font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
   }
 }
 

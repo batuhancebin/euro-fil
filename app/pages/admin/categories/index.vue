@@ -15,6 +15,8 @@
           <tr class="text-left text-zinc-500 text-xs">
             <th class="px-5 py-3 font-medium">Ad (TR)</th>
             <th class="px-5 py-3 font-medium">Ad (EN)</th>
+            <th class="px-5 py-3 font-medium">Ad (AR)</th>
+            <th class="px-5 py-3 font-medium">Ad (RU)</th>
             <th class="px-5 py-3 font-medium">Slug</th>
             <th class="px-5 py-3 font-medium w-20">Sıra</th>
             <th class="px-5 py-3 font-medium w-24"></th>
@@ -28,6 +30,8 @@
           >
             <td class="px-5 py-3 text-white font-medium">{{ cat.nameTr }}</td>
             <td class="px-5 py-3 text-zinc-400">{{ cat.nameEn }}</td>
+              <td class="px-5 py-3 text-zinc-400" dir="rtl">{{ cat.nameAr }}</td>
+              <td class="px-5 py-3 text-zinc-400">{{ cat.nameRu }}</td>
             <td class="px-5 py-3 text-zinc-500 font-mono text-xs">{{ cat.slug }}</td>
             <td class="px-5 py-3 text-zinc-500">{{ cat.sortOrder }}</td>
             <td class="px-5 py-3">
@@ -66,6 +70,14 @@
               <input v-model="form.nameEn" type="text" class="field-input" />
             </div>
             <div>
+              <label class="field-label">Ad (AR)</label>
+              <input v-model="form.nameAr" type="text" dir="rtl" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">Ad (RU)</label>
+              <input v-model="form.nameRu" type="text" class="field-input" />
+            </div>
+            <div>
               <label class="field-label">Slug</label>
               <input v-model="form.slug" type="text" class="field-input font-mono text-xs" required />
             </div>
@@ -97,17 +109,17 @@ const modal   = ref(false)
 const saving  = ref(false)
 const editing = ref<any>(null)
 
-const form = reactive({ nameTr: '', nameEn: '', slug: '', sortOrder: 0 })
+const form = reactive({ nameTr: '', nameEn: '', nameAr: '', nameRu: '', slug: '', sortOrder: 0 })
 
 function openNew() {
   editing.value = null
-  Object.assign(form, { nameTr: '', nameEn: '', slug: '', sortOrder: 0 })
+  Object.assign(form, { nameTr: '', nameEn: '', nameAr: '', nameRu: '', slug: '', sortOrder: 0 })
   modal.value = true
 }
 
 function openEdit(cat: any) {
   editing.value = cat
-  Object.assign(form, { nameTr: cat.nameTr, nameEn: cat.nameEn, slug: cat.slug, sortOrder: cat.sortOrder })
+  Object.assign(form, { nameTr: cat.nameTr, nameEn: cat.nameEn, nameAr: cat.nameAr ?? '', nameRu: cat.nameRu ?? '', slug: cat.slug, sortOrder: cat.sortOrder })
   modal.value = true
 }
 

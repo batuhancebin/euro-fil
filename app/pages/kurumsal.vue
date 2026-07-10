@@ -13,7 +13,7 @@
         <div class="absolute -top-2 right-0 w-6 h-6 border-t border-r border-brand-500/40 hidden sm:block" />
 
         <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight text-white mb-8">
-          <span v-for="(word, i) in heroWords" :key="i" ref="heroWordEls" class="inline-block mr-3 sm:mr-4">{{ rt(word) }}</span>
+          <span v-for="(word, i) in heroWords" :key="i" ref="heroWordEls" class="inline-block me-3 sm:me-4">{{ rt(word) }}</span>
         </h1>
 
         <p ref="heroDesc" class="text-lg text-zinc-400 leading-relaxed max-w-xl mx-auto">
@@ -98,7 +98,7 @@
             :key="i"
             class="value-card relative card p-8 overflow-hidden group hover:border-brand-500/40 transition-colors"
           >
-            <span class="absolute -top-3 -right-1 text-7xl font-extrabold text-white/5 select-none leading-none">
+            <span class="absolute -top-3 -end-1 text-7xl font-extrabold text-white/5 select-none leading-none">
               {{ String(i + 1).padStart(2, '0') }}
             </span>
             <component :is="valueIcons[i]" class="w-7 h-7 text-brand-400 mb-5 relative" />

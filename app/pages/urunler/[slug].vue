@@ -61,7 +61,7 @@
 
               <!-- Ana görsel -->
               <div class="relative flex-1 rounded-2xl overflow-hidden bg-white border border-surface-4 aspect-square flex items-center justify-center p-10">
-                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/5 text-zinc-500">
+                <span class="absolute top-4 start-4 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/5 text-zinc-500">
                   {{ categoryName }}
                 </span>
                 <Transition name="fade" mode="out-in">
@@ -158,8 +158,8 @@
               <table class="w-full text-sm min-w-[560px]">
                 <thead>
                   <tr class="bg-surface-3 text-zinc-400 text-xs uppercase tracking-wide">
-                    <th class="px-3 py-3 font-semibold text-left">{{ $t('productDetail.table.code') }}</th>
-                    <th class="px-3 py-3 font-semibold text-left">{{ $t('productDetail.table.cins') }}</th>
+                    <th class="px-3 py-3 font-semibold text-start">{{ $t('productDetail.table.code') }}</th>
+                    <th class="px-3 py-3 font-semibold text-start">{{ $t('productDetail.table.cins') }}</th>
                     <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.maxPressure') }}</th>
                     <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.maxTemp') }}</th>
                     <th class="px-3 py-3 font-semibold text-center">{{ $t('productDetail.table.connection') }}</th>
@@ -170,13 +170,13 @@
                     <tr class="border-t border-surface-4 text-zinc-200">
                       <td class="px-3 py-2.5 font-mono">{{ v.code }}</td>
                       <td class="px-3 py-2.5">{{ cinsLabel(v.cins) }}</td>
-                      <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 text-zinc-300">
+                      <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-s border-surface-4 text-zinc-300">
                         {{ product.maxPressure }}
                       </td>
-                      <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 text-zinc-300">
+                      <td v-if="i === 0" :rowspan="product.variants.length" class="px-3 py-2.5 text-center align-middle border-s border-surface-4 text-zinc-300">
                         {{ product.maxTemp }}
                       </td>
-                      <td v-if="isConnectionGroupStart(i)" :rowspan="connectionGroupSize(i)" class="px-3 py-2.5 text-center align-middle border-l border-surface-4 font-semibold text-white">
+                      <td v-if="isConnectionGroupStart(i)" :rowspan="connectionGroupSize(i)" class="px-3 py-2.5 text-center align-middle border-s border-surface-4 font-semibold text-white">
                         {{ v.connection }}
                       </td>
                     </tr>
@@ -220,25 +220,25 @@ if (!product.value) {
 const { data: dbCategories } = await useFetch<any[]>('/api/categories', { default: () => [] })
 
 const name = computed(() =>
-  locale.value === 'en' ? product.value?.nameEn || product.value?.nameTr : product.value?.nameTr
+  localized(product.value, 'name', locale.value)
 )
 const desc = computed(() =>
-  locale.value === 'en' ? product.value?.descEn || product.value?.descTr : product.value?.descTr
+  localized(product.value, 'desc', locale.value)
 )
 const seoTitle = computed(() =>
-  (locale.value === 'en' ? product.value?.seoTitleEn || product.value?.seoTitleTr : product.value?.seoTitleTr) || name.value
+  localized<string>(product.value, 'seoTitle', locale.value) || name.value
 )
 const seoDesc = computed(() =>
-  (locale.value === 'en' ? product.value?.seoDescEn || product.value?.seoDescTr : product.value?.seoDescTr) || desc.value
+  localized<string>(product.value, 'seoDesc', locale.value) || desc.value
 )
 const specList = computed<string[]>(() => {
-  const list = locale.value === 'en' ? product.value?.specsEn : product.value?.specsTr
+  const list = localized<string[]>(product.value, 'specs', locale.value)
   return Array.isArray(list) ? list.filter(Boolean) : []
 })
 const categoryName = computed(() => {
   const cat = (dbCategories.value ?? []).find((c: any) => c.slug === product.value?.category)
   if (!cat) return product.value?.category ?? ''
-  return locale.value === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr
+  return localized(cat, 'name', locale.value) ?? product.value?.category ?? ''
 })
 
 const activeImage = ref<string>(product.value?.images?.[0] ?? '')

@@ -1,5 +1,5 @@
 // Returns a Turkish error message if the admin product form payload is malformed, or null if OK.
-// Guards against the jsonb columns (images/specsTr/specsEn/variants) being written with the
+// Guards against the jsonb columns (images/specsTr/En/Ar/Ru/variants) being written with the
 // wrong shape and required text columns being silently set to empty strings.
 export function validateProductBody(body: any): string | null {
   if (!body || typeof body !== 'object') return 'Geçersiz veri'
@@ -7,7 +7,7 @@ export function validateProductBody(body: any): string | null {
   if (typeof body.nameTr !== 'string' || !body.nameTr.trim()) return 'Türkçe ürün adı zorunludur'
   if (typeof body.category !== 'string' || !body.category.trim()) return 'Kategori zorunludur'
 
-  for (const field of ['images', 'specsTr', 'specsEn'] as const) {
+  for (const field of ['images', 'specsTr', 'specsEn', 'specsAr', 'specsRu'] as const) {
     if (body[field] === undefined || body[field] === null) continue
     if (!Array.isArray(body[field]) || !body[field].every((v: unknown) => typeof v === 'string')) {
       return `${field} sadece metinlerden oluşan bir dizi olmalıdır`

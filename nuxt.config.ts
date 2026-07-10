@@ -4,9 +4,14 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', 'nuxt-auth-utils'],
 
   i18n: {
+    // Required for hreflang/canonical to be absolute URLs; without it the module emits "/tr" and
+    // warns that the SEO tag links are invalid.
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://eurofilwater.com',
     locales: [
-      { code: 'tr', language: 'tr-TR', name: 'Türkçe', file: 'tr.json' },
-      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'tr', language: 'tr-TR', name: 'Türkçe', file: 'tr.json', dir: 'ltr' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json', dir: 'ltr' },
+      { code: 'ar', language: 'ar', name: 'العربية', file: 'ar.json', dir: 'rtl' },
+      { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru.json', dir: 'ltr' },
     ],
     defaultLocale: 'tr',
     strategy: 'prefix',

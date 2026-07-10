@@ -31,7 +31,7 @@
             @click="activeCategory = 'all'"
           >
             {{ $t('productsPage.filter.all') }}
-            <span class="ml-1.5 text-xs opacity-70">({{ products?.length ?? 0 }})</span>
+            <span class="ms-1.5 text-xs opacity-70">({{ products?.length ?? 0 }})</span>
           </button>
           <button
             v-for="cat in visibleCategories"
@@ -42,8 +42,8 @@
               : 'bg-surface-2 text-zinc-400 hover:text-white border border-surface-4'"
             @click="activeCategory = cat.slug"
           >
-            {{ locale === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr }}
-            <span class="ml-1.5 text-xs opacity-70">({{ countBySlug(cat.slug) }})</span>
+            {{ localized(cat, 'name', locale) }}
+            <span class="ms-1.5 text-xs opacity-70">({{ countBySlug(cat.slug) }})</span>
           </button>
         </div>
 
@@ -68,7 +68,7 @@
                 <img
                   v-if="product.images?.[0]"
                   :src="product.images[0]"
-                  :alt="locale === 'en' ? product.nameEn || product.nameTr : product.nameTr"
+                  :alt="localized(product, 'name', locale)"
                   loading="lazy"
                   class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
@@ -76,7 +76,7 @@
                   <Droplets class="w-14 h-14 text-brand-500/20" />
                 </div>
                 <!-- Category badge -->
-                <div class="absolute top-3 left-3">
+                <div class="absolute top-3 start-3">
                   <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-black/50 text-zinc-300 backdrop-blur-sm">
                     {{ categoryName(product.category) }}
                   </span>
@@ -86,7 +86,7 @@
               <!-- Content -->
               <div class="p-6 flex flex-col flex-1">
                 <h3 class="font-bold text-white text-sm tracking-wide mb-2 whitespace-nowrap">
-                  {{ locale === 'en' ? product.nameEn || product.nameTr : product.nameTr }}
+                  {{ localized(product, 'name', locale) }}
                 </h3>
                 <p v-if="metaDesc(product)" class="text-xs text-zinc-500 leading-relaxed line-clamp-4 mb-3 min-h-[5rem]">
                   {{ metaDesc(product) }}
@@ -94,7 +94,7 @@
                 <!-- Price -->
                 <div v-if="product.price" class="flex-1">
                   <span class="text-white font-bold text-lg">{{ product.price }}</span>
-                  <span v-if="product.priceNote" class="text-zinc-500 text-xs ml-2">{{ product.priceNote }}</span>
+                  <span v-if="product.priceNote" class="text-zinc-500 text-xs ms-2">{{ product.priceNote }}</span>
                 </div>
                 <div v-else class="flex-1" />
               </div>
@@ -103,7 +103,7 @@
               <div class="border-t border-surface-4/60 group-hover:border-brand-500/40 transition-colors duration-300 px-6 py-4 flex justify-center">
                 <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-brand-300 transition-colors duration-300">
                   {{ $t('products.viewProduct') }}
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rtl:rotate-180 transition-transform duration-300 ease-out group-hover:translate-x-1 rtl:group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
@@ -156,11 +156,11 @@ const visibleCategories = computed(() =>
 function categoryName(slug: string) {
   const cat = (dbCategories.value ?? []).find((c: any) => c.slug === slug)
   if (!cat) return slug
-  return locale.value === 'en' ? cat.nameEn || cat.nameTr : cat.nameTr
+  return localized(cat, 'name', locale.value) ?? slug
 }
 
 function metaDesc(product: any): string {
-  return (locale.value === 'en' ? product.seoDescEn || product.seoDescTr : product.seoDescTr) ?? ''
+  return localized<string>(product, 'seoDesc', locale.value) ?? ''
 }
 
 </script>

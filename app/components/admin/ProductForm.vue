@@ -11,7 +11,7 @@
         <section class="card p-6 space-y-5">
           <h2 class="text-sm font-semibold text-zinc-300">Temel Bilgiler</h2>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label class="field-label">Ürün Adı (TR)</label>
               <input v-model="form.nameTr" type="text" class="field-input" required @input="autoSlug" />
@@ -19,6 +19,14 @@
             <div>
               <label class="field-label">Ürün Adı (EN)</label>
               <input v-model="form.nameEn" type="text" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">Ürün Adı (AR)</label>
+              <input v-model="form.nameAr" type="text" dir="rtl" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">Ürün Adı (RU)</label>
+              <input v-model="form.nameRu" type="text" class="field-input" />
             </div>
           </div>
 
@@ -55,12 +63,20 @@
             <label class="field-label">Açıklama (EN)</label>
             <textarea v-model="form.descEn" rows="4" class="field-input resize-none" />
           </div>
+          <div>
+            <label class="field-label">Açıklama (AR)</label>
+            <textarea v-model="form.descAr" rows="4" dir="rtl" class="field-input resize-none" />
+          </div>
+          <div>
+            <label class="field-label">Açıklama (RU)</label>
+            <textarea v-model="form.descRu" rows="4" class="field-input resize-none" />
+          </div>
         </section>
 
         <!-- Özellikler (specs) -->
         <section class="card p-6 space-y-5">
           <h2 class="text-sm font-semibold text-zinc-300">Teknik Özellikler</h2>
-          <div class="grid grid-cols-2 gap-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
               <label class="field-label mb-2">TR Özellikler</label>
               <div class="space-y-2">
@@ -79,6 +95,26 @@
                   <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.specsEn.splice(i, 1)">×</button>
                 </div>
                 <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.specsEn.push('')">+ Add</button>
+              </div>
+            </div>
+            <div>
+              <label class="field-label mb-2">AR المواصفات</label>
+              <div class="space-y-2">
+                <div v-for="(_, i) in form.specsAr" :key="i" class="flex gap-2">
+                  <input v-model="form.specsAr[i]" type="text" dir="rtl" class="field-input flex-1 text-sm" @paste="onSpecPaste($event, form.specsAr, i)" />
+                  <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.specsAr.splice(i, 1)">×</button>
+                </div>
+                <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.specsAr.push('')">+ إضافة</button>
+              </div>
+            </div>
+            <div>
+              <label class="field-label mb-2">RU Характеристики</label>
+              <div class="space-y-2">
+                <div v-for="(_, i) in form.specsRu" :key="i" class="flex gap-2">
+                  <input v-model="form.specsRu[i]" type="text" class="field-input flex-1 text-sm" @paste="onSpecPaste($event, form.specsRu, i)" />
+                  <button type="button" class="text-zinc-600 hover:text-red-400 px-1" @click="form.specsRu.splice(i, 1)">×</button>
+                </div>
+                <button type="button" class="text-xs text-brand-400 hover:text-brand-300" @click="form.specsRu.push('')">+ Добавить</button>
               </div>
             </div>
           </div>
@@ -134,6 +170,22 @@
             <div>
               <label class="field-label">SEO Description (EN)</label>
               <textarea v-model="form.seoDescEn" rows="2" class="field-input resize-none" />
+            </div>
+            <div>
+              <label class="field-label">SEO Başlık (AR)</label>
+              <input v-model="form.seoTitleAr" type="text" dir="rtl" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">SEO Açıklama (AR)</label>
+              <textarea v-model="form.seoDescAr" rows="2" dir="rtl" class="field-input resize-none" />
+            </div>
+            <div>
+              <label class="field-label">SEO Başlık (RU)</label>
+              <input v-model="form.seoTitleRu" type="text" class="field-input" />
+            </div>
+            <div>
+              <label class="field-label">SEO Açıklama (RU)</label>
+              <textarea v-model="form.seoDescRu" rows="2" class="field-input resize-none" />
             </div>
           </div>
         </section>
@@ -301,11 +353,17 @@ const form = reactive({
   slug:       '',
   nameTr:     '',
   nameEn:     '',
+  nameAr:     '',
+  nameRu:     '',
   category:   '',
   descTr:     '',
   descEn:     '',
+  descAr:     '',
+  descRu:     '',
   specsTr:    [] as string[],
   specsEn:    [] as string[],
+  specsAr:    [] as string[],
+  specsRu:    [] as string[],
   maxPressure: '',
   maxTemp:     '',
   variants:    [] as { code: string; cins: string; connection: string }[],
@@ -313,8 +371,12 @@ const form = reactive({
   priceNote:  '',
   seoTitleTr: '',
   seoTitleEn: '',
+  seoTitleAr: '',
+  seoTitleRu: '',
   seoDescTr:  '',
   seoDescEn:  '',
+  seoDescAr:  '',
+  seoDescRu:  '',
   images:     [] as string[],
   model3dUrl: '',
   isActive:   true,

@@ -1,7 +1,7 @@
 import { db, products } from '#db'
 import { eq } from 'drizzle-orm'
 
-const LOCALES = ['tr', 'en']
+const LOCALES = ['tr', 'en', 'ar', 'ru']
 
 const STATIC_PAGES = [
   { path: '',           changefreq: 'weekly',  priority: '1.0' },
