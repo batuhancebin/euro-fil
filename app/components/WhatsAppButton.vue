@@ -2,7 +2,7 @@
 const { t } = useI18n()
 
 const href = computed(
-  () => `https://wa.me/905540251580?text=${encodeURIComponent(t('whatsapp.message'))}`,
+  () => `https://wa.me/905013197741?text=${encodeURIComponent(t('whatsapp.message'))}`,
 )
 </script>
 
