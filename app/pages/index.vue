@@ -52,12 +52,12 @@
     <Teleport to="body">
       <img
         v-if="!introDone"
-        :src="introFrameUrl"
+        ref="introImg"
+        :src="introFrameUrls[0]"
         alt=""
         draggable="false"
         class="fixed top-0 left-0 max-w-none object-contain pointer-events-none select-none z-[9999]"
-        style="transform-origin: 0 0;"
-        :style="introImgStyle"
+        style="width: 0; height: 0; transform-origin: 0 0; will-change: transform;"
       />
     </Teleport>
 
@@ -460,11 +460,24 @@ const activeFaq     = ref<number | null>(null)
 // — Hero intro takeover (frames 1-40 full-hero, frames 40-120 morph into place) —
 const { urls: introFrameUrls } = useProductFrames('/hero-urun', 710)
 const introDone = ref(false)
-const introFrameIndex = ref(0)
-const introFrameUrl = computed(() => introFrameUrls[introFrameIndex.value] ?? introFrameUrls[0])
-const introImgStyle = ref<{ width: string; height: string; transform: string }>({
-  width: '0px', height: '0px', transform: 'translate(0px, 0px) scale(1)',
-})
+// The takeover image is driven straight through the DOM, never through reactive state: writing a
+// ref on every rAF re-runs this page's (very large) render function 60x/sec for two attributes.
+const introImg = ref<HTMLImageElement | null>(null)
+
+const FRAME_WIDTH = 960        // intrinsic width of the /hero-urun frames
+const INTRO_FRAMES = 120        // frames the takeover timeline plays through
+const INTRO_HEAD = 24          // enough of a head start to begin; the rest streams in behind us
+const HEAD_BUDGET_MS = 1500    // scroll stays locked while the head loads — never hold longer
+
+// A full-screen 30fps image sequence is a GPU fill-rate problem on phones (a DPR-3 handset
+// rasterises ~11M device px per frame here), and it is pure decoration. Sit it out when the
+// device or the user tells us to.
+function prefersNoIntro() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+  const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+  if (conn?.saveData) return true
+  return !!conn?.effectiveType && ['slow-2g', '2g', '3g'].includes(conn.effectiveType)
+}
 
 function preloadImage(url: string) {
   return new Promise<void>((resolve) => {
@@ -482,11 +495,35 @@ let introTl: gsap.core.Timeline | undefined
 let introSafetyTimer: ReturnType<typeof setTimeout> | undefined
 let introCancelled = false
 
-async function preloadRemainingFrames(urls: string[]) {
-  const BATCH_SIZE = 40
-  for (let i = 0; i < urls.length; i += BATCH_SIZE) {
+// On a reload the scroll offset is restored *after* we mount, so window.scrollY still reads 0
+// here. vue-router stashes the pre-reload offset in history.state.scroll before the page is
+// hidden, so that's the only reliable way to know where the page is about to land.
+function pendingScrollTop() {
+  const saved = (window.history.state as { scroll?: { top?: number } } | null)?.scroll?.top
+  return Math.max(window.scrollY, typeof saved === 'number' ? saved : 0)
+}
+
+// Belt and braces: whatever scrolls the page (router restore, browser restore, anchor jump),
+// a takeover that started at the top must not keep playing over a scrolled-away section.
+function onScrollAbort() {
+  if (window.scrollY > 0) endIntro()
+}
+
+function endIntro() {
+  if (introDone.value) return
+  window.removeEventListener('scroll', onScrollAbort)
+  clearTimeout(introSafetyTimer)
+  introTl?.kill()
+  introDone.value = true
+  unlockScroll()
+  gsap.set([heroBadge.value, heroTitle.value, heroDesc.value, heroCta.value], { y: 0, opacity: 1 })
+}
+
+// Batched and in play order, so frames arrive roughly when the timeline reaches them.
+async function preloadBatched(urls: string[], batchSize: number) {
+  for (let i = 0; i < urls.length; i += batchSize) {
     if (introCancelled) return
-    await Promise.all(urls.slice(i, i + BATCH_SIZE).map(preloadImage))
+    await Promise.all(urls.slice(i, i + batchSize).map(preloadImage))
   }
 }
 
@@ -500,29 +537,46 @@ function unlockScroll() {
 }
 
 async function playIntro() {
-  // Back/forward navigation can restore a non-zero scroll position before this
-  // mounts — don't hijack the page with a full-hero takeover in that case.
-  if (window.scrollY > 0 || !heroSection.value || !heroViewerBox.value) {
-    introDone.value = true
-    gsap.set([heroBadge.value, heroTitle.value, heroDesc.value, heroCta.value], { y: 0, opacity: 1 })
+  // Reloads and back/forward navigation restore a non-zero scroll position — don't hijack the
+  // page with a full-hero takeover in that case.
+  if (pendingScrollTop() > 0 || !heroSection.value || !heroViewerBox.value || prefersNoIntro()) {
+    endIntro()
     return
   }
 
+  window.addEventListener('scroll', onScrollAbort, { passive: true })
   lockScroll()
+
+  // The hero is blank and scroll is locked until frames land, so this wait *is* the intro's cost.
+  // Waiting for all 120 (2.8MB) meant ~5s of frozen page on a phone. Take a small head start and
+  // let the rest stream in: the sequence eats 30 frames/s, any usable connection delivers more.
+  // If even the head can't make the budget, drop the takeover rather than freeze the page.
+  const headReady = await Promise.race([
+    Promise.all(introFrameUrls.slice(0, INTRO_HEAD).map(preloadImage)).then(() => true),
+    new Promise<boolean>((r) => { introSafetyTimer = setTimeout(() => r(false), HEAD_BUDGET_MS) }),
+  ])
+  clearTimeout(introSafetyTimer)
+  if (!headReady) { endIntro(); return }
+
+  // Feed the timeline while it plays. An <img> keeps painting its previous frame until the new
+  // src decodes, so a frame that arrives late costs a repeated frame, never a blank flash.
+  preloadBatched(introFrameUrls.slice(INTRO_HEAD, INTRO_FRAMES), 8)
+
   // Safety net: whatever happens, never leave scroll locked for more than a few seconds.
   introSafetyTimer = setTimeout(() => {
-    if (!introDone.value) { introTl?.kill(); introDone.value = true; unlockScroll() }
+    endIntro()
   }, 6000)
-
-  await Promise.all(introFrameUrls.slice(0, 120).map(preloadImage))
-  // keep loading the rest in the background (batched + cancellable) so the handoff to
-  // Product360Viewer is instant without firing ~590 concurrent requests at once
-  preloadRemainingFrames(introFrameUrls.slice(120))
 
   await nextTick()
   // The safety timer (or an unmount) may have already resolved this while we were awaiting.
   if (introCancelled || introDone.value || !heroSection.value || !heroViewerBox.value) {
-    clearTimeout(introSafetyTimer); introDone.value = true; unlockScroll(); return
+    endIntro(); return
+  }
+  // Scroll restoration usually lands while we were awaiting the preload above. This is the last
+  // point before the overlay gets a size (it is 0x0 until now), so bailing here keeps the
+  // takeover from ever painting over whatever section the page was restored to.
+  if (window.scrollY > 0) {
+    endIntro(); return
   }
 
   const targetRect = heroViewerBox.value.getBoundingClientRect()
@@ -546,32 +600,54 @@ async function playIntro() {
   const yTo = targetRect.top
   const scaleTo = targetRect.width / baseWidth
 
+  const el = introImg.value
+  if (!el) { endIntro(); return }
+
+  // Never lay the image out larger than the frames actually are. Filling a portrait phone by
+  // height wants ~1500 CSS px, which on a DPR-3 handset is ~11M device px rasterised per frame —
+  // all of it upscaled from a 960px source, so the extra pixels buy nothing but GPU work. Lay it
+  // out at the source size and reach the same on-screen size with a compositor scale instead.
+  // transform-origin is 0 0 and translate is applied before scale, so x/y are unaffected.
+  const renderWidth = Math.min(baseWidth, FRAME_WIDTH)
+  const renderScale = baseWidth / renderWidth
+
   const state = { n: 0, x: xFrom, y: yFrom, s: 1 }
-  introImgStyle.value = {
-    width: `${baseWidth}px`,
-    height: `${baseHeight}px`,
-    transform: `translate(${xFrom}px, ${yFrom}px) scale(1)`,
+  el.style.width = `${renderWidth}px`
+  el.style.height = `${renderWidth * 9 / 16}px`
+  el.style.transform = `translate3d(${xFrom}px, ${yFrom}px, 0) scale(${renderScale})`
+
+  // Only touch .src when the frame index actually changes: gsap ticks at the display's rate
+  // (60-120Hz), the sequence only holds 30 distinct frames per second.
+  let lastFrame = -1
+  const drawFrame = () => {
+    const i = Math.round(state.n)
+    if (i === lastFrame) return
+    lastFrame = i
+    el.src = introFrameUrls[i]!
   }
 
   await nextTick()
   if (introCancelled || introDone.value) { clearTimeout(introSafetyTimer); return }
 
-  introTl = gsap.timeline({ onComplete: () => { clearTimeout(introSafetyTimer); introDone.value = true; unlockScroll() } })
-    .to(state, {
-      n: 39, duration: 40 / 30, ease: 'none',
-      onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
-    }, 0)
-    .to(state, {
-      n: 119, duration: 80 / 30, ease: 'none',
-      onUpdate: () => { introFrameIndex.value = Math.round(state.n) },
-    }, 40 / 30)
+  introTl = gsap.timeline({
+    // Not endIntro(): revealHero() is still animating the hero copy in at this point, and
+    // endIntro() would snap it to its end state mid-flight.
+    onComplete: () => {
+      window.removeEventListener('scroll', onScrollAbort)
+      clearTimeout(introSafetyTimer)
+      introDone.value = true
+      unlockScroll()
+      // Only now go after the remaining ~590 frames: fetching and decoding 14MB while the
+      // takeover is on screen starves the very animation it is meant to feed.
+      preloadBatched(introFrameUrls.slice(INTRO_FRAMES), 40)
+    },
+  })
+    .to(state, { n: 39, duration: 40 / 30, ease: 'none', onUpdate: drawFrame }, 0)
+    .to(state, { n: 119, duration: 80 / 30, ease: 'none', onUpdate: drawFrame }, 40 / 30)
     .to(state, {
       x: xTo, y: yTo, s: scaleTo, duration: 80 / 30, ease: 'power2.inOut',
       onUpdate: () => {
-        introImgStyle.value = {
-          ...introImgStyle.value,
-          transform: `translate(${state.x}px, ${state.y}px) scale(${state.s})`,
-        }
+        el.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) scale(${state.s * renderScale})`
       },
     }, 40 / 30)
     .call(() => revealHero(), [], '-=2')
@@ -635,6 +711,7 @@ onMounted(() => {
 onUnmounted(() => {
   gsapCtx?.revert()
   introCancelled = true
+  window.removeEventListener('scroll', onScrollAbort)
   clearTimeout(introSafetyTimer)
   introTl?.kill()
   unlockScroll()
