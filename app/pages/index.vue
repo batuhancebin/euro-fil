@@ -470,7 +470,7 @@ const introImg = ref<HTMLImageElement | null>(null)
 const FRAME_WIDTH = 960        // intrinsic width of the /hero-urun frames
 const INTRO_FRAMES = 120        // frames the takeover timeline plays through
 const INTRO_HEAD = 24          // enough of a head start to begin; the rest streams in behind us
-const HEAD_BUDGET_MS = 1500    // scroll stays locked while the head loads — never hold longer
+const HEAD_BUDGET_MS = 2500    // scroll stays locked while the head loads — never hold longer
 
 function reducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -479,13 +479,17 @@ function reducedMotion() {
 // A full-screen 30fps image sequence is a GPU fill-rate problem on touch devices (a DPR-3 handset
 // rasterises ~11M device px per frame here) and a bandwidth problem on metered connections. Both
 // skip the takeover and get the hero and the 360° viewer straight away.
-// `pointer: coarse` is the primary input, so it means phones and tablets — a touch-screen laptop
-// with a trackpad reports `fine` and keeps the takeover.
 function skipTakeover() {
-  if (window.matchMedia('(pointer: coarse)').matches) return true
-  const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection
-  if (conn?.saveData) return true
-  return !!conn?.effectiveType && ['slow-2g', '2g', '3g'].includes(conn.effectiveType)
+  // Phones and tablets, by device class rather than by touch capability: a touch-screen laptop
+  // reports a coarse *primary* pointer yet still exposes a fine one (its trackpad/mouse), so the
+  // `any-pointer: fine` clause keeps the takeover for it while a phone/tablet (coarse only) skips.
+  if (window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(any-pointer: fine)').matches) return true
+  // Honour an explicit Data Saver request only. We deliberately no longer guess from
+  // `connection.effectiveType`: it reports '3g' on plenty of healthy Wi-Fi and was the main reason
+  // the takeover silently never appeared on perfectly capable computers. The head-load budget below
+  // measures *these* frames' real download speed and drops the takeover only if they can't make it.
+  const conn = (navigator as { connection?: { saveData?: boolean } }).connection
+  return !!conn?.saveData
 }
 
 function preloadImage(url: string) {
