@@ -118,12 +118,17 @@
         </div>
       </div>
 
-      <div class="relative border-y border-surface-4 py-6 overflow-hidden">
+      <div ref="marqueeViewport" class="relative border-y border-surface-4 py-6 overflow-hidden">
         <!-- the fade must match the section background, not the page background -->
         <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface-2 to-transparent z-10 pointer-events-none" />
         <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface-2 to-transparent z-10 pointer-events-none" />
-        <div class="flex w-max animate-marquee">
-          <div v-for="n in 2" :key="n" class="flex items-center flex-shrink-0">
+        <!-- The five items are narrower than a desktop viewport, so two copies + a -50% slide leave
+             a blank gap trailing in on the right near each loop. Render however many identical copies
+             it takes for the ones staying on screen to always span the viewport; the slide is still
+             exactly one copy (see marqueeShift), so the scroll speed is unchanged. Count is measured
+             on mount/resize in the script. -->
+        <div ref="marqueeTrack" class="flex w-max animate-marquee" :style="{ '--marquee-shift': marqueeShift }">
+          <div v-for="n in marqueeCopies" :key="n" class="flex items-center flex-shrink-0">
             <template v-for="(std, si) in standardItems" :key="si + '-' + n">
               <span class="flex items-center gap-2 px-8 text-sm font-medium text-zinc-400 whitespace-nowrap">
                 <BadgeCheck class="w-4 h-4 text-brand-400 flex-shrink-0" />
@@ -196,6 +201,26 @@ const standardsSection = ref<HTMLElement>()
 const standardsHeader  = ref<HTMLElement>()
 const ctaSection    = ref<HTMLElement>()
 
+// — Standards marquee: render enough copies that the on-screen ones always fill the viewport —
+const marqueeViewport = ref<HTMLElement>()
+const marqueeTrack    = ref<HTMLElement>()
+const marqueeCopies   = ref(2)
+// The track slides left by exactly one copy, whatever the copy count, so the speed stays constant.
+const marqueeShift    = computed(() => `-${100 / marqueeCopies.value}%`)
+let marqueeRO: ResizeObserver | undefined
+
+function recomputeMarqueeCopies() {
+  const viewport = marqueeViewport.value
+  const group = marqueeTrack.value?.firstElementChild as HTMLElement | null
+  if (!viewport || !group) return
+  const groupWidth = group.getBoundingClientRect().width
+  const viewportWidth = viewport.getBoundingClientRect().width
+  if (groupWidth < 1 || viewportWidth < 1) return
+  // As the strip slides one copy left, the remaining (copies − 1) copies must be at least a viewport
+  // wide, or a blank gap trails in on the right. +1 keeps one full copy queued off-screen to enter.
+  marqueeCopies.value = Math.max(2, Math.ceil(viewportWidth / groupWidth) + 1)
+}
+
 let gsapCtx: gsap.Context
 
 onMounted(() => {
@@ -252,17 +277,24 @@ onMounted(() => {
       onEnter: () => gsap.from(ctaSection.value!, { scale: 0.96, opacity: 0, duration: 0.8, ease: 'power3.out' }),
     })
   })
+
+  // ResizeObserver fires once on observe() with the current size, seeding the initial count; it then
+  // reacts to viewport changes. Web-font swap changes the text metrics, so remeasure once fonts land.
+  marqueeRO = new ResizeObserver(recomputeMarqueeCopies)
+  if (marqueeViewport.value) marqueeRO.observe(marqueeViewport.value)
+  document.fonts?.ready.then(recomputeMarqueeCopies)
 })
 
 onUnmounted(() => {
   gsapCtx?.revert()
+  marqueeRO?.disconnect()
 })
 </script>
 
 <style scoped>
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(var(--marquee-shift, -50%)); }
 }
 .animate-marquee {
   animation: marquee 28s linear infinite;
